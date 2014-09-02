@@ -1,0 +1,61 @@
+<div class="tx-moox-social-twitter">	
+	<f:if condition="{twitter.author}">
+		<div class="tx-moox-social-twitter-author">
+			<div class="tx-moox-social-twitter-author-name">{twitter.author} | <span class="tx-moox-social-twitter-datetime"><f:format.date format="d.m.Y H:i">{twitter.updated}</f:format.date></span></div>		
+			<div class="clearfix"></div>
+		</div>
+	</f:if>
+	<f:if condition="{twitter.text}">
+		<div class="tx-moox-social-twitter-text">
+				<span href="#tweet-popup-ID{twitter.apiUid}" data-effect="mfp-zoom-in">
+					<f:format.raw>{twitter.text}</f:format.raw>
+				</span>
+		</div>
+	</f:if>
+	<f:if condition="{twitter.imageUrl}">
+		<div class="tx-moox-social-twitter-image">
+			<a class="image-lightbox" href="{twitter.imageUrl}" title="{twitter.text}">
+				<img src="{twitter.imageUrl}" class="img-responsive img-thumbnail" alt="{twitter.imageUrl}" />
+			</a>
+		</div>
+	</f:if>
+	<div class="tx-moox-social-twitter-stats">
+		[ <f:translate key="tx_mooxsocial_twitter_action_list_item.shares" />:{twitter.shares} | <f:translate key="tx_mooxsocial_twitter_action_list_item.likes" />:{twitter.likes} ]
+	</div>
+	<div id="tweet-popup-ID{twitter.apiUid}" class="white-popup mfp-with-anim mfp-hide">
+		<div class="popup-header">
+			<div class="row">
+				<div class="col-md-9">
+					<div class="media">
+						<a class="pull-left" href="#">
+							<img class="media-object" src="{twitter.imageEmbedcode}" alt="{twitter.author}">
+						</a>
+						<div class="media-body">
+							<h4 class="media-heading">{twitter.author}</h4>
+							<a href="https://twitter.com/{twitter.page}" target="_blank">@{twitter.page}</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<a class="follow-button profile" href="https://twitter.com/{twitter.page}" role="button" data-scribe="component:followbutton" title="Follow {twitter.author} on Twitter"><i class="ic-button-bird"></i>Follow</a>
+				</div>
+			</div>
+		</div>
+		<div class="popup-content">
+			<f:format.raw>{twitter.text}</f:format.raw><br /><div class="popup-tweet-date"><f:format.date format="d.m.Y H:i">{twitter.updated}</f:format.date></div>
+			<f:if condition="{twitter.imageUrl}">
+				<br />
+				<div class="tx-moox-social-twitter-image">
+					<img src="{twitter.imageUrl}" class="img-responsive img-thumbnail" alt="{twitter.imageUrl}" />
+				</div>
+			</f:if>
+		</div>
+		<div class="popup-footer">
+			<ul class="tweet-actions" role="menu" aria-label="Tweet actions" data-scribe="component:actions">
+				<li><a href="https://twitter.com/intent/tweet?in_reply_to={twitter.apiUid}&amp;original_referer=https%3A%2F%2Ftwitter.com%2F&amp;tw_i={twitter.apiUid}&amp;tw_p=tweetembed" target="_blank" class="reply-action web-intent" title="Reply"><i class="ic-reply ic-mask"></i><b>Reply</b></a></li>
+				<li><a href="https://twitter.com/intent/retweet?tweet_id={twitter.apiUid}" target="_blank" class="retweet-action web-intent" title="Retweet"><i class="ic-retweet ic-mask"></i><b>Retweet</b></a></li>
+				<li><a href="https://twitter.com/intent/favorite?tweet_id={twitter.apiUid}" target="_blank" class="favorite-action web-intent" title="Favorite"><i class="ic-fav ic-mask"></i><b>Favorite</b></a></li>
+			</ul>
+		</div>
+	</div>
+</div>

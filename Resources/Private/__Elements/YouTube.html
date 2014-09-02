@@ -1,0 +1,69 @@
+<f:comment>
+- - - - - - - - - - - - - - - - - - - - - - - - - - -
+|                                                   |
+|      	      moox - 23.01.2014            	    |
+|                                                   |
+|         Copyright DCN GmbH - www.dcn.de           |
+|                                                   |
+- - - - - - - - - - - - - - - - - - - - - - - - - - -
+</f:comment>
+
+{namespace v=Tx_Vhs_ViewHelpers}
+{namespace flux=Tx_Flux_ViewHelpers}
+{namespace s=Tx_MooxSocial_ViewHelpers}
+
+<f:layout name="Content" />
+
+<f:comment>****************************************************************************************************************************************</f:comment>
+
+<f:section name="Configuration">
+
+	<f:comment>
+		/******************************************************/
+		/* SECTION: Configuration                             */
+		/******************************************************/
+	</f:comment>
+
+        <flux:flexform wizardTab="{v:l(key: 'content-youtube.tab', default: 'moox Inhalte')}" id="youtube" label="{v:l(key: 'content-youtube.name', default: 'YouTube Test')}" description="{v:l(key: 'content-youtube.description', default: 'YouTube API Test')}" icon="{v:extension.path.resources(path: 'Icons/ce_wiz.png')}">
+                <flux:flexform.sheet name="youtubeconfigsheet" label="{v:l(key: 'content-youtube.youtubeconfig', default: 'YouTube Config')}">
+			<flux:flexform.field.input name="oauthclientid" label="{v:l(key: 'content-youtube.oauthclientid', default: 'OAuth2 Client ID')}" />
+                        <flux:flexform.field.input name="oauthclientsecret" label="{v:l(key: 'content-youtube.oauthclientsecret', default: 'OAuth2 Client Secret')}" />
+                </flux:flexform.sheet>
+	</flux:flexform>
+	
+</f:section>
+
+<f:comment>****************************************************************************************************************************************</f:comment>
+
+<f:section name="Preview">
+
+	<f:comment>
+		/******************************************************/
+		/* SECTION: Preview                                   */
+		/******************************************************/
+	</f:comment>
+
+</f:section>
+
+<f:comment>****************************************************************************************************************************************</f:comment>
+
+<f:section name="Main">
+	
+	<f:comment>
+		/******************************************************/
+		/* SECTION: Main                                      */
+		/******************************************************/
+	</f:comment>
+	
+	
+	<div class="test{record.uid}">
+		
+	    <s:youtube clientid="{oauthclientid}" clientsecret="{oauthclientsecret}" />
+                
+	</div>
+	
+	
+	
+</f:section>
+
+<f:comment>****************************************************************************************************************************************</f:comment>

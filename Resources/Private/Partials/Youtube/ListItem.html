@@ -1,0 +1,23 @@
+<div class="tx-moox-social-youtube">
+	<f:if condition="{youtube.author}">
+		<div class="tx-moox-social-youtube-author">
+			<div class="tx-moox-social-youtube-author-name">{youtube.author} | <span class="tx-moox-social-youtube-datetime"><f:format.date format="d.m.Y H:i">{youtube.updated}</f:format.date></span></div>		
+			<div class="clearfix"></div>
+		</div>
+	</f:if>
+	<f:if condition="{youtube.imageUrl}">
+		<div class="tx-moox-social-youtube-image">
+			<a href="{youtube.videoUrl}" title="{youtube.title}" target="_blank">
+				<img src="{youtube.imageUrl}" class="img-responsive img-thumbnail" alt="{youtube.imageUrl}" />
+			</a>
+		</div>
+	</f:if>
+	<f:if condition="{youtube.description}">
+		<div class="tx-moox-social-youtube-text">
+			<f:format.raw>{youtube.description}</f:format.raw>
+		</div>
+	</f:if>
+	<div class="tx-moox-social-youtube-stats">
+		[ <f:translate key="tx_mooxsocial_youtube_action_list_item.shares" />:{youtube.shares} | <f:translate key="tx_mooxsocial_youtube_action_list_item.likes" />:{youtube.likes} ]
+	</div>
+</div>

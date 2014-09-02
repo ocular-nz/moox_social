@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2014-02-20T12:22:09Z" product-name="moox_social">
+		<header/>
+		<body>
+		
+			<trans-unit id="tx_mooxsocial_tasks_facebookgettask.title">
+				<source>Get Facebook posts</source>
+				<target>Lade Facebook Posts</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_facebookgettask.description">
+				<source>loads new posts of your Facebook page or updates existing posts</source>
+				<target>Lädt neue Posts Ihrer Facebook-Seite bzw. aktualisiert vorhanden Posts</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_facebookgettask.pid">
+				<source>pid of the page where posts of this task should be stored</source>
+				<target>PID der Seite/Ordner in dem die Posts dieses Tasks gespeichert werden sollen</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_facebookgettask.pid_label">
+				<source>storage pid</source>
+				<target>Storage-PID</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_facebookgettask.pid_error">
+				<source>invalid pid</source>
+				<target>Ungültige PID</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_facebookgettask.default_storage">
+				<source>default storage</source>
+				<target>Default Storage</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_facebookgettask.app_id">
+				<source>id of facebook app</source>
+				<target>ID Ihrer Facebook Anwendung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_facebookgettask.app_id_label">
+				<source>app id</source>
+				<target>APP-ID</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_facebookgettask.app_id_error">
+				<source>invalid app id</source>
+				<target>Ungültige APP-ID</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_facebookgettask.secret">
+				<source>secret of facebook app</source>
+				<target>Secret Ihrer Facebook Anwendung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_facebookgettask.secret_label">
+				<source>app secret</source>
+				<target>APP-Secret</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_facebookgettask.secret_error">
+				<source>invalid secret</source>
+				<target>Ungültiges Secret</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_facebookgettask.page_id">
+				<source>id of your Facebook page</source>
+				<target>ID Ihrer Facebook Seite</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_facebookgettask.page_id_label">
+				<source>page id</source>
+				<target>Page-ID</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_facebookgettask.page_id_error">
+				<source>invalid page id</source>
+				<target>Ungültige Page-ID</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_facebookgettask.email">
+				<source>email for api error reporting</source>
+				<target>Email-Adresse für Fehlerbenachrichtigungen</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_facebookgettask.email_label">
+				<source>email address</source>
+				<target>Email-Adresse</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_facebookgettask.email_error">
+				<source>invalid email address</source>
+				<target>Ungültige Email-Adresse</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_facebookgettask.api_label">
+				<source>Facebook-APP data</source>
+				<target>Daten zur Verbindung mit Ihrer Facebook-Anwendung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_facebookgettask.api_error">
+				<source>Invalid Facebook-APP data</source>
+				<target>Daten für die Verbindung zu Ihrer Facebook-Anwendungen sind ungültig.</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_facebookgettask.api_execution_error">
+				<source>error while requesting Facebook api</source>
+				<target>Fehler bei Anfrage an Facebook-API</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_facebookgettask.api_error_mailsubject">
+				<source>MOOX-Social | error while requesting Facebook api</source>
+				<target>MOOX-Social | Fehler bei Anfrage an Facebook-API</target>
+			</trans-unit>
+			
+			
+			
+			
+			
+			<trans-unit id="tx_mooxsocial_tasks_twittergettask.title">
+				<source>Get Twitter tweets</source>
+				<target>Lade Twitter Tweets</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_twittergettask.description">
+				<source>loads new tweets of your Twitter user or updates existing tweets</source>
+				<target>Lädt neue Tweets von Ihrem Twitter-User bzw. aktualisiert vorhanden Tweets</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_twittergettask.pid">
+				<source>pid of the page where tweets of this task should be stored</source>
+				<target>PID der Seite/Ordner in dem die Tweets dieses Tasks gespeichert werden sollen</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_twittergettask.pid_label">
+				<source>storage pid</source>
+				<target>Storage-PID</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_twittergettask.pid_error">
+				<source>invalid pid</source>
+				<target>Ungültige PID</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_twittergettask.default_storage">
+				<source>default storage</source>
+				<target>Default Storage</target>
+			</trans-unit>			
+			<trans-unit id="tx_mooxsocial_tasks_twittergettask.oauth_access_token">
+				<source>oauth access token of twitter app</source>
+				<target>OAuth Access Token Ihrer Twitter Anwendung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_twittergettask.oauth_access_token_label">
+				<source>oauth access token</source>
+				<target>OAuth Access Token</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_twittergettask.oauth_access_token_error">
+				<source>invalid oauth access token</source>
+				<target>Ungültiges OAuth Access Token</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_twittergettask.oauth_access_token_secret">
+				<source>oauth access token secret of twitter app</source>
+				<target>OAuth Access Token Secret Ihrer Twitter Anwendung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_twittergettask.oauth_access_token_secret_label">
+				<source>oauth access token secret</source>
+				<target>OAuth Access Token Secret</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_twittergettask.oauth_access_token_secret_error">
+				<source>invalid oauth access token secret</source>
+				<target>Ungültiges OAuth Access Token Secret</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_twittergettask.consumer_key">
+				<source>consumer key of twitter app</source>
+				<target>Consumer Key Ihrer Twitter Anwendung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_twittergettask.consumer_key_label">
+				<source>consumer key</source>
+				<target>Consumer Key</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_twittergettask.consumer_key_error">
+				<source>invalid consumer key</source>
+				<target>Ungültiges Consumer Key</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_twittergettask.consumer_key_secret">
+				<source>consumer key secret of twitter app</source>
+				<target>Consumer Key Secret Ihrer Twitter Anwendung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_twittergettask.consumer_key_secret_label">
+				<source>consumer key secret</source>
+				<target>Consumer Key Secret</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_twittergettask.consumer_key_secret_error">
+				<source>invalid consumer key secret</source>
+				<target>Ungültiges Consumer Key Secret</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_twittergettask.screen_name">
+				<source>screen name of your twitter user</source>
+				<target>Screen-Name von Ihrem Twitter-User</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_twittergettask.screen_name_label">
+				<source>screen name</source>
+				<target>Screen-Name</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_twittergettask.screen_name_error">
+				<source>invalid screen name</source>
+				<target>Ungültige Screen-Name</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_twittergettask.email">
+				<source>email for api error reporting</source>
+				<target>Email-Adresse für Fehlerbenachrichtigungen</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_twittergettask.email_label">
+				<source>email address</source>
+				<target>Email-Adresse</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_twittergettask.email_error">
+				<source>invalid email address</source>
+				<target>Ungültige Email-Adresse</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_twittergettask.api_label">
+				<source>Twitter-APP data</source>
+				<target>Daten zur Verbindung mit Ihrer Twitter-Anwendung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_twittergettask.api_error">
+				<source>Invalid Twitter-APP data</source>
+				<target>Daten für die Verbindung zu Ihrer Twitter-Anwendungen sind ungültig.</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_twittergettask.api_execution_error">
+				<source>error while requesting Twitter api</source>
+				<target>Fehler bei Anfrage an Twitter-API</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_twittergettask.api_error_mailsubject">
+				<source>MOOX-Social | error while requesting Twitter api</source>
+				<target>MOOX-Social | Fehler bei Anfrage an Twitter-API</target>
+			</trans-unit>
+			
+			
+			
+			
+			
+			<trans-unit id="tx_mooxsocial_tasks_youtubegettask.title">
+				<source>Get YouTube videos</source>
+				<target>Lade YouTube Videos</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_youtubegettask.description">
+				<source>loads new videos of your YouTube user or updates existing videos</source>
+				<target>Lädt neue Videos von Ihrem YouTube-User bzw. aktualisiert vorhandene Videos</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_youtubegettask.pid">
+				<source>pid of the page where videos of this task should be stored</source>
+				<target>PID der Seite/Ordner in dem die Videos dieses Tasks gespeichert werden sollen</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_youtubegettask.pid_label">
+				<source>storage pid</source>
+				<target>Storage-PID</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_youtubegettask.pid_error">
+				<source>invalid pid</source>
+				<target>Ungültige PID</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_youtubegettask.default_storage">
+				<source>default storage</source>
+				<target>Default Storage</target>
+			</trans-unit>			
+			<trans-unit id="tx_mooxsocial_tasks_youtubegettask.youtube_channel">
+				<source>youtube channel of your youtube user</source>
+				<target>YouTube Channel von Ihrem YouTube-User</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_youtubegettask.youtube_channel_label">
+				<source>youtube channel</source>
+				<target>YouTube Channel</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_youtubegettask.youtube_channel_error">
+				<source>invalid youtube channel</source>
+				<target>Ungültige YouTube Channel</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_youtubegettask.email">
+				<source>email for api error reporting</source>
+				<target>Email-Adresse für Fehlerbenachrichtigungen</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_youtubegettask.email_label">
+				<source>email address</source>
+				<target>Email-Adresse</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_youtubegettask.email_error">
+				<source>invalid email address</source>
+				<target>Ungültige Email-Adresse</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_youtubegettask.api_label">
+				<source>YouTube-APP data</source>
+				<target>Daten zur Verbindung mit Ihrer YouTube-Anwendung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_youtubegettask.api_error">
+				<source>Invalid YouTube-APP data</source>
+				<target>Daten für die Verbindung zu Ihrer YouTube-Anwendungen sind ungültig.</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_youtubegettask.api_execution_error">
+				<source>error while requesting YouTube api</source>
+				<target>Fehler bei Anfrage an YouTube-API</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_youtubegettask.api_error_mailsubject">
+				<source>MOOX-Social | error while requesting YouTube api</source>
+				<target>MOOX-Social | Fehler bei Anfrage an YouTube-API</target>
+			</trans-unit>
+			
+			
+			
+			
+			
+			<trans-unit id="tx_mooxsocial_tasks_flickrgettask.title">
+				<source>Get Flickr images</source>
+				<target>Lade Flickr Bilder</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_flickrgettask.description">
+				<source>loads new images of your Flickr user or updates existing images</source>
+				<target>Lädt neue Bilder von Ihrem Flickr-User bzw. aktualisiert vorhandene Bilder</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_flickrgettask.pid">
+				<source>pid of the page where images of this task should be stored</source>
+				<target>PID der Seite/Ordner in dem die Bilder dieses Tasks gespeichert werden sollen</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_flickrgettask.pid_label">
+				<source>storage pid</source>
+				<target>Storage-PID</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_flickrgettask.pid_error">
+				<source>invalid pid</source>
+				<target>Ungültige PID</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_flickrgettask.default_storage">
+				<source>default storage</source>
+				<target>Default Storage</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_flickrgettask.api_key">
+				<source>api key of your flickr app</source>
+				<target>Api key von Ihrer Flickr-App</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_flickrgettask.api_key_label">
+				<source>api key</source>
+				<target>Api Key</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_flickrgettask.api_key_error">
+				<source>invalid api key</source>
+				<target>Ungültiges Api Key</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_flickrgettask.api_secret_key">
+				<source>api key secret of your flickr app</source>
+				<target>Api Key Secret von Ihrer Flickr-App</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_flickrgettask.api_secret_key_label">
+				<source>api key secret</source>
+				<target>Api Key Secret</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_flickrgettask.api_secret_key_error">
+				<source>invalid api key secret</source>
+				<target>Ungültiges Api Key Secret</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_flickrgettask.user_id">
+				<source>user id of your flickr user</source>
+				<target>User ID von Ihrem Flickr-User</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_flickrgettask.user_id_label">
+				<source>user id</source>
+				<target>User ID</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_flickrgettask.user_id_error">
+				<source>invalid user id</source>
+				<target>Ungültige User ID</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_flickrgettask.email">
+				<source>email for api error reporting</source>
+				<target>Email-Adresse für Fehlerbenachrichtigungen</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_flickrgettask.email_label">
+				<source>email address</source>
+				<target>Email-Adresse</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_flickrgettask.email_error">
+				<source>invalid email address</source>
+				<target>Ungültige Email-Adresse</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_flickrgettask.api_label">
+				<source>Flickr-APP data</source>
+				<target>Daten zur Verbindung mit Ihrer Flickr-Anwendung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_flickrgettask.api_error">
+				<source>Invalid Flickr-APP data</source>
+				<target>Daten für die Verbindung zu Ihrer Flickr-Anwendungen sind ungültig.</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_flickrgettask.api_execution_error">
+				<source>error while requesting Flickr api</source>
+				<target>Fehler bei Anfrage an Flickr-API</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_flickrgettask.api_error_mailsubject">
+				<source>MOOX-Social | error while requesting Flickr api</source>
+				<target>MOOX-Social | Fehler bei Anfrage an Flickr-API</target>
+			</trans-unit>
+			
+			
+			
+			
+			
+			<trans-unit id="tx_mooxsocial_tasks_slidesharegettask.title">
+				<source>Get slideshare slideshows</source>
+				<target>Lade Slideshare Präsentationen</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_slidesharegettask.description">
+				<source>loads new slideshows of your Slideshare user or updates existing slideshows</source>
+				<target>Lädt neue Präsentationen von Ihrem Slideshare-User bzw. aktualisiert vorhandene Präsenatationen</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_slidesharegettask.pid">
+				<source>pid of the page where slideshows of this task should be stored</source>
+				<target>PID der Seite/Ordner in dem die Präsentationen dieses Tasks gespeichert werden sollen</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_slidesharegettask.pid_label">
+				<source>storage pid</source>
+				<target>Storage-PID</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_slidesharegettask.pid_error">
+				<source>invalid pid</source>
+				<target>Ungültige PID</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_slidesharegettask.default_storage">
+				<source>default storage</source>
+				<target>Default Storage</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_slidesharegettask.api_key">
+				<source>api key of your slideshare app</source>
+				<target>Api key von Ihrer Slideshare-App</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_slidesharegettask.api_key_label">
+				<source>api key</source>
+				<target>Api Key</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_slidesharegettask.api_key_error">
+				<source>invalid api key</source>
+				<target>Ungültiges Api Key</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_slidesharegettask.api_secret_key">
+				<source>api key secret of your slideshare app</source>
+				<target>Api Key Secret von Ihrer Slideshare-App</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_slidesharegettask.api_secret_key_label">
+				<source>api key secret</source>
+				<target>Api Key Secret</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_slidesharegettask.api_secret_key_error">
+				<source>invalid api key secret</source>
+				<target>Ungültiges Api Key Secret</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_slidesharegettask.user_id">
+				<source>username of your slideshare user</source>
+				<target>Benutzername von Ihrem Slideshare Benutzer</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_slidesharegettask.user_id_label">
+				<source>username</source>
+				<target>Benutzername</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_slidesharegettask.user_id_error">
+				<source>inavalid username</source>
+				<target>Ungültiger Benutzer</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_slidesharegettask.email">
+				<source>email for api error reporting</source>
+				<target>Email-Adresse für Fehlerbenachrichtigungen</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_slidesharegettask.email_label">
+				<source>email address</source>
+				<target>Email-Adresse</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_slidesharegettask.email_error">
+				<source>invalid email address</source>
+				<target>Ungültige Email-Adresse</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_slidesharegettask.api_label">
+				<source>Slideshare-APP data</source>
+				<target>Daten zur Verbindung mit Ihrer Slideshare-Anwendung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_slidesharegettask.api_error">
+				<source>Invalid Slideshare-APP data</source>
+				<target>Daten für die Verbindung zu Ihrer Slideshare-Anwendungen sind ungültig.</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_slidesharegettask.api_execution_error">
+				<source>error while requesting Slideshare api</source>
+				<target>Fehler bei Anfrage an Slideshare-API</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_slidesharegettask.api_error_mailsubject">
+				<source>MOOX-Social | error while requesting Slideshare api</source>
+				<target>MOOX-Social | Fehler bei Anfrage an Slideshare-API</target>
+			</trans-unit>
+			
+		</body>
+	</file>
+</xliff>

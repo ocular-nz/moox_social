@@ -1,0 +1,20 @@
+<div class="tx-moox-social-slideshare">
+	<f:if condition="{slideshare.title}">
+		<div class="tx-moox-social-slideshare-head">
+			<div class="tx-moox-social-slideshare-title"><f:format.html>{slideshare.title} | <span class="tx-moox-social-slideshare-datetime"><f:format.date format="d.m.Y H:i">{slideshare.updated}</f:format.date></span></f:format.html></div>		
+			<div class="clearfix"></div>
+		</div>
+	</f:if>
+	<f:if condition="{slideshare.imageUrl}">
+		<div class="tx-moox-social-slideshare-image">
+			<a href="{slideshare.url}" title="{slideshare.title}" target="_blank">
+				<img src="{slideshare.imageUrl}" class="img-responsive img-thumbnail" alt="{slideshare.title}" />
+			</a>
+		</div>
+	</f:if>
+	<f:if condition="{slideshare.description}">
+		<div class="tx-moox-social-slideshare-text">
+			<f:format.raw>{slideshare.description}</f:format.raw>
+		</div>
+	</f:if>
+</div>

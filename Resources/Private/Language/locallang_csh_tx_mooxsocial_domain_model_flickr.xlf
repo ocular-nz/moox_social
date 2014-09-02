@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-02-20T12:22:09Z" product-name="moox_social">
+		<header/>
+		<body>
+
+			<trans-unit id="created.description">
+				<source>created</source>				
+			</trans-unit>
+			<trans-unit id="updated.description">
+				<source>updated</source>				
+			</trans-unit>
+			<trans-unit id="model.description">
+				<source>model</source>				
+			</trans-unit>
+			<trans-unit id="type.description">
+				<source>type</source>				
+			</trans-unit>
+			<trans-unit id="status_type.description">
+				<source>status type</source>				
+			</trans-unit>
+			<trans-unit id="page.description">
+				<source>page</source>				
+			</trans-unit>
+			<trans-unit id="action.description">
+				<source>action</source>				
+			</trans-unit>
+			<trans-unit id="title.description">
+				<source>Title</source>				
+			</trans-unit>
+			<trans-unit id="summary.description">
+				<source>Summary</source>				
+			</trans-unit>
+			<trans-unit id="text.description">
+				<source>Text</source>				
+			</trans-unit>
+			<trans-unit id="author.description">
+				<source>author</source>				
+			</trans-unit>
+			<trans-unit id="author_id.description">
+				<source>author id</source>			
+			</trans-unit>
+			<trans-unit id="description.description">
+				<source>description</source>				
+			</trans-unit>
+			<trans-unit id="caption.description">
+				<source>caption</source>				
+			</trans-unit>
+			<trans-unit id="url.description">
+				<source>url</source>				
+			</trans-unit>
+			<trans-unit id="link_name.description">
+				<source>link name</source>				
+			</trans-unit>
+			<trans-unit id="link_url.description">
+				<source>link url</source>				
+			</trans-unit>
+			<trans-unit id="image_url.description">
+				<source>image url</source>				
+			</trans-unit>
+			<trans-unit id="image_embedcode.description">
+				<source>image embedcode</source>				
+			</trans-unit>
+			<trans-unit id="video_url.description">
+				<source>video url</source>				
+			</trans-unit>
+			<trans-unit id="video_embedcode.description">
+				<source>video embedcode</source>				
+			</trans-unit>
+			<trans-unit id="shared_url.description">
+				<source>shared url</source>				
+			</trans-unit>
+			<trans-unit id="shared_title.description">
+				<source>shared title</source>				
+			</trans-unit>
+			<trans-unit id="shared_description.description">
+				<source>shared description</source>				
+			</trans-unit>
+			<trans-unit id="shared_caption.description">
+				<source>shared caption</source>				
+			</trans-unit>
+			<trans-unit id="likes.description">
+				<source>likes</source>				
+			</trans-unit>
+			<trans-unit id="shares.description">
+				<source>shares</source>			
+			</trans-unit>
+			<trans-unit id="comments.description">
+				<source>comments</source>				
+			</trans-unit>
+			<trans-unit id="api_uid.description">
+				<source>api uid</source>				
+			</trans-unit>
+			<trans-unit id="api_hash.description">
+				<source>api hash</source>				
+			</trans-unit>
+			
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,14 @@
+<f:layout name="Default" />
+
+<f:section name="main">	
+	<div class="tx-moox-social-details">
+		<f:render partial="Facebook/ShowItem" arguments="{facebook:facebook}" />
+	</div>
+	<f:if condition="{israndom}">
+		<f:else>
+			<div class="tx-moox-social-buttons">
+				<f:link.action action="list"><f:translate key="tx_mooxsocial_facebook_action_show.back" /></f:link.action>
+			</div>
+		</f:else>
+	</f:if>
+</f:section>

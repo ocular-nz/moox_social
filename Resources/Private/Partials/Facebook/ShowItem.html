@@ -1,0 +1,15 @@
+<div class="tx-moox-social-facebook">
+	<f:if condition="{facebook.story}">
+		{facebook.story}<br />
+	</f:if>
+	<f:if condition="{facebook.text}">
+		<f:format.nl2br>{facebook.text}</f:format.nl2br><br />
+	</f:if>
+	<f:if condition="{facebook.description}">
+		{facebook.description}<br />
+	</f:if>
+	<f:if condition="{facebook.imageUrl}">
+		<img src="{facebook.imageUrl}" class="img-responsive img-thumbnail" title="{facebook.imageUrl}" alt="{facebook.imageUrl}" /><br />
+	</f:if>
+	<f:link.external uri="{facebook.url}" target="_blank"><f:translate key="tx_mooxsocial_facebook_action_list.tofacebook" /> [ Kommentare:{facebook.comments} | Likes:{facebook.likes} | Shares:{facebook.shares} ]</f:link.external>
+</div>

@@ -1,0 +1,9 @@
+<f:layout name="Ajax" />
+<f:section name="main">	
+	<f:for each="{posts}" as="post">			
+		<f:render partial="Youtube/ListItem" arguments="{youtube:post}" />					
+	</f:for>
+	<f:if condition="{apiOffset}">
+		<input type="hidden" id="tx-moox-social-youtube-api-offset" value="{apiOffset}" />
+	</f:if>
+</f:section>

@@ -1,0 +1,41 @@
+# cat=basic/01; type=string; label=Fallback [APP-ID] of Facebook api
+fallbackFacebookAppId = 
+
+# cat=basic/02; type=string; label=Fallback [Secret] of Facebook api
+fallbackFacebookSecret =
+
+# cat=basic/03; type=string; label=Fallback [Access token] of Twitter api
+fallbackTwitterOauthAccessToken =
+
+# cat=basic/04; type=string; label=Fallback [Access token secret] of Twitter api
+fallbackTwitterOauthAccessTokenSecret = 
+
+# cat=basic/05; type=string; label=Fallback [Consumer key] of Twitter api
+fallbackTwitterConsumerKey =
+
+# cat=basic/06; type=string; label=Fallback [Consumer key secret] of Twitter api
+fallbackTwitterConsumerKeySecret =
+
+# cat=basic/06; type=string; label=Fallback [api key] of Flickr api
+fallbackFlickrApiKey =
+
+# cat=basic/07; type=string; label=Fallback [api key secret] of Flickr api
+fallbackFlickrApiSecretKey =
+
+# cat=basic/07; type=string; label=Fallback [api key] of Slideshare api
+fallbackSlideshareApiKey =
+
+# cat=basic/08; type=string; label=Fallback [api key secret] of Slideshare api
+fallbackSlideshareApiSecretKey = 
+
+# cat=basic/09; type=string; label=[Name] of sender for error-reporting mails
+debugEmailSenderName = MOOX-Social | ERROR
+
+# cat=basic/10; type=string; label=[Address] of sender for error-reporting mails
+debugEmailSenderAddress = error@example.net
+
+# cat=basic/11; type=string; label=Default [Address] of receiver for error-reporting mails
+debugEmailReceiverAddress = 
+
+# cat=basic/enable/12; type=boolean; label=Enable scheduler tasks
+showTasks = 1

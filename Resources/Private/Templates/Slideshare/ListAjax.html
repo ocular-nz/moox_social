@@ -1,0 +1,9 @@
+<f:layout name="Ajax" />
+<f:section name="main">	
+	<f:for each="{posts}" as="post">			
+		<f:render partial="Slideshare/ListItem" arguments="{slideshare:post}" />					
+	</f:for>
+	<f:if condition="{apiOffset}">
+		<input type="hidden" id="tx-moox-social-slideshare-api-offset" value="{apiOffset}" />
+	</f:if>
+</f:section>

@@ -1,0 +1,23 @@
+<div class="tx-moox-social-flickr">
+	<f:if condition="{flickr.title}">
+		<div class="tx-moox-social-flickr-head">
+			<div class="tx-moox-social-flickr-title">{flickr.title} | <span class="tx-moox-social-flickr-datetime"><f:format.date format="d.m.Y H:i">{flickr.updated}</f:format.date></span></div>		
+			<div class="clearfix"></div>
+		</div>
+	</f:if>
+	<f:if condition="{flickr.imageUrl}">
+		<div class="tx-moox-social-flickr-image">
+			<a href="{flickr.url}" title="{flickr.title}" target="_blank">
+				<img src="{flickr.imageUrl}" class="img-responsive img-thumbnail" alt="{flickr.title}" />
+			</a>
+		</div>
+	</f:if>
+	<f:if condition="{flickr.description}">
+		<div class="tx-moox-social-flickr-text">
+			<f:format.raw>{flickr.description}</f:format.raw>
+		</div>
+	</f:if>
+	<div class="tx-moox-social-flickr-stats">
+		[ <f:translate key="tx_mooxsocial_flickr_action_list_item.likes" />:{flickr.likes} ]
+	</div>
+</div>

@@ -1,0 +1,66 @@
+{namespace v=Tx_Vhs_ViewHelpers}
+
+<f:layout name="Default" />
+
+<f:section name="main">
+			
+	<f:if condition="{settings.use_ajax}">		
+		<f:render partial="Flickr/AjaxComponents" section="init" arguments="{_all}" />		
+	</f:if>					
+	<f:if condition="{posts -> f:count()}>0">
+		<f:then>
+			<f:if condition="{settings.source}!='api'">
+				<f:if condition="{settings.use_ajax}">
+					<div class="tx-moox-social-count">
+						{count} Posts
+					</div>
+				</f:if>
+			</f:if>
+			<f:if condition="{settings.use_ajax}">				
+				<f:if condition="{count}>{settings.ajax_limit}">					
+					<f:then>
+						<f:if condition="{settings.ajax_method}=='replace'">
+							<f:render partial="Flickr/AjaxComponents" section="pagination" arguments="{_all}" />
+						</f:if>											
+					</f:then>
+					<f:else>
+						<f:if condition="{settings.source}=='api'">
+							<f:if condition="{settings.ajax_method}=='replace'">
+								<f:render partial="Flickr/AjaxComponents" section="pagination" arguments="{_all}" />
+							</f:if>								
+						</f:if>
+					</f:else>
+				</f:if>
+			</f:if>
+			<div class="tx-moox-social-listing tx-moox-social-flickr-listing">
+				<f:for each="{posts}" as="post">			
+					<f:render partial="Flickr/ListItem" arguments="{flickr:post}" />					
+				</f:for>
+			</div>
+			<f:if condition="{settings.use_ajax}">				
+				<f:if condition="{count}>{settings.ajax_limit}">					
+					<f:then>
+						<f:if condition="{settings.ajax_method}=='replace'">
+							<f:render partial="Flickr/AjaxComponents" section="pagination" arguments="{_all}" />
+						</f:if>					
+						<f:render partial="Flickr/AjaxComponents" section="buttons" arguments="{_all}" />	
+					</f:then>
+					<f:else>
+						<f:if condition="{settings.source}=='api'">
+							<f:if condition="{settings.ajax_method}=='replace'">
+								<f:render partial="Flickr/AjaxComponents" section="pagination" arguments="{_all}" />
+							</f:if>	
+							<f:render partial="Flickr/AjaxComponents" section="buttons" arguments="{_all}" />	
+						</f:if>
+					</f:else>
+				</f:if>
+			</f:if>
+		</f:then>
+		<f:else>
+			<div class="tx-moox-social-notfound">
+				<f:translate key="tx_mooxsocial_flickr_action_list.notfound" />
+			</div>	
+		</f:else>
+	</f:if>
+
+</f:section>

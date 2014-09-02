@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0.description">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2014-02-20T12:22:09Z" product-name="moox_social.description">
+		<header/>
+		<body>
+			
+			<trans-unit id="created.description">
+				<source>created</source>
+				<target>Erstellt am</target>
+			</trans-unit>
+			<trans-unit id="updated.description">
+				<source>updated</source>
+				<target>Aktualisiert am</target>
+			</trans-unit>
+			<trans-unit id="model.description">
+				<source>model</source>
+				<target>Model</target>
+			</trans-unit>
+			<trans-unit id="type.description">
+				<source>type</source>
+				<target>Typ</target>
+			</trans-unit>
+			<trans-unit id="status_type.description">
+				<source>status type</source>
+				<target>Status-Typ</target>
+			</trans-unit>
+			<trans-unit id="page.description">
+				<source>page</source>
+				<target>Seite</target>
+			</trans-unit>
+			<trans-unit id="action.description">
+				<source>action</source>
+				<target>Aktion</target>
+			</trans-unit>
+			<trans-unit id="title.description">
+				<source>Title</source>
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="summary.description">
+				<source>Summary</source>
+				<target>Zusammenfassung</target>
+			</trans-unit>
+			<trans-unit id="text.description">
+				<source>Text</source>
+				<target>Text</target>
+			</trans-unit>
+			<trans-unit id="author.description">
+				<source>author</source>
+				<target>Autor</target>
+			</trans-unit>
+			<trans-unit id="author_id.description">
+				<source>author id</source>
+				<target>Autor-ID</target>
+			</trans-unit>
+			<trans-unit id="description.description">
+				<source>description</source>
+				<target>Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="caption.description">
+				<source>caption</source>
+				<target>Beschriftung</target>
+			</trans-unit>
+			<trans-unit id="url.description">
+				<source>url</source>
+				<target>Url</target>
+			</trans-unit>
+			<trans-unit id="link_name.description">
+				<source>link name</source>
+				<target>Link-Name</target>
+			</trans-unit>
+			<trans-unit id="link_url.description">
+				<source>link url</source>
+				<target>Link-Url</target>
+			</trans-unit>
+			<trans-unit id="image_url.description">
+				<source>image url</source>
+				<target>Bild-URL</target>
+			</trans-unit>
+			<trans-unit id="image_embedcode.description">
+				<source>image embedcode</source>
+				<target>Bild-Embed-Code</target>
+			</trans-unit>
+			<trans-unit id="video_url.description">
+				<source>video url</source>
+				<target>Video-URL</target>
+			</trans-unit>
+			<trans-unit id="video_embedcode.description">
+				<source>video embedcode</source>
+				<target>Video-Embed-Code</target>
+			</trans-unit>
+			<trans-unit id="shared_url.description">
+				<source>shared url</source>
+				<target>Geteilte URL</target>
+			</trans-unit>
+			<trans-unit id="shared_title.description">
+				<source>shared title</source>
+				<target>Geteilter Titel</target>
+			</trans-unit>
+			<trans-unit id="shared_description.description">
+				<source>shared description</source>
+				<target>Geteilte Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="shared_caption.description">
+				<source>shared caption</source>
+				<target>Geteilte Beschriftung</target>
+			</trans-unit>
+			<trans-unit id="likes.description">
+				<source>likes</source>
+				<target>Anzahl Likes</target>
+			</trans-unit>
+			<trans-unit id="shares.description">
+				<source>shares</source>
+				<target>Anzahl Shares</target>
+			</trans-unit>
+			<trans-unit id="comments.description">
+				<source>comments</source>
+				<target>Anzahl Kommentare</target>
+			</trans-unit>
+			<trans-unit id="api_uid.description">
+				<source>api uid</source>
+				<target>API UID</target>
+			</trans-unit>
+			<trans-unit id="api_hash.description">
+				<source>api hash</source>
+				<target>API Hash</target>
+			</trans-unit>
+			
+		</body>
+	</file>
+</xliff>

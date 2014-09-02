@@ -1,0 +1,63 @@
+plugin.tx_mooxsocial {
+	view {
+		# cat=plugin.tx_mooxsocial/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:moox_social/Resources/Private/Templates/
+		# cat=plugin.tx_mooxsocial/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:moox_social/Resources/Private/Partials/
+		# cat=plugin.tx_mooxsocial/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:moox_social/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_mooxsocial//a; type=string; label=Default storage PID
+		storagePid =
+	}
+	settings {
+		# cat=plugin.tx_mooxsocial/file/01; type=string; label= Path to local css file (leave blank for default css)
+		cssfile =
+
+		# cat=plugin.tx_mooxsocial/content/10; type=string; label= [Facebook][API] APP-ID
+		api_app_id =
+		
+		# cat=plugin.tx_mooxsocial/content/11; type=string; label= [Facebook][API] APP-Secret
+		api_secret =
+		
+		# cat=plugin.tx_mooxsocial/content/20; type=string; label= [Twitter][API] Access token secret
+		api_oauth_access_token =
+		
+		# cat=plugin.tx_mooxsocial/content/21; type=string; label= [Twitter][API] Access token
+		api_oauth_access_token_secret =
+		
+		# cat=plugin.tx_mooxsocial/content/22; type=string; label= [Twitter][API] Consumer key
+		api_consumer_key =
+		
+		# cat=plugin.tx_mooxsocial/content/23; type=string; label= [Twitter][API] Consumer secret
+		api_consumer_key_secret =
+		
+		# cat=plugin.tx_mooxsocial/content/30; type=string; label= [Flickr][API] Api key
+		api_flickr_key =
+		
+		# cat=plugin.tx_mooxsocial/content/31; type=string; label= [Flickr][API] Api secret key
+		api_flickr_secret_key =
+		
+		# cat=plugin.tx_mooxsocial/content/40; type=string; label= [Slideshare][API] Api key
+		api_slideshare_key =
+		
+		# cat=plugin.tx_mooxsocial/content/41; type=string; label= [Slideshare][API] Api secret key
+		api_slideshare_secret_key =
+	}
+}
+
+module.tx_mooxsocial {
+	view {
+		# cat=module.tx_mooxsocial/file; type=string; label=Path to template root (BE)
+		templateRootPath = EXT:moox_social/Resources/Private/Backend/Templates/
+		# cat=module.tx_mooxsocial/file; type=string; label=Path to template partials (BE)
+		partialRootPath = EXT:moox_social/Resources/Private/Backend/Partials/
+		# cat=module.tx_mooxsocial/file; type=string; label=Path to template layouts (BE)
+		layoutRootPath = EXT:moox_social/Resources/Private/Backend/Layouts/
+	}
+	persistence {
+		# cat=module.tx_mooxsocial//a; type=string; label=Default storage PID
+		storagePid =
+	}
+}

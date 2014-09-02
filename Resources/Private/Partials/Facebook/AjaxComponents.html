@@ -1,0 +1,47 @@
+{namespace v=Tx_Vhs_ViewHelpers}
+
+<f:section name="init">
+	<v:var.set name="ajaxurl" value="{v:site.url()}{f:uri.page(pageUid: currentpid)}" />
+	<v:asset.script name="moox-social-facebook-js" group="moox-social" path="typo3conf/ext/moox_social/Resources/Public/Js/facebook.js" fluid="1" arguments="{ajaxurl: ajaxurl, source: settings.source, page: settings.api_page_id}" allowMoveToFooter="TRUE" standalone="TRUE" />
+	<div id="tx-moox-social-facebook-ajaxquery"></div>
+	<input type="hidden" id="tx-moox-social-facebook-count" value="{count}" />
+	<input type="hidden" id="tx-moox-social-facebook-pagescount" value="{pagesCount}" />
+	<input type="hidden" id="tx-moox-social-facebook-page" value="1" />
+	<input type="hidden" id="tx-moox-social-facebook-offset" value="0" />
+	<input type="hidden" id="tx-moox-social-facebook-perrequest" value="{settings.ajax_limit}" />	
+</f:section>
+
+<f:section name="pagination">	
+	<div class="tx-moox-social-pagination tx-moox-social-facebook-pagination">							
+		<a class="tx-moox-social-facebook-loadmore-previous" href="#" title="<f:translate key="tx_mooxsocial_facebook_action_list.loadprevious" />">&laquo;&laquo;</a>							
+		<div class="tx-moox-social-pagination-item-start tx-moox-social-facebook-pagination-item-start" id="tx-moox-social-facebook-pagination-start">
+			<a href="#" onclick="loadFacebookPosts('replace',0)" title="<f:translate key="tx_mooxsocial_facebook_action_list.tostart" />"><f:translate key="tx_mooxsocial_facebook_action_list.tostart" /></a>
+		</div>
+		<f:if condition="{settings.source}!='api'"> ... |
+			<f:for each="{pages}" as="page" iteration="iteration">
+				<div <f:if condition="{iteration.index}>9">style="display: none" </f:if>class="tx-moox-social-pagination-item tx-moox-social-facebook-pagination-item<f:if condition="{iteration.index}==0"> tx-moox-social-pagination-item-active tx-moox-social-facebook-pagination-item-active</f:if>" id="tx-moox-social-facebook-pagination-{page.id}">
+					<a href="#" onclick="loadFacebookPosts('replace',{page.offset})" title="{page.id}">{page.id}</a> | 
+				</div>
+			</f:for>
+			<div class="tx-moox-social-pagination-item-end tx-moox-social-facebook-pagination-item-end" id="tx-moox-social-facebook-pagination-end">
+				 ... <a href="#" onclick="loadFacebookPosts('replace',{maxOffset})" title="<f:translate key="tx_mooxsocial_facebook_action_list.toend" />"><f:translate key="tx_mooxsocial_facebook_action_list.toend" /></a> 
+			</div>
+		</f:if>
+		<a class="tx-moox-social-facebook-loadmore-next" href="#" title="<f:translate key="tx_mooxsocial_facebook_action_list.loadnext" />">&raquo;&raquo;</a>
+	</div>
+</f:section>
+
+<f:section name="buttons">
+	<div class="tx-moox-social-buttons tx-moox-social-facebook-buttons">
+		<f:if condition="{settings.ajax_method}=='add'">
+			<f:then>
+				<button id="tx-moox-social-facebook-loadmore-add"><f:translate key="tx_mooxsocial_facebook_action_list.loadmore" /></button>
+			</f:then>
+			<f:else>								
+				<button class="tx-moox-social-facebook-loadmore-previous"><f:translate key="tx_mooxsocial_facebook_action_list.loadprevious" /></button>
+				<button class="tx-moox-social-facebook-loadmore-next"><f:translate key="tx_mooxsocial_facebook_action_list.loadnext" /></button>
+			</f:else>
+		</f:if>
+		<div class="clearfix"></div>
+	</div>
+</f:section>

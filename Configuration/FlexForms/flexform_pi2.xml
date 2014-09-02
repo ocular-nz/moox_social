@@ -1,0 +1,228 @@
+<T3DataStructure>
+	<meta>
+        <langDisable>1</langDisable>
+	</meta>
+	<ROOT>				
+		<type>array</type>
+		<el>
+			<switchableControllerActions>
+				<TCEforms>
+					<label>LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi2_controller_selection</label>
+					<onChange>reload</onChange>
+					<config>
+						<type>select</type>
+						<items>
+							<numIndex index="0">
+								<numIndex index="0">LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi2_controller_selection.listview</numIndex>
+								<numIndex index="1">Twitter->list</numIndex>
+							</numIndex>
+							<numIndex index="1">
+								<numIndex index="0">LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi2_controller_selection.detailview</numIndex>
+								<numIndex index="1">Twitter->show</numIndex>
+							</numIndex>
+						</items>
+					</config>
+				</TCEforms>
+			</switchableControllerActions>
+			<settings.source>
+				<TCEforms>
+					<label>LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi2_source</label>
+					<onChange>reload</onChange>					
+					<config>						
+						<type>select</type>
+						<items>
+							<numIndex index="0">
+								<numIndex index="0">LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi2_source.local</numIndex>
+								<numIndex index="1">local</numIndex>
+							</numIndex>
+							<numIndex index="1">
+								<numIndex index="0">LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi2_source.api</numIndex>
+								<numIndex index="1">api</numIndex>
+							</numIndex>																		
+						</items>
+						<size>1</size>
+						<minitems>1</minitems>
+						<maxitems>1</maxitems>
+						<default>local</default>
+					</config>
+				</TCEforms>
+			</settings.source>
+			<!--
+			<settings.api_app_id>			
+				<TCEforms>
+					<label>LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi2_api_app_id</label>
+					<displayCond>FIELD:settings.source:=:api</displayCond>
+					<config>
+						<type>input</type>
+						<size>31</size>												
+						<eval>trim</eval>			
+					</config>
+				</TCEforms>
+			</settings.api_app_id>
+			<settings.api_secret>			
+				<TCEforms>
+					<label>LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi2_api_secret</label>
+					<displayCond>FIELD:settings.source:=:api</displayCond>
+					<config>
+						<type>input</type>
+						<size>31</size>												
+						<eval>trim</eval>			
+					</config>
+				</TCEforms>
+			</settings.api_secret>
+			-->
+			<settings.api_screen_name>			
+				<TCEforms>
+					<label>LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi2_api_screen_name</label>
+					<displayCond>FIELD:settings.source:=:api</displayCond>
+					<config>
+						<type>input</type>
+						<size>31</size>												
+						<eval>trim</eval>			
+					</config>
+				</TCEforms>
+			</settings.api_screen_name>
+			<settings.screen_name>			
+				<TCEforms>
+					<label>LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi2_screen_name</label>
+					<displayCond>FIELD:settings.source:=:local</displayCond>
+					<config>
+						<type>input</type>
+						<size>31</size>												
+						<eval>trim</eval>			
+					</config>
+				</TCEforms>
+			</settings.screen_name>			
+			<settings.use_ajax>
+				<TCEforms>
+					<label>LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi2_use_ajax</label>
+					<displayCond>FIELD:switchableControllerActions:=:Twitter->list</displayCond>
+					<onChange>reload</onChange>
+					<config>
+						<type>check</type>						
+					</config>
+				</TCEforms>
+			</settings.use_ajax>
+			<settings.ajax_method>
+				<TCEforms>
+					<label>LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi2_ajax_method</label>
+					<displayCond>
+						<AND>
+							<numIndex index="0">FIELD:settings.use_ajax:=:1</numIndex>
+							<numIndex index="1">FIELD:switchableControllerActions:=:Twitter->list</numIndex>
+						</AND>
+					</displayCond>
+					<config>						
+						<type>select</type>
+						<items>
+							<numIndex index="0">
+								<numIndex index="0">LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi2_ajax_method.add</numIndex>
+								<numIndex index="1">add</numIndex>
+							</numIndex>
+							<numIndex index="1">
+								<numIndex index="0">LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi2_ajax_method.replace</numIndex>
+								<numIndex index="1">replace</numIndex>
+							</numIndex>																		
+						</items>
+						<size>1</size>
+						<minitems>1</minitems>
+						<maxitems>1</maxitems>
+						<default>add</default>
+					</config>
+				</TCEforms>
+			</settings.ajax_method>
+			<settings.ajax_limit>
+				<TCEforms>
+					<label>LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi2_ajax_limit</label>					
+					<displayCond>
+						<AND>
+							<numIndex index="0">FIELD:settings.use_ajax:=:1</numIndex>
+							<numIndex index="1">FIELD:switchableControllerActions:=:Twitter->list</numIndex>
+						</AND>
+					</displayCond>
+					<config>
+						<type>input</type>
+						<size>4</size>
+						<max>4</max>
+						<default>10</default>
+						<eval>trim</eval>			
+					</config>
+				</TCEforms>
+			</settings.ajax_limit>
+			<settings.limit>
+				<TCEforms>
+					<label>LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi2_limit</label>					
+					<displayCond>
+						<AND>
+							<numIndex index="0">FIELD:settings.use_ajax:=:0</numIndex>
+							<numIndex index="1">FIELD:switchableControllerActions:=:Twitter->list</numIndex>
+						</AND>
+					</displayCond>
+					<config>
+						<type>input</type>
+						<size>4</size>
+						<max>4</max>
+						<default>25</default>
+						<eval>trim</eval>			
+					</config>
+				</TCEforms>
+			</settings.limit>
+			<settings.sort_by>
+				<TCEforms>
+					<label>LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi2_sort_by</label>
+					<displayCond>
+						<AND>
+							<numIndex index="0">FIELD:settings.source:=:local</numIndex>
+							<numIndex index="1">FIELD:switchableControllerActions:=:Twitter->list</numIndex>
+						</AND>
+					</displayCond>
+					<config>
+						<type>select</type>
+						<items>
+							<numIndex index="0">
+								<numIndex index="0">LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi2_sort_by.created</numIndex>
+								<numIndex index="1">created</numIndex>
+							</numIndex>
+							<numIndex index="1">
+								<numIndex index="0">LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi2_sort_by.updated</numIndex>
+								<numIndex index="1">updated</numIndex>
+							</numIndex>												
+						</items>
+						<size>1</size>
+						<minitems>1</minitems>
+						<maxitems>1</maxitems>
+						<default>updated</default>
+					</config>
+				</TCEforms>
+			</settings.sort_by>
+			<settings.sort_direction>
+				<TCEforms>
+					<label>LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi2_sort_direction</label>					
+					<displayCond>
+						<AND>
+							<numIndex index="0">FIELD:settings.source:=:local</numIndex>
+							<numIndex index="1">FIELD:switchableControllerActions:=:Twitter->list</numIndex>
+						</AND>
+					</displayCond>
+					<config>
+						<type>select</type>
+						<items>
+							<numIndex index="0">
+								<numIndex index="0">LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi2_sort_direction.ascending</numIndex>
+								<numIndex index="1">ASC</numIndex>
+							</numIndex>
+							<numIndex index="1">
+								<numIndex index="0">LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi2_sort_direction.descending</numIndex>
+								<numIndex index="1">DESC</numIndex>
+							</numIndex>											
+						</items>
+						<size>1</size>
+						<minitems>1</minitems>
+						<maxitems>1</maxitems>
+						<default>DESC</default>
+					</config>
+				</TCEforms>
+			</settings.sort_direction>
+		</el>
+	</ROOT>	
+</T3DataStructure>

@@ -1,0 +1,14 @@
+{namespace v=Tx_Vhs_ViewHelpers}
+
+<f:if condition="{settings.cssfile}">
+	<f:then>
+		<v:asset.style name="moox-social-css" group="moox-social" path="{settings.cssfile}" standalone="TRUE" allowMoveToFooter="FALSE" external="1" />
+	</f:then>
+	<f:else>
+		<v:asset.style name="moox-social-css" group="moox-social" path="typo3conf/ext/moox_social/Resources/Public/Css/main.css" standalone="TRUE" allowMoveToFooter="FALSE" external="1" />
+	</f:else>
+</f:if>
+
+<div class="tx-moox-social">
+	<f:render section="main" />
+</div>

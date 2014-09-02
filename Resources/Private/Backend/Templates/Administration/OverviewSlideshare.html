@@ -1,0 +1,51 @@
+<f:layout name="Default" />
+
+<f:section name="content">
+<h1><f:translate key="overview.slideshare.listing" /></h1>
+
+<f:flashMessages />
+
+<div class="tx-moox-social-admin-listing">
+	<table cellspacing="0">
+		<f:if condition="{tasks -> f:count()}>0">
+			<f:then>
+				<tr class="tx-moox-social-admin-listing-header">
+					<th><f:translate key="overview.slideshare.listing.task_uid" /></th>
+					<th><f:translate key="overview.slideshare.listing.api_key" /></th>
+					<th><f:translate key="overview.slideshare.listing.api_secret_key" /></th>
+					<th><f:translate key="overview.slideshare.listing.user_id" /></th>
+					<th><f:translate key="overview.slideshare.listing.pid" /></th>		
+					<th> </th>		
+				</tr>			
+				<f:for each="{tasks}" as="task" iteration="iteration">
+					<tr class="{f:if(then: 'even', else: 'odd', condition: '{iteration.isEven}')}">
+						<td class="{f:if(then: 'even', else: 'odd', condition: '{iteration.isEven}')}">{task.taskUid}</td>
+						<td class="{f:if(then: 'even', else: 'odd', condition: '{iteration.isEven}')}">{task.apiKey}</td>
+						<td class="{f:if(then: 'even', else: 'odd', condition: '{iteration.isEven}')}">{task.apiSecretKey}</td>
+						<td class="{f:if(then: 'even', else: 'odd', condition: '{iteration.isEven}')}">{task.userId}</td>
+						<td class="{f:if(then: 'even', else: 'odd', condition: '{iteration.isEven}')}">{task.pid}</td>			
+						<td class="{f:if(then: 'even', else: 'odd', condition: '{iteration.isEven}')}" align="right">
+							<div class="tx-moox-social-admin-icon">
+								<f:link.action action="reinitSlideshare" arguments="{apiKey : task.apiKey, apiSecretKey : task.apiSecretKey, userId : task.userId, storagePid : task.pid}" onclick="return window.confirm('{f:translate(key:'overview.slideshare.listing.reinit.confirm')}')">
+									<f:image src="{f:uri.resource(path:'Icons/Administration/icon-reinit.png')}" alt="{f:translate(key:'overview.slideshare.listing.reinit')}" title="{f:translate(key:'overview.slideshare.listing.reinit')}" />
+								</f:link.action>
+							</div>
+							<div class="tx-moox-social-admin-icon">
+								<f:link.action action="truncateSlideshare" arguments="{apiKey : task.apiKey, apiSecretKey : task.apiSecretKey, userId : task.userId, storagePid : task.pid}" onclick="return window.confirm('{f:translate(key:'overview.slideshare.listing.truncate.confirm')}')">
+									<f:image src="{f:uri.resource(path:'Icons/Administration/icon-truncate.png')}" alt="{f:translate(key:'overview.slideshare.listing.truncate')}" title="{f:translate(key:'overview.slideshare.listing.truncate')}" />
+								</f:link.action>
+							</div>
+						</td>
+					</tr>
+				</f:for>
+			</f:then>
+			<f:else>
+				<tr>
+					<td><f:translate key="overview.slideshare.listing.notasks" /></td>				
+				</tr>
+			</f:else>
+		</f:if>
+	</table>
+</div>
+
+</f:section>

@@ -1,0 +1,42 @@
+<f:layout name="Default" />
+
+<f:section name="content">
+<h1><f:translate key="overview.folder.listing" /></h1>
+
+<f:flashMessages />
+
+<div class="tx-moox-social-admin-listing">
+	<table cellspacing="0">
+		<f:if condition="{folders -> f:count()}>0">
+			<f:then>
+				<tr class="tx-moox-social-admin-listing-header">
+					<th><f:translate key="overview.folder.listing.uid" /></th>
+					<th><f:translate key="overview.folder.listing.title" /></th>
+					<th><f:translate key="overview.folder.listing.count" /></th>				
+					<th> </th>		
+				</tr>			
+				<f:for each="{folders}" as="folder" iteration="iteration">		
+					<tr class="{f:if(then: 'even', else: 'odd', condition: '{iteration.isEven}')}">
+						<td class="{f:if(then: 'even', else: 'odd', condition: '{iteration.isEven}')}">{folder.uid}</td>
+						<td class="{f:if(then: 'even', else: 'odd', condition: '{iteration.isEven}')}">{folder.title}</td>
+						<td class="{f:if(then: 'even', else: 'odd', condition: '{iteration.isEven}')}">{folder.count}</td>							
+						<td class="{f:if(then: 'even', else: 'odd', condition: '{iteration.isEven}')}" align="right">							
+							<div class="tx-moox-social-admin-icon">
+								<f:link.action action="truncateFolder" arguments="{storagePid : folder.uid}" onclick="return window.confirm('{f:translate(key:'overview.folder.listing.truncate.confirm')}')">
+									<f:image src="{f:uri.resource(path:'Icons/Administration/icon-truncate.png')}" alt="{f:translate(key:'overview.folder.listing.truncate')}" title="{f:translate(key:'overview.folder.listing.truncate')}" />
+								</f:link.action>
+							</div>
+						</td>
+					</tr>
+				</f:for>
+			</f:then>
+			<f:else>
+				<tr>
+					<td><f:translate key="overview.folder.listing.nofolders" /></td>				
+				</tr>
+			</f:else>
+		</f:if>
+	</table>
+</div>
+
+</f:section>

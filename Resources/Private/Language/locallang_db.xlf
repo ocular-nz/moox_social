@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-02-20T12:22:09Z" product-name="moox_social">
+		<header/>
+		<body>
+
+			<trans-unit id="tx_mooxsocial_domain_model_facebook">
+				<source>Facebook</source>			
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.created">
+				<source>created</source>				
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.updated">
+				<source>updated</source>				
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.model">
+				<source>model</source>				
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.type">
+				<source>type</source>				
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.status_type">
+				<source>status type</source>				
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.page">
+				<source>page</source>			
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.action">
+				<source>action</source>			
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.title">
+				<source>Title</source>				
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.summary">
+				<source>Summary</source>				
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.text">
+				<source>Text</source>				
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.author">
+				<source>author</source>				
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.author_id">
+				<source>author id</source>				
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.description">
+				<source>description</source>				
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.caption">
+				<source>caption</source>			
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.url">
+				<source>url</source>				
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.link_name">
+				<source>link name</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.link_url">
+				<source>link url</source>				
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.image_url">
+				<source>image url</source>				
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.image_embedcode">
+				<source>image embedcode</source>				
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.video_url">
+				<source>video url</source>				
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.video_embedcode">
+				<source>video embedcode</source>				
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.shared_url">
+				<source>shared url</source>				
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.shared_title">
+				<source>shared title</source>				
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.shared_description">
+				<source>shared description</source>				
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.shared_caption">
+				<source>shared caption</source>				
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.likes">
+				<source>likes</source>				
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.shares">
+				<source>shares</source>				
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.comments">
+				<source>comments</source>				
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.api_uid">
+				<source>api uid</source>			
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.api_hash">
+				<source>api hash</source>				
+			</trans-unit>
+			
+			
+			
+			
+			
+			<trans-unit id="tx_mooxsocial_domain_model_twitter">
+				<source>Twitter</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.created">
+				<source>created</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.updated">
+				<source>updated</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.type">
+				<source>type</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.model">
+				<source>model</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.status_type">
+				<source>status type</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.page">
+				<source>page</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.action">
+				<source>action</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.summary">
+				<source>Summary</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.text">
+				<source>Text</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.author">
+				<source>author</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.author_id">
+				<source>author id</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.description">
+				<source>description</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.caption">
+				<source>caption</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.url">
+				<source>url</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.link_name">
+				<source>link name</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.link_url">
+				<source>link url</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.image_url">
+				<source>image url</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.image_embedcode">
+				<source>image embedcode</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.video_url">
+				<source>video url</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.video_embedcode">
+				<source>video embedcode</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.shared_url">
+				<source>shared url</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.shared_title">
+				<source>shared title</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.shared_description">
+				<source>shared description</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.shared_caption">
+				<source>shared caption</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.likes">
+				<source>likes</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.shares">
+				<source>shares</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.comments">
+				<source>comments</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.api_uid">
+				<source>api uid</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.api_hash">
+				<source>api hash</source>
+			</trans-unit>
+			
+			
+			
+			
+			
+			<trans-unit id="tx_mooxsocial_domain_model_youtube">
+				<source>YouTube</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.created">
+				<source>created</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.updated">
+				<source>updated</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.type">
+				<source>type</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.model">
+				<source>model</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.status_type">
+				<source>status type</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.page">
+				<source>page</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.action">
+				<source>action</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.summary">
+				<source>Summary</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.text">
+				<source>Text</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.author">
+				<source>author</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.author_id">
+				<source>author id</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.description">
+				<source>description</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.caption">
+				<source>caption</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.url">
+				<source>url</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.link_name">
+				<source>link name</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.link_url">
+				<source>link url</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.image_url">
+				<source>image url</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.image_embedcode">
+				<source>image embedcode</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.video_url">
+				<source>video url</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.video_embedcode">
+				<source>video embedcode</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.shared_url">
+				<source>shared url</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.shared_title">
+				<source>shared title</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.shared_description">
+				<source>shared description</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.shared_caption">
+				<source>shared caption</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.likes">
+				<source>likes</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.shares">
+				<source>shares</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.comments">
+				<source>comments</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.api_uid">
+				<source>api uid</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.api_hash">
+				<source>api hash</source>
+			</trans-unit>
+			
+			
+			
+			
+			
+			<trans-unit id="tx_mooxsocial_domain_model_flickr">
+				<source>Flickr</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.created">
+				<source>created</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.updated">
+				<source>updated</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.type">
+				<source>type</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.model">
+				<source>model</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.status_type">
+				<source>status type</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.page">
+				<source>page</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.action">
+				<source>action</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.summary">
+				<source>Summary</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.text">
+				<source>Text</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.author">
+				<source>author</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.author_id">
+				<source>author id</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.description">
+				<source>description</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.caption">
+				<source>caption</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.url">
+				<source>url</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.link_name">
+				<source>link name</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.link_url">
+				<source>link url</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.image_url">
+				<source>image url</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.image_embedcode">
+				<source>image embedcode</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.video_url">
+				<source>video url</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.video_embedcode">
+				<source>video embedcode</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.shared_url">
+				<source>shared url</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.shared_title">
+				<source>shared title</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.shared_description">
+				<source>shared description</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.shared_caption">
+				<source>shared caption</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.likes">
+				<source>likes</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.shares">
+				<source>shares</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.comments">
+				<source>comments</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.api_uid">
+				<source>api uid</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.api_hash">
+				<source>api hash</source>
+			</trans-unit>
+			
+			
+			
+			
+			
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare">
+				<source>Flickr</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.created">
+				<source>created</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.updated">
+				<source>updated</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.type">
+				<source>type</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.model">
+				<source>model</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.status_type">
+				<source>status type</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.page">
+				<source>page</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.action">
+				<source>action</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.summary">
+				<source>Summary</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.text">
+				<source>Text</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.author">
+				<source>author</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.author_id">
+				<source>author id</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.description">
+				<source>description</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.caption">
+				<source>caption</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.url">
+				<source>url</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.link_name">
+				<source>link name</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.link_url">
+				<source>link url</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.image_url">
+				<source>image url</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.image_embedcode">
+				<source>image embedcode</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.video_url">
+				<source>video url</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.video_embedcode">
+				<source>video embedcode</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.shared_url">
+				<source>shared url</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.shared_title">
+				<source>shared title</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.shared_description">
+				<source>shared description</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.shared_caption">
+				<source>shared caption</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.likes">
+				<source>likes</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.shares">
+				<source>shares</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.comments">
+				<source>comments</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.api_uid">
+				<source>api uid</source>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.api_hash">
+				<source>api hash</source>
+			</trans-unit>
+
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,79 @@
+<f:comment>
+- - - - - - - - - - - - - - - - - - - - - - - - - - -
+|                                                   |
+|      	      moox - 23.01.2014            	    |
+|                                                   |
+|         Copyright DCN GmbH - www.dcn.de           |
+|                                                   |
+- - - - - - - - - - - - - - - - - - - - - - - - - - -
+</f:comment>
+
+{namespace v=Tx_Vhs_ViewHelpers}
+{namespace flux=Tx_Flux_ViewHelpers}
+{namespace s=Tx_MooxSocial_ViewHelpers}
+
+<f:layout name="Content" />
+
+<f:comment>****************************************************************************************************************************************</f:comment>
+
+<f:section name="Configuration">
+
+	<f:comment>
+		/******************************************************/
+		/* SECTION: Configuration                             */
+		/******************************************************/
+	</f:comment>
+
+        <flux:flexform wizardTab="{v:l(key: 'content-fblogin.tab', default: 'moox Inhalte')}" id="fblogin" label="{v:l(key: 'content-fblogin.name', default: 'Facebook Login Test')}" description="{v:l(key: 'content-fblogin.description', default: 'Login Form for Facebook')}" icon="{v:extension.path.resources(path: 'Icons/ce_wiz.png')}">
+                <flux:flexform.sheet name="fbloginconfigsheet" label="{v:l(key: 'content-fblogin.fbconfig', default: 'Facebook Config')}">
+			<flux:flexform.field.input name="appid" label="{v:l(key: 'content-fblogin.appId', default: 'App ID')}" />
+                        <flux:flexform.field.input name="secret" label="{v:l(key: 'content-fblogin.appSecret', default: 'App Secret')}" />
+                </flux:flexform.sheet>
+	</flux:flexform>
+	
+</f:section>
+
+<f:comment>****************************************************************************************************************************************</f:comment>
+
+<f:section name="Preview">
+
+	<f:comment>
+		/******************************************************/
+		/* SECTION: Preview                                   */
+		/******************************************************/
+	</f:comment>
+
+</f:section>
+
+<f:comment>****************************************************************************************************************************************</f:comment>
+
+<f:section name="Main">
+	
+	<f:comment>
+		/******************************************************/
+		/* SECTION: Main                                      */
+		/******************************************************/
+	</f:comment>
+	
+	
+	<div class="test{record.uid}">
+		<p><strong>AppId:</strong> {appid}<br /><strong>AppSecret:</strong> {secret}</p>
+		
+		<h3>LOGIN</h3>
+		<p><s:facebook.login id="{appid}" secret="{secret}" /></p>
+		
+		<h3>INFORMATIONS</h3>
+		<p><strong>Name:</strong> <s:facebook.user id="{appid}" secret="{secret}" string="name" /></p>
+		<p><strong>E-Mail:</strong> <s:facebook.user id="{appid}" secret="{secret}" string="email" /></p>
+		
+		<h3>STREAM</h3>
+		<s:facebook.stream.post appid="{appid}" secret="{secret}" pageid="dcngmbh" strings="{title: '1', link: '1', picture: '1', shares: '1'}" />
+		
+
+	</div>
+	
+	
+	
+</f:section>
+
+<f:comment>****************************************************************************************************************************************</f:comment>

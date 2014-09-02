@@ -1,0 +1,80 @@
+<f:comment>
+- - - - - - - - - - - - - - - - - - - - - - - - - - -
+|                                                   |
+|      	      moox - 23.01.2014            	    |
+|                                                   |
+|         Copyright DCN GmbH - www.dcn.de           |
+|                                                   |
+- - - - - - - - - - - - - - - - - - - - - - - - - - -
+</f:comment>
+
+{namespace v=Tx_Vhs_ViewHelpers}
+{namespace flux=Tx_Flux_ViewHelpers}
+{namespace s=Tx_MooxSocial_ViewHelpers}
+
+<f:layout name="Content" />
+
+<f:comment>****************************************************************************************************************************************</f:comment>
+
+<f:section name="Configuration">
+
+	<f:comment>
+		/******************************************************/
+		/* SECTION: Configuration                             */
+		/******************************************************/
+	</f:comment>
+
+        <flux:flexform wizardTab="{v:l(key: 'content-twitter.tab', default: 'moox Inhalte')}" id="twitter" label="{v:l(key: 'content-twitter.name', default: 'Twitter Test')}" description="{v:l(key: 'content-twitter.description', default: 'Twitter API Test')}" icon="{v:extension.path.resources(path: 'Icons/ce_wiz.png')}">
+                <flux:flexform.sheet name="twitterconfigsheet" label="{v:l(key: 'content-twitter.twitterconfig', default: 'Twitter Config')}">
+			<flux:flexform.field.input name="oauthAccessToken" label="{v:l(key: 'content-twitter.oauth_access_token', default: 'YOUR_OAUTH_ACCESS_TOKEN')}" />
+                        <flux:flexform.field.input name="oauthAccessTokenSecret" label="{v:l(key: 'content-twitter.oauth_access_token_secret', default: 'YOUR_OAUTH_ACCESS_TOKEN_SECRET')}" />
+			<flux:flexform.field.input name="consumerKey" label="{v:l(key: 'content-twitter.consumer_key', default: 'YOUR_CONSUMER_KEY')}" />
+			<flux:flexform.field.input name="consumerSecret" label="{v:l(key: 'content-twitter.consumer_secret', default: 'YOUR_CONSUMER_SECRET')}" />
+			<flux:flexform.field.input name="screenName" label="{v:l(key: 'content-twitter.screenname', default: 'Screen Name')}" />
+			<flux:flexform.field.input name="count" label="{v:l(key: 'content-twitter.count', default: 'Count')}" />
+                </flux:flexform.sheet>
+	</flux:flexform>
+	
+</f:section>
+
+<f:comment>****************************************************************************************************************************************</f:comment>
+
+<f:section name="Preview">
+
+	<f:comment>
+		/******************************************************/
+		/* SECTION: Preview                                   */
+		/******************************************************/
+	</f:comment>
+
+</f:section>
+
+<f:comment>****************************************************************************************************************************************</f:comment>
+
+<f:section name="Main">
+	
+	<f:comment>
+		/******************************************************/
+		/* SECTION: Main                                      */
+		/******************************************************/
+	</f:comment>
+	
+	
+	<div class="test{record.uid}">
+		<p>
+			<strong>oauth-access-token</strong>&nbsp;&nbsp;{oauthAccessToken}<br />
+			<strong>oauth-access-token-secret</strong>&nbsp;&nbsp;{oauthAccessTokenSecret}<br />
+			<strong>consumer-key</strong>&nbsp;&nbsp;{consumerKey}<br />
+			<strong>consumer-secret</strong>&nbsp;&nbsp;{consumerSecret}
+		</p>
+		<s:twitter oauth-access-token="{oauthAccessToken}" oauth-access-token-secret="{oauthAccessTokenSecret}" consumer-key="{consumerKey}" consumer-secret="{consumerSecret}">
+			<s:twitter.user screen-name="{screenName}" count="{count}" />
+		</s:twitter>
+
+	</div>
+	
+	
+	
+</f:section>
+
+<f:comment>****************************************************************************************************************************************</f:comment>

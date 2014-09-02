@@ -1,0 +1,1227 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2014-02-20T12:22:09Z" product-name="moox_social">
+		<header/>
+		<body>		
+
+			<trans-unit id="tx_mooxsocial_facebook_action_list.tofacebook">
+				<source>more on Facebook</source>
+				<target>Mehr auf Facebook</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_facebook_action_list.notfound">
+				<source>no posts found</source>
+				<target>Keine Posts gefunden</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_facebook_action_list.loadmore">
+				<source>more posts</source>
+				<target>mehr Posts</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_facebook_action_list.loadprevious">
+				<source>previous</source>
+				<target>rückwärts</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_facebook_action_list.loadnext">
+				<source>next</source>
+				<target>vorwärts</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_facebook_action_list.tostart">
+				<source>start</source>
+				<target>Anfang</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_facebook_action_list.toend">
+				<source>end</source>
+				<target>Ende</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_facebook_action_list_item.comments">
+				<source>comments</source>
+				<target>Kommentare</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_facebook_action_list_item.shares">
+				<source>shares</source>
+				<target>Shares</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_facebook_action_list_item.likes">
+				<source>likes</source>
+				<target>Likes</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_facebook_action_show.back">
+				<source>back</source>
+				<target>zurück</target>
+			</trans-unit>
+			
+			<trans-unit id="tx_mooxsocial_domain_model_facebook">
+				<source>Facebook</source>
+				<target>Facebook</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.created">
+				<source>created</source>
+				<target>Erstellt am</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.updated">
+				<source>updated</source>
+				<target>Aktualisiert am</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.model">
+				<source>model</source>
+				<target>Model</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.type">
+				<source>type</source>
+				<target>Typ</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.status_type">
+				<source>status type</source>
+				<target>Status-Typ</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.page">
+				<source>page</source>
+				<target>Seite</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.action">
+				<source>action</source>
+				<target>Aktion</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.title">
+				<source>Title</source>
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.summary">
+				<source>Summary</source>
+				<target>Zusammenfassung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.text">
+				<source>Text</source>
+				<target>Text</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.author">
+				<source>author</source>
+				<target>Autor</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.author_id">
+				<source>author id</source>
+				<target>Autor-ID</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.description">
+				<source>description</source>
+				<target>Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.caption">
+				<source>caption</source>
+				<target>Beschriftung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.url">
+				<source>url</source>
+				<target>Url</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.link_name">
+				<source>link name</source>
+				<target>Link-Name</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.link_url">
+				<source>link url</source>
+				<target>Link-Url</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.image_url">
+				<source>image url</source>
+				<target>Bild-URL</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.image_embedcode">
+				<source>image embedcode</source>
+				<target>Bild-Embed-Code</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.video_url">
+				<source>video url</source>
+				<target>Video-URL</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.video_embedcode">
+				<source>video embedcode</source>
+				<target>Video-Embed-Code</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.shared_url">
+				<source>shared url</source>
+				<target>Geteilte URL</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.shared_title">
+				<source>shared title</source>
+				<target>Geteilter Titel</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.shared_description">
+				<source>shared description</source>
+				<target>Geteilte Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.shared_caption">
+				<source>shared caption</source>
+				<target>Geteilte Beschriftung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.likes">
+				<source>likes</source>
+				<target>Anzahl Likes</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.shares">
+				<source>shares</source>
+				<target>Anzahl Shares</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.comments">
+				<source>comments</source>
+				<target>Anzahl Kommentare</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.api_uid">
+				<source>api uid</source>
+				<target>API UID</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_facebook.api_hash">
+				<source>api hash</source>
+				<target>API Hash</target>
+			</trans-unit>
+			
+			<trans-unit id="administration.facebook.listing">
+				<source>Facebook connections</source>
+				<target>Facebook-Verbindungen</target>
+			</trans-unit>
+			<trans-unit id="administration.folder.listing">
+				<source>social folders</source>
+				<target>Social-Ordner</target>
+			</trans-unit>
+			
+			<trans-unit id="overview.facebook.listing">
+				<source>list of facebook connections</source>
+				<target>Übersicht eingerichteter Facebook-Verbindungen</target>
+			</trans-unit>
+			<trans-unit id="overview.facebook.listing.task_uid">
+				<source>task uid</source>
+				<target>Task-UID</target>
+			</trans-unit>			
+			<trans-unit id="overview.facebook.listing.app_id">
+				<source>app id</source>
+				<target>App-ID</target>
+			</trans-unit>
+			<trans-unit id="overview.facebook.listing.secret">
+				<source>secret</source>
+				<target>Secret</target>
+			</trans-unit>
+			<trans-unit id="overview.facebook.listing.page">
+				<source>page</source>
+				<target>Seite</target>
+			</trans-unit>
+			<trans-unit id="overview.facebook.listing.pid">
+				<source>storage pid</source>
+				<target>Storage PID</target>
+			</trans-unit>
+			<trans-unit id="overview.facebook.listing.notasks">
+				<source>no connections found</source>
+				<target>Keine Verbindungen gefunden</target>
+			</trans-unit>
+			<trans-unit id="overview.facebook.listing.reinit">
+				<source>reinit</source>
+				<target>Reinitialisieren (Lokalen Speicher leeren + Neu von Facebook laden)</target>
+			</trans-unit>
+			<trans-unit id="overview.facebook.listing.reinit.confirm">
+				<source>really reinit?</source>
+				<target>Wollen Sie diese Facebook-Verbindung wirklich reinitialisieren (Posts aus lokalem Speicher werden gelöscht und neu von Facebook geladen)?</target>
+			</trans-unit>
+			<trans-unit id="overview.facebook.listing.reinit.success">
+				<source>reinit successfull</source>
+				<target>Verbindundung erfolgreich reinitialisiert</target>
+			</trans-unit>
+			<trans-unit id="overview.facebook.listing.truncate">
+				<source>empty</source>
+				<target>Lokalen Speicher leeren</target>
+			</trans-unit>
+			<trans-unit id="overview.facebook.listing.truncate.confirm">
+				<source>really empty?</source>
+				<target>Wollen Sie den lokalen Speicher dieser Facebook-Verbindung wirklich leeren?</target>
+			</trans-unit>
+			<trans-unit id="overview.facebook.listing.truncate.success">
+				<source>emptied successfully</source>
+				<target>Lokaler speicher wurder erfolgreich geleert</target>
+			</trans-unit>
+			
+			
+			
+			
+			
+			<trans-unit id="tx_mooxsocial_twitter_action_list.totwitter">
+				<source>more on Twitter</source>
+				<target>Mehr auf Twitter</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_twitter_action_list.notfound">
+				<source>no tweets found</source>
+				<target>Keine Tweets gefunden</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_twitter_action_list.loadmore">
+				<source>more tweets</source>
+				<target>mehr Tweets</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_twitter_action_list.loadprevious">
+				<source>previous</source>
+				<target>rückwärts</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_twitter_action_list.loadnext">
+				<source>next</source>
+				<target>vorwärts</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_twitter_action_list.tostart">
+				<source>start</source>
+				<target>Anfang</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_twitter_action_list.toend">
+				<source>end</source>
+				<target>Ende</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_twitter_action_list_item.comments">
+				<source>comments</source>
+				<target>Kommentare</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_twitter_action_list_item.shares">
+				<source>retweets</source>
+				<target>Retweets</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_twitter_action_list_item.likes">
+				<source>likes</source>
+				<target>Likes</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_twitter_action_show.back">
+				<source>back</source>
+				<target>zurück</target>
+			</trans-unit>
+			
+			<trans-unit id="tx_mooxsocial_domain_model_twitter">
+				<source>Twitter</source>
+				<target>Twitter</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.created">
+				<source>created</source>
+				<target>Erstellt am</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.updated">
+				<source>updated</source>
+				<target>Aktualisiert am</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.model">
+				<source>model</source>
+				<target>Model</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.type">
+				<source>type</source>
+				<target>Typ</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.status_type">
+				<source>status type</source>
+				<target>Status-Typ</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.page">
+				<source>page</source>
+				<target>Seite</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.action">
+				<source>action</source>
+				<target>Aktion</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.title">
+				<source>Title</source>
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.summary">
+				<source>Summary</source>
+				<target>Zusammenfassung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.text">
+				<source>Text</source>
+				<target>Text</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.author">
+				<source>author</source>
+				<target>Autor</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.author_id">
+				<source>author id</source>
+				<target>Autor-ID</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.description">
+				<source>description</source>
+				<target>Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.caption">
+				<source>caption</source>
+				<target>Beschriftung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.url">
+				<source>url</source>
+				<target>Url</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.link_name">
+				<source>link name</source>
+				<target>Link-Name</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.link_url">
+				<source>link url</source>
+				<target>Link-Url</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.image_url">
+				<source>image url</source>
+				<target>Bild-URL</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.image_embedcode">
+				<source>image embedcode</source>
+				<target>Bild-Embed-Code</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.video_url">
+				<source>video url</source>
+				<target>Video-URL</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.video_embedcode">
+				<source>video embedcode</source>
+				<target>Video-Embed-Code</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.shared_url">
+				<source>shared url</source>
+				<target>Geteilte URL</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.shared_title">
+				<source>shared title</source>
+				<target>Geteilter Titel</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.shared_description">
+				<source>shared description</source>
+				<target>Geteilte Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.shared_caption">
+				<source>shared caption</source>
+				<target>Geteilte Beschriftung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.likes">
+				<source>likes</source>
+				<target>Anzahl Likes</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.shares">
+				<source>shares</source>
+				<target>Anzahl Shares</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.comments">
+				<source>comments</source>
+				<target>Anzahl Kommentare</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.api_uid">
+				<source>api uid</source>
+				<target>API UID</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_twitter.api_hash">
+				<source>api hash</source>
+				<target>API Hash</target>
+			</trans-unit>
+			
+			<trans-unit id="administration.twitter.listing">
+				<source>Twitter connections</source>
+				<target>Twitter-Verbindungen</target>
+			</trans-unit>
+			
+			<trans-unit id="overview.twitter.listing">
+				<source>list of twitter connections</source>
+				<target>Übersicht eingerichteter Twitter-Verbindungen</target>
+			</trans-unit>
+			<trans-unit id="overview.twitter.listing.task_uid">
+				<source>task uid</source>
+				<target>Task-UID</target>
+			</trans-unit>
+			<trans-unit id="overview.twitter.listing.oauth_access_token">
+				<source>oauth access token</source>
+				<target>OAuth Access Token</target>
+			</trans-unit>
+			<trans-unit id="overview.twitter.listing.oauth_access_token_secret">
+				<source>oauth access token secret</source>
+				<target>OAuth Access Token Secret</target>
+			</trans-unit>
+			<trans-unit id="overview.twitter.listing.consumer_key">
+				<source>consumer key</source>
+				<target>Consumer Key</target>
+			</trans-unit>
+			<trans-unit id="overview.twitter.listing.consumer_key_secret">
+				<source>consumer key secret</source>
+				<target>Consumer Key Secret</target>
+			</trans-unit>
+			<trans-unit id="overview.twitter.listing.screen_name">
+				<source>screen name</source>
+				<target>Screen-Name</target>
+			</trans-unit>
+			<trans-unit id="overview.twitter.listing.page">
+				<source>page</source>
+				<target>Seite</target>
+			</trans-unit>
+			<trans-unit id="overview.twitter.listing.pid">
+				<source>storage pid</source>
+				<target>Storage PID</target>
+			</trans-unit>
+			<trans-unit id="overview.twitter.listing.notasks">
+				<source>no connections found</source>
+				<target>Keine Verbindungen gefunden</target>
+			</trans-unit>
+			<trans-unit id="overview.twitter.listing.reinit">
+				<source>reinit</source>
+				<target>Reinitialisieren (Lokalen Speicher leeren + Neu von Twitter laden)</target>
+			</trans-unit>
+			<trans-unit id="overview.twitter.listing.reinit.confirm">
+				<source>really reinit?</source>
+				<target>Wollen Sie diese Twitter-Verbindung wirklich reinitialisieren (Tweets aus lokalem Speicher werden gelöscht und neu von Twitter geladen)?</target>
+			</trans-unit>
+			<trans-unit id="overview.twitter.listing.reinit.success">
+				<source>reinit successfull</source>
+				<target>Verbindundung erfolgreich reinitialisiert</target>
+			</trans-unit>
+			<trans-unit id="overview.twitter.listing.truncate">
+				<source>empty</source>
+				<target>Lokalen Speicher leeren</target>
+			</trans-unit>
+			<trans-unit id="overview.twitter.listing.truncate.confirm">
+				<source>really empty?</source>
+				<target>Wollen Sie den lokalen Speicher dieser Twitter-Verbindung wirklich leeren?</target>
+			</trans-unit>
+			<trans-unit id="overview.twitter.listing.truncate.success">
+				<source>emptied successfully</source>
+				<target>Lokaler speicher wurder erfolgreich geleert</target>
+			</trans-unit>
+			
+			
+			
+			
+			
+			<trans-unit id="tx_mooxsocial_youtube_action_list.toyoutube">
+				<source>more on YouTube</source>
+				<target>Mehr auf YouTube</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_youtube_action_list.notfound">
+				<source>no videos found</source>
+				<target>Keine Videos gefunden</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_youtube_action_list.loadmore">
+				<source>more videos</source>
+				<target>mehr Videos</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_youtube_action_list.loadprevious">
+				<source>previous</source>
+				<target>rückwärts</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_youtube_action_list.loadnext">
+				<source>next</source>
+				<target>vorwärts</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_youtube_action_list.tostart">
+				<source>start</source>
+				<target>Anfang</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_youtube_action_list.toend">
+				<source>end</source>
+				<target>Ende</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_youtube_action_list_item.comments">
+				<source>comments</source>
+				<target>Kommentare</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_youtube_action_list_item.shares">
+				<source>views</source>
+				<target>Views</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_youtube_action_list_item.likes">
+				<source>favorites</source>
+				<target>Favorites</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_youtube_action_show.back">
+				<source>back</source>
+				<target>zurück</target>
+			</trans-unit>
+			
+			<trans-unit id="tx_mooxsocial_domain_model_youtube">
+				<source>YouTube</source>
+				<target>YouTube</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.created">
+				<source>created</source>
+				<target>Erstellt am</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.updated">
+				<source>updated</source>
+				<target>Aktualisiert am</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.model">
+				<source>model</source>
+				<target>Model</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.type">
+				<source>type</source>
+				<target>Typ</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.status_type">
+				<source>status type</source>
+				<target>Status-Typ</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.page">
+				<source>page</source>
+				<target>Seite</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.action">
+				<source>action</source>
+				<target>Aktion</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.title">
+				<source>Title</source>
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.summary">
+				<source>Summary</source>
+				<target>Zusammenfassung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.text">
+				<source>Text</source>
+				<target>Text</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.author">
+				<source>author</source>
+				<target>Autor</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.author_id">
+				<source>author id</source>
+				<target>Autor-ID</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.description">
+				<source>description</source>
+				<target>Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.caption">
+				<source>caption</source>
+				<target>Beschriftung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.url">
+				<source>url</source>
+				<target>Url</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.link_name">
+				<source>link name</source>
+				<target>Link-Name</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.link_url">
+				<source>link url</source>
+				<target>Link-Url</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.image_url">
+				<source>image url</source>
+				<target>Bild-URL</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.image_embedcode">
+				<source>image embedcode</source>
+				<target>Bild-Embed-Code</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.video_url">
+				<source>video url</source>
+				<target>Video-URL</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.video_embedcode">
+				<source>video embedcode</source>
+				<target>Video-Embed-Code</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.shared_url">
+				<source>shared url</source>
+				<target>Geteilte URL</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.shared_title">
+				<source>shared title</source>
+				<target>Geteilter Titel</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.shared_description">
+				<source>shared description</source>
+				<target>Geteilte Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.shared_caption">
+				<source>shared caption</source>
+				<target>Geteilte Beschriftung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.likes">
+				<source>likes</source>
+				<target>Anzahl Likes</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.shares">
+				<source>shares</source>
+				<target>Anzahl Shares</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.comments">
+				<source>comments</source>
+				<target>Anzahl Kommentare</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.api_uid">
+				<source>api uid</source>
+				<target>API UID</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_youtube.api_hash">
+				<source>api hash</source>
+				<target>API Hash</target>
+			</trans-unit>
+			
+			<trans-unit id="administration.youtube.listing">
+				<source>YouTube connections</source>
+				<target>YouTube-Verbindungen</target>
+			</trans-unit>
+			
+			<trans-unit id="overview.youtube.listing">
+				<source>list of youtube connections</source>
+				<target>Übersicht eingerichteter YouTube-Verbindungen</target>
+			</trans-unit>
+			<trans-unit id="overview.youtube.listing.task_uid">
+				<source>task uid</source>
+				<target>Task-UID</target>
+			</trans-unit>
+			<trans-unit id="overview.youtube.listing.api_key">
+				<source>api key</source>
+				<target>Api key</target>
+			</trans-unit>
+			<trans-unit id="overview.youtube.listing.youtube_channel">
+				<source>youtube channel</source>
+				<target>YouTube Channel</target>
+			</trans-unit>
+			<trans-unit id="overview.youtube.listing.page">
+				<source>page</source>
+				<target>Seite</target>
+			</trans-unit>
+			<trans-unit id="overview.youtube.listing.pid">
+				<source>storage pid</source>
+				<target>Storage PID</target>
+			</trans-unit>
+			<trans-unit id="overview.youtube.listing.notasks">
+				<source>no connections found</source>
+				<target>Keine Verbindungen gefunden</target>
+			</trans-unit>
+			<trans-unit id="overview.youtube.listing.reinit">
+				<source>reinit</source>
+				<target>Reinitialisieren (Lokalen Speicher leeren + Neu von YouTube laden)</target>
+			</trans-unit>
+			<trans-unit id="overview.youtube.listing.reinit.confirm">
+				<source>really reinit?</source>
+				<target>Wollen Sie diese YouTube-Verbindung wirklich reinitialisieren (Videos aus lokalem Speicher werden gelöscht und neu von YouTube geladen)?</target>
+			</trans-unit>
+			<trans-unit id="overview.youtube.listing.reinit.success">
+				<source>reinit successfull</source>
+				<target>Verbindundung erfolgreich reinitialisiert</target>
+			</trans-unit>
+			<trans-unit id="overview.youtube.listing.truncate">
+				<source>empty</source>
+				<target>Lokalen Speicher leeren</target>
+			</trans-unit>
+			<trans-unit id="overview.youtube.listing.truncate.confirm">
+				<source>really empty?</source>
+				<target>Wollen Sie den lokalen Speicher dieser YouTube-Verbindung wirklich leeren?</target>
+			</trans-unit>
+			<trans-unit id="overview.youtube.listing.truncate.success">
+				<source>emptied successfully</source>
+				<target>Lokaler speicher wurder erfolgreich geleert</target>
+			</trans-unit>
+			
+			
+			
+			
+			
+			<trans-unit id="tx_mooxsocial_flickr_action_list.toflickr">
+				<source>more on flickr</source>
+				<target>Mehr auf Flickr</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_flickr_action_list.notfound">
+				<source>no images found</source>
+				<target>Keine Bilder gefunden</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_flickr_action_list.loadmore">
+				<source>more images</source>
+				<target>mehr Bilder</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_flickr_action_list.loadprevious">
+				<source>previous</source>
+				<target>rückwärts</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_flickr_action_list.loadnext">
+				<source>next</source>
+				<target>vorwärts</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_flickr_action_list.tostart">
+				<source>start</source>
+				<target>Anfang</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_flickr_action_list.toend">
+				<source>end</source>
+				<target>Ende</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_flickr_action_list_item.comments">
+				<source>comments</source>
+				<target>Kommentare</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_flickr_action_list_item.shares">
+				<source>shares</source>
+				<target>Shares</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_flickr_action_list_item.likes">
+				<source>views</source>
+				<target>Views</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_flickr_action_show.back">
+				<source>back</source>
+				<target>zurück</target>
+			</trans-unit>
+			
+			<trans-unit id="tx_mooxsocial_domain_model_flickr">
+				<source>Flickr</source>
+				<target>Flickr</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.created">
+				<source>created</source>
+				<target>Erstellt am</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.updated">
+				<source>updated</source>
+				<target>Aktualisiert am</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.model">
+				<source>model</source>
+				<target>Model</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.type">
+				<source>type</source>
+				<target>Typ</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.status_type">
+				<source>status type</source>
+				<target>Status-Typ</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.page">
+				<source>page</source>
+				<target>Seite</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.action">
+				<source>action</source>
+				<target>Aktion</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.title">
+				<source>Title</source>
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.summary">
+				<source>Summary</source>
+				<target>Zusammenfassung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.text">
+				<source>Text</source>
+				<target>Text</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.author">
+				<source>author</source>
+				<target>Autor</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.author_id">
+				<source>author id</source>
+				<target>Autor-ID</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.description">
+				<source>description</source>
+				<target>Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.caption">
+				<source>caption</source>
+				<target>Beschriftung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.url">
+				<source>url</source>
+				<target>Url</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.link_name">
+				<source>link name</source>
+				<target>Link-Name</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.link_url">
+				<source>link url</source>
+				<target>Link-Url</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.image_url">
+				<source>image url</source>
+				<target>Bild-URL</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.image_embedcode">
+				<source>image embedcode</source>
+				<target>Bild-Embed-Code</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.video_url">
+				<source>video url</source>
+				<target>Video-URL</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.video_embedcode">
+				<source>video embedcode</source>
+				<target>Video-Embed-Code</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.shared_url">
+				<source>shared url</source>
+				<target>Geteilte URL</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.shared_title">
+				<source>shared title</source>
+				<target>Geteilter Titel</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.shared_description">
+				<source>shared description</source>
+				<target>Geteilte Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.shared_caption">
+				<source>shared caption</source>
+				<target>Geteilte Beschriftung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.likes">
+				<source>views</source>
+				<target>Anzahl Views</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.shares">
+				<source>shares</source>
+				<target>Anzahl Shares</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.comments">
+				<source>comments</source>
+				<target>Anzahl Kommentare</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.api_uid">
+				<source>api uid</source>
+				<target>API UID</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_flickr.api_hash">
+				<source>api hash</source>
+				<target>API Hash</target>
+			</trans-unit>
+			
+			<trans-unit id="administration.flickr.listing">
+				<source>Flickr connections</source>
+				<target>Flickr-Verbindungen</target>
+			</trans-unit>
+			
+			<trans-unit id="overview.flickr.listing">
+				<source>list of flickr connections</source>
+				<target>Übersicht eingerichteter Flickr-Verbindungen</target>
+			</trans-unit>
+			<trans-unit id="overview.flickr.listing.task_uid">
+				<source>task uid</source>
+				<target>Task-UID</target>
+			</trans-unit>
+			<trans-unit id="overview.flickr.listing.api_key">
+				<source>api key</source>
+				<target>Api Key</target>
+			</trans-unit>
+			<trans-unit id="overview.flickr.listing.api_secret_key">
+				<source>api key secret</source>
+				<target>Api Key Secret</target>
+			</trans-unit>
+			<trans-unit id="overview.flickr.listing.user_id">
+				<source>user id</source>
+				<target>User ID</target>
+			</trans-unit>
+			<trans-unit id="overview.flickr.listing.page">
+				<source>page</source>
+				<target>Seite</target>
+			</trans-unit>
+			<trans-unit id="overview.flickr.listing.pid">
+				<source>storage pid</source>
+				<target>Storage PID</target>
+			</trans-unit>
+			<trans-unit id="overview.flickr.listing.notasks">
+				<source>no connections found</source>
+				<target>Keine Verbindungen gefunden</target>
+			</trans-unit>
+			<trans-unit id="overview.flickr.listing.reinit">
+				<source>reinit</source>
+				<target>Reinitialisieren (Lokalen Speicher leeren + Neu von Flickr laden)</target>
+			</trans-unit>
+			<trans-unit id="overview.flickr.listing.reinit.confirm">
+				<source>really reinit?</source>
+				<target>Wollen Sie diese Flickr-Verbindung wirklich reinitialisieren (Bilder aus lokalem Speicher werden gelöscht und neu von Flickr geladen)?</target>
+			</trans-unit>
+			<trans-unit id="overview.flickr.listing.reinit.success">
+				<source>reinit successfull</source>
+				<target>Verbindundung erfolgreich reinitialisiert</target>
+			</trans-unit>
+			<trans-unit id="overview.flickr.listing.truncate">
+				<source>empty</source>
+				<target>Lokalen Speicher leeren</target>
+			</trans-unit>
+			<trans-unit id="overview.flickr.listing.truncate.confirm">
+				<source>really empty?</source>
+				<target>Wollen Sie den lokalen Speicher dieser Flickr-Verbindung wirklich leeren?</target>
+			</trans-unit>
+			<trans-unit id="overview.flickr.listing.truncate.success">
+				<source>emptied successfully</source>
+				<target>Lokaler speicher wurder erfolgreich geleert</target>
+			</trans-unit>
+			
+			
+			
+			
+			
+			<trans-unit id="tx_mooxsocial_slideshare_action_list.toslideshare">
+				<source>more on slideshare</source>
+				<target>Mehr auf Slideshare</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_slideshare_action_list.notfound">
+				<source>no slideshows found</source>
+				<target>Keine Präsentationen gefunden</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_slideshare_action_list.loadmore">
+				<source>more slideshows</source>
+				<target>mehr Präsentationen</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_slideshare_action_list.loadprevious">
+				<source>previous</source>
+				<target>rückwärts</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_slideshare_action_list.loadnext">
+				<source>next</source>
+				<target>vorwärts</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_slideshare_action_list.tostart">
+				<source>start</source>
+				<target>Anfang</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_slideshare_action_list.toend">
+				<source>end</source>
+				<target>Ende</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_slideshare_action_list.comments">
+				<source>comments</source>
+				<target>Kommentare</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_slideshare_action_list.shares">
+				<source>shares</source>
+				<target>Shares</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_slideshare_action_list.likes">
+				<source>likes</source>
+				<target>Likes</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_slideshare_action_show.back">
+				<source>back</source>
+				<target>zurück</target>
+			</trans-unit>
+			
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare">
+				<source>Slideshare</source>
+				<target>Slideshare</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.created">
+				<source>created</source>
+				<target>Erstellt am</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.updated">
+				<source>updated</source>
+				<target>Aktualisiert am</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.model">
+				<source>model</source>
+				<target>Model</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.type">
+				<source>type</source>
+				<target>Typ</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.status_type">
+				<source>status type</source>
+				<target>Status-Typ</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.page">
+				<source>page</source>
+				<target>Seite</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.action">
+				<source>action</source>
+				<target>Aktion</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.title">
+				<source>Title</source>
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.summary">
+				<source>Summary</source>
+				<target>Zusammenfassung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.text">
+				<source>Text</source>
+				<target>Text</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.author">
+				<source>author</source>
+				<target>Autor</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.author_id">
+				<source>author id</source>
+				<target>Autor-ID</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.description">
+				<source>description</source>
+				<target>Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.caption">
+				<source>caption</source>
+				<target>Beschriftung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.url">
+				<source>url</source>
+				<target>Url</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.link_name">
+				<source>link name</source>
+				<target>Link-Name</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.link_url">
+				<source>link url</source>
+				<target>Link-Url</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.image_url">
+				<source>image url</source>
+				<target>Bild-URL</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.image_embedcode">
+				<source>image embedcode</source>
+				<target>Bild-Embed-Code</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.video_url">
+				<source>video url</source>
+				<target>Video-URL</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.video_embedcode">
+				<source>video embedcode</source>
+				<target>Video-Embed-Code</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.shared_url">
+				<source>shared url</source>
+				<target>Geteilte URL</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.shared_title">
+				<source>shared title</source>
+				<target>Geteilter Titel</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.shared_description">
+				<source>shared description</source>
+				<target>Geteilte Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.shared_caption">
+				<source>shared caption</source>
+				<target>Geteilte Beschriftung</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.likes">
+				<source>views</source>
+				<target>Anzahl Views</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.shares">
+				<source>shares</source>
+				<target>Anzahl Shares</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.comments">
+				<source>comments</source>
+				<target>Anzahl Kommentare</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.api_uid">
+				<source>api uid</source>
+				<target>API UID</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_domain_model_slideshare.api_hash">
+				<source>api hash</source>
+				<target>API Hash</target>
+			</trans-unit>
+			
+			<trans-unit id="administration.slideshare.listing">
+				<source>Slideshare connections</source>
+				<target>Slideshare-Verbindungen</target>
+			</trans-unit>
+			
+			<trans-unit id="overview.slideshare.listing">
+				<source>list of slideshare connections</source>
+				<target>Übersicht eingerichteter Slideshare-Verbindungen</target>
+			</trans-unit>
+			<trans-unit id="overview.slideshare.listing.task_uid">
+				<source>task uid</source>
+				<target>Task-UID</target>
+			</trans-unit>
+			<trans-unit id="overview.slideshare.listing.api_key">
+				<source>api key</source>
+				<target>Api Key</target>
+			</trans-unit>
+			<trans-unit id="overview.slideshare.listing.api_secret_key">
+				<source>api key secret</source>
+				<target>Api Key Secret</target>
+			</trans-unit>
+			<trans-unit id="overview.slideshare.listing.user_id">
+				<source>username</source>
+				<target>Benutzername</target>
+			</trans-unit>
+			<trans-unit id="overview.slideshare.listing.page">
+				<source>page</source>
+				<target>Seite</target>
+			</trans-unit>
+			<trans-unit id="overview.slideshare.listing.pid">
+				<source>storage pid</source>
+				<target>Storage PID</target>
+			</trans-unit>
+			<trans-unit id="overview.slideshare.listing.notasks">
+				<source>no connections found</source>
+				<target>Keine Verbindungen gefunden</target>
+			</trans-unit>
+			<trans-unit id="overview.slideshare.listing.reinit">
+				<source>reinit</source>
+				<target>Reinitialisieren (Lokalen Speicher leeren + Neu von Slideshare laden)</target>
+			</trans-unit>
+			<trans-unit id="overview.slideshare.listing.reinit.confirm">
+				<source>really reinit?</source>
+				<target>Wollen Sie diese Slideshare-Verbindung wirklich reinitialisieren (Präsentationen aus lokalem Speicher werden gelöscht und neu von Slideshare geladen)?</target>
+			</trans-unit>
+			<trans-unit id="overview.slideshare.listing.reinit.success">
+				<source>reinit successfull</source>
+				<target>Verbindundung erfolgreich reinitialisiert</target>
+			</trans-unit>
+			<trans-unit id="overview.slideshare.listing.truncate">
+				<source>empty</source>
+				<target>Lokalen Speicher leeren</target>
+			</trans-unit>
+			<trans-unit id="overview.slideshare.listing.truncate.confirm">
+				<source>really empty?</source>
+				<target>Wollen Sie den lokalen Speicher dieser Slideshare-Verbindung wirklich leeren?</target>
+			</trans-unit>
+			<trans-unit id="overview.slideshare.listing.truncate.success">
+				<source>emptied successfully</source>
+				<target>Lokaler speicher wurder erfolgreich geleert</target>
+			</trans-unit>
+			
+			
+			
+			
+			
+			<trans-unit id="overview.folder.listing">
+				<source>list of social folder</source>
+				<target>Übersicht eingerichteter Social-Ordner</target>
+			</trans-unit>
+			<trans-unit id="overview.folder.listing.default_storage">
+				<source>default storage</source>
+				<target>Default Storage</target>
+			</trans-unit>
+			<trans-unit id="overview.folder.listing.uid">
+				<source>task uid</source>
+				<target>Task-UID</target>
+			</trans-unit>			
+			<trans-unit id="overview.folder.listing.title">
+				<source>title</source>
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="overview.folder.listing.count">
+				<source>containing posts</source>
+				<target>Enthaltene posts</target>
+			</trans-unit>
+			<trans-unit id="overview.folder.listing.nofolders">
+				<source>no folders found</source>
+				<target>Keine Ordner gefunden</target>
+			</trans-unit>
+			<trans-unit id="overview.folder.listing.truncate.confirm">
+				<source>really empty?</source>
+				<target>Wollen Sie diesen Ordner wirklich leeren?</target>
+			</trans-unit>
+			<trans-unit id="overview.folder.listing.truncate.success">
+				<source>emptied successfully</source>
+				<target>Ordner wurder erfolgreich geleert</target>
+			</trans-unit>
+			
+			
+		</body>
+	</file>
+</xliff>

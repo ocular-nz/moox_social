@@ -1,0 +1,102 @@
+plugin.tx_mooxsocial {
+	view {
+		templateRootPath = {$plugin.tx_mooxsocial.view.templateRootPath}
+		partialRootPath = {$plugin.tx_mooxsocial.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_mooxsocial.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_mooxsocial.persistence.storagePid}
+	}
+	features {
+		# uncomment the following line to enable the new Property Mapper.
+		# rewrittenPropertyMapper = 1
+	}
+}
+
+plugin.tx_mooxsocial.settings {	
+	api_app_id = {$plugin.tx_mooxsocial.settings.api_app_id}
+	api_secret = {$plugin.tx_mooxsocial.settings.api_secret}
+	api_oauth_access_token = {$plugin.tx_mooxsocial.settings.api_oauth_access_token}
+	api_oauth_access_token_secret = {$plugin.tx_mooxsocial.settings.api_oauth_access_token_secret}
+	api_consumer_key = {$plugin.tx_mooxsocial.settings.api_consumer_key}
+	api_consumer_key_secret = {$plugin.tx_mooxsocial.settings.api_consumer_key_secret}
+	api_flickr_key = {$plugin.tx_mooxsocial.settings.api_flickr_key}
+	api_flickr_secret_key = {$plugin.tx_mooxsocial.settings.api_flickr_secret_key}
+	api_slideshare_key = {$plugin.tx_mooxsocial.settings.api_slideshare_key}
+	api_slideshare_secret_key = {$plugin.tx_mooxsocial.settings.api_slideshare_secret_key}
+	cssfile = {$plugin.tx_mooxsocial.settings.cssfile}
+}
+
+# Module configuration
+module.tx_mooxsocial {
+	persistence {
+		storagePid = {$module.tx_mooxsocial.persistence.storagePid}
+	}
+	view {
+		templateRootPath = {$module.tx_mooxsocial.view.templateRootPath}
+		partialRootPath = {$module.tx_mooxsocial.view.partialRootPath}
+		layoutRootPath = {$module.tx_mooxsocial.view.layoutRootPath}
+	}
+}
+
+plugin.tx_fed {
+	
+	fce.moox_social {
+		label = Fluid Content Elements - moox-social
+		templateRootPath = EXT:moox_social/Resources/Private/Elements/
+		partialRootPath = EXT:flux/Resources/Private/Partials/
+		layoutRootPath = EXT:fluidcontent/Resources/Private/Layouts/
+	}
+}
+
+#
+# AJAX Page Prototype
+#
+lib.AJAXPrototype= PAGE
+lib.AJAXPrototype {
+	typeNum = 896571
+	config {
+		disableAllHeaderCode = 1
+		disableCharsetHeader = 1 
+		disablePrefixComment = 1
+		xhtml_cleaning = 0
+		admPanel = 0
+		debug = 0
+        no_cache = 1
+		additionalHeaders = Content-type:text/html
+	}	
+}
+ 
+ 
+#
+# Konkreter Pagetype
+#
+AJAX_Plugintyp < lib.AJAXPrototype
+AJAX_Plugintyp {
+	typeNum = 89657202
+	10 < tt_content.list.20.mooxsocial_pi1	
+}
+
+AJAX_Plugintyptwitter < lib.AJAXPrototype
+AJAX_Plugintyptwitter {
+	typeNum = 89657303
+	10 < tt_content.list.20.mooxsocial_pi2	
+}
+
+AJAX_Plugintypyoutube < lib.AJAXPrototype
+AJAX_Plugintypyoutube {
+	typeNum = 89657404
+	10 < tt_content.list.20.mooxsocial_pi3	
+}
+
+AJAX_Plugintypflickr < lib.AJAXPrototype
+AJAX_Plugintypflickr {
+	typeNum = 89657505
+	10 < tt_content.list.20.mooxsocial_pi4	
+}
+
+AJAX_Plugintypslideshare < lib.AJAXPrototype
+AJAX_Plugintypslideshare {
+	typeNum = 89657606
+	10 < tt_content.list.20.mooxsocial_pi5	
+}
