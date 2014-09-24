@@ -39,10 +39,9 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 *
 	 * @return void
 	 */
-	public function listAction() {					
+	public function listAction() {							
 		
-		$this->view->assign('posts', $posts);	
-		
+		$this->view->assign('posts', $posts);		
 	}
 
 	/**
@@ -54,7 +53,6 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	public function showAction(\TYPO3\MooxSocial\Domain\Model\Post $post) {				
 		
 		$this->view->assign('post', $post);
-	}
-
+	}	
 }
 ?>

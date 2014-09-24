@@ -33,7 +33,15 @@ namespace TYPO3\MooxSocial\Controller;
  *
  */
 class TwitterController extends \TYPO3\MooxSocial\Controller\PostController {
-
+	
+	/**
+	 * objectManager
+	 *
+	 * @var \TYPO3\CMS\Extbase\Object\ObjectManager
+	 * @inject
+	 */
+	protected $objectManager;
+	
 	/**
 	 * twitterRepository
 	 *
@@ -41,7 +49,172 @@ class TwitterController extends \TYPO3\MooxSocial\Controller\PostController {
 	 * @inject
 	 */
 	protected $twitterRepository;	
-
+	
+	/**
+	 * action index
+	 *
+	 * @return void
+	 */
+	public function indexAction() {
+		
+		$query = array(
+			'SELECT' => '*',
+			'FROM' => 'tx_scheduler_task',
+			'WHERE' => '1=1'
+		);
+		$res = $GLOBALS['TYPO3_DB']->exec_SELECT_queryArray($query);
+		$tasks = array();
+		foreach($res AS $task){
+			
+			$twittertask = unserialize($task['serialized_task_object']);
+			if($twittertask instanceof \TYPO3\MooxSocial\Tasks\TwitterGetTask){
+				$addTask = array();				
+				$addTask['pid'] 					= $twittertask->getPid();
+				$addTask['oauthAccessToken'] 		= $twittertask->getOauthAccessToken();
+				$addTask['oauthAccessTokenSecret'] 	= $twittertask->getOauthAccessTokenSecret();
+				$addTask['consumerKey']				= $twittertask->getConsumerKey();
+				$addTask['consumerKeySecret'] 		= $twittertask->getConsumerKeySecret();
+				$addTask['screenName'] 				= $twittertask->getScreenName();
+				$addTask['taskUid'] 				= $twittertask->getTaskUid();
+				$tasks[] = $addTask;
+			}
+		}
+		
+		$this->view->assign('tasks', $tasks);		
+		
+	}
+	
+	/**
+	 * action reinit
+	 *
+	 * @param string $screenName
+	 * @param integer $storagePid
+	 * @param string $oauthAccessToken
+	 * @param string $oauthAccessTokenSecret
+	 * @param string $consumerKey
+	 * @param string $consumerKeySecret
+	 * @return void
+	 */
+	public function reinitAction($screenName,$storagePid,$oauthAccessToken,$oauthAccessTokenSecret,$consumerKey,$consumerKeySecret) {	
+		if($screenName!=""){
+			
+			$this->twitterRepository->removeByPageId($screenName,$storagePid);
+			
+			$rawFeed 	= self::twitter($oauthAccessToken,$oauthAccessTokenSecret,$consumerKey,$consumerKeySecret,$screenName,'init');			
+			
+			$posts 		= array();			
+			$postIds 	= array();
+			
+			foreach($rawFeed as $item) {
+				
+				if(!in_array($item['id'],$postIds)){
+					
+					$postIds[] 		= $item['id'];					
+					$postId 		= $item['id'];	
+					
+					$item['id'] 			= $postId;
+					$item['user']['screen_name'] 	= $screenName;
+					$item['id_str'] 			= $storagePid;
+					
+					$post 			= self::twitterPost($item);					
+					
+					if(is_array($post)){
+						$posts[] 	= $post;
+					}
+				}
+				
+			}			
+			
+			if(count($posts)){
+				
+				$insertCnt = 0;
+				
+				foreach($posts AS $post){				
+										
+					$twitterPost = new \TYPO3\MooxSocial\Domain\Model\Twitter;
+					
+					$twitterPost->setPid($post['pid']);
+					$twitterPost->setCreated($post['created']);					
+					$twitterPost->setUpdated($post['updated']);
+					$twitterPost->setModel("twitter");
+					$twitterPost->setType($post['type']);
+					$twitterPost->setStatusType($post['statusType']);
+					$twitterPost->setPage($post['page']);
+					$twitterPost->setAction($post['action']);
+					$twitterPost->setTitle($post['title']);
+					$twitterPost->setSummary($post['summary']);
+					$twitterPost->setText($post['text']);
+					$twitterPost->setAuthor($post['author']);
+					$twitterPost->setAuthorId($post['authorId']);
+					$twitterPost->setDescription($post['description']);
+					$twitterPost->setCaption($post['caption']);
+					$twitterPost->setUrl($post['url']);
+					$twitterPost->setLinkName($post['linkName']);
+					$twitterPost->setLinkUrl($post['linkUrl']);
+					$twitterPost->setImageUrl($post['imageUrl']);
+					$twitterPost->setImageEmbedcode($post['imageEmbedcode']);
+					$twitterPost->setVideoUrl($post['videoUrl']);
+					$twitterPost->setVideoEmbedcode($post['videoEmbedcode']);
+					$twitterPost->setSharedUrl($post['sharedUrl']);
+					$twitterPost->setSharedTitle($post['sharedTitle']);
+					$twitterPost->setSharedDescription($post['sharedDescription']);
+					$twitterPost->setSharedCaption($post['sharedCaption']);				
+					$twitterPost->setLikes($post['likes']);
+					$twitterPost->setShares($post['shares']);
+					$twitterPost->setComments($post['comments']);
+					$twitterPost->setApiUid($post['apiUid']);					
+					$twitterPost->setApiHash($post['apiHash']);
+					
+					$this->twitterRepository->add($twitterPost);
+					
+					$insertCnt++;
+					
+				}	
+				
+				$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
+				$this->objectManager->get('TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface')->persistAll();
+				
+				$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
+					$insertCnt." neue Tweets geladen",
+					 '', // the header is optional
+					 \TYPO3\CMS\Core\Messaging\FlashMessage::OK, // the severity is optional as well and defaults to \TYPO3\CMS\Core\Messaging\FlashMessage::OK
+					 TRUE // optional, whether the message should be stored in the session or only in the \TYPO3\CMS\Core\Messaging\FlashMessageQueue object (default is FALSE)
+				);
+				\TYPO3\CMS\Core\Messaging\FlashMessageQueue::addMessage($message);
+			}
+		}
+		
+		$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
+			\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang.xlf:overview.twitter.listing.reinit.success', $this->extensionName ),
+			 '', // the header is optional
+			 \TYPO3\CMS\Core\Messaging\FlashMessage::OK, // the severity is optional as well and defaults to \TYPO3\CMS\Core\Messaging\FlashMessage::OK
+			 TRUE // optional, whether the message should be stored in the session or only in the \TYPO3\CMS\Core\Messaging\FlashMessageQueue object (default is FALSE)
+		);
+		\TYPO3\CMS\Core\Messaging\FlashMessageQueue::addMessage($message);
+		$this->redirect('index');
+	}
+	
+	/**
+	 * action truncate
+	 *
+	 * @param string $screenName
+	 * @param integer $storagePid
+	 * @return void
+	 */
+	public function truncateAction($screenName,$storagePid) {
+		if($screenName!=""){
+			$this->twitterRepository->removeByPageId($screenName,$storagePid);
+		}
+		$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
+			\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang.xlf:overview.twitter.listing.truncate.success', $this->extensionName ),
+			 '', // the header is optional
+			 \TYPO3\CMS\Core\Messaging\FlashMessage::OK, // the severity is optional as well and defaults to \TYPO3\CMS\Core\Messaging\FlashMessage::OK
+			 TRUE // optional, whether the message should be stored in the session or only in the \TYPO3\CMS\Core\Messaging\FlashMessageQueue object (default is FALSE)
+		);
+		\TYPO3\CMS\Core\Messaging\FlashMessageQueue::addMessage($message);
+		$this->redirect('index');
+	}
+	
 	/**
 	 * action list
 	 *

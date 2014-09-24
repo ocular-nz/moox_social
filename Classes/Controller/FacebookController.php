@@ -40,13 +40,182 @@ require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('moox_s
 class FacebookController extends \TYPO3\MooxSocial\Controller\PostController {
 
 	/**
+	 * objectManager
+	 *
+	 * @var \TYPO3\CMS\Extbase\Object\ObjectManager
+	 * @inject
+	 */
+	protected $objectManager;
+
+	/**
 	 * facebookRepository
 	 *
 	 * @var \TYPO3\MooxSocial\Domain\Repository\FacebookRepository
 	 * @inject
 	 */
-	protected $facebookRepository;	
-
+	protected $facebookRepository;
+	
+	/**
+	 * action index
+	 *
+	 * @return void
+	 */
+	public function indexAction() {
+		
+		$query = array(
+			'SELECT' => '*',
+			'FROM' => 'tx_scheduler_task',
+			'WHERE' => '1=1'
+		);
+		$res = $GLOBALS['TYPO3_DB']->exec_SELECT_queryArray($query);
+		$tasks = array();
+		foreach($res AS $task){
+			
+			$facebooktask = unserialize($task['serialized_task_object']);
+			if($facebooktask instanceof \TYPO3\MooxSocial\Tasks\FacebookGetTask){
+				$addTask = array();				
+				$addTask['pid'] 	= $facebooktask->getPid();
+				$addTask['appId'] 	= $facebooktask->getAppId();
+				$addTask['secret'] 	= $facebooktask->getSecret();
+				$addTask['pageId'] 	= $facebooktask->getPageId();
+				$addTask['taskUid'] = $facebooktask->getTaskUid();
+				$tasks[] = $addTask;
+			}
+		}
+		
+		$this->view->assign('tasks', $tasks);				
+	}
+	
+	/**
+	 * action reinit
+	 *
+	 * @param string $pageId
+	 * @param integer $storagePid
+	 * @param string $appId
+	 * @param string $secret
+	 * @return void
+	 */
+	public function reinitAction($pageId,$storagePid,$appId,$secret) {	
+		if($pageId!=""){
+			
+			$this->facebookRepository->removeByPageId($pageId,$storagePid);
+			
+			$rawFeed 	= self::facebook($appId,$secret,$pageId,'init');			
+			
+			$posts 		= array();			
+			$postIds 	= array();
+			
+			foreach($rawFeed['data'] as $item) {
+				
+				if(!in_array($item['id'],$postIds) && $item['status_type']!=""){
+					
+					$postIds[] 		= $item['id'];					
+					$postId 		= explode("_",$item['id']);
+					$postId 		= $postId[1];
+					
+					$item['postId'] = $postId;
+					$item['pageId'] = $pageId;
+					$item['pid'] 	= $storagePid;
+					
+					$post 			= self::facebookPost($item);					
+					
+					if(is_array($post)){
+						$posts[] 	= $post;
+					}
+				}
+				
+			}			
+			
+			if(count($posts)){
+				
+				$insertCnt = 0;
+				
+				foreach($posts AS $post){				
+										
+					$facebookPost = new \TYPO3\MooxSocial\Domain\Model\Facebook;
+					
+					$facebookPost->setPid($post['pid']);
+					$facebookPost->setCreated($post['created']);					
+					$facebookPost->setUpdated($post['updated']);
+					$facebookPost->setModel("facebook");
+					$facebookPost->setType($post['type']);
+					$facebookPost->setStatusType($post['statusType']);
+					$facebookPost->setPage($post['page']);
+					$facebookPost->setAction($post['action']);
+					$facebookPost->setTitle($post['title']);
+					$facebookPost->setSummary($post['summary']);
+					$facebookPost->setText($post['text']);
+					$facebookPost->setAuthor($post['author']);
+					$facebookPost->setAuthorId($post['authorId']);
+					$facebookPost->setDescription($post['description']);
+					$facebookPost->setCaption($post['caption']);
+					$facebookPost->setUrl($post['url']);
+					$facebookPost->setLinkName($post['linkName']);
+					$facebookPost->setLinkUrl($post['linkUrl']);
+					$facebookPost->setImageUrl($post['imageUrl']);
+					$facebookPost->setImageEmbedcode($post['imageEmbedcode']);
+					$facebookPost->setVideoUrl($post['videoUrl']);
+					$facebookPost->setVideoEmbedcode($post['videoEmbedcode']);
+					$facebookPost->setSharedUrl($post['sharedUrl']);
+					$facebookPost->setSharedTitle($post['sharedTitle']);
+					$facebookPost->setSharedDescription($post['sharedDescription']);
+					$facebookPost->setSharedCaption($post['sharedCaption']);				
+					$facebookPost->setLikes($post['likes']);
+					$facebookPost->setShares($post['shares']);
+					$facebookPost->setComments($post['comments']);
+					$facebookPost->setApiUid($post['apiUid']);					
+					$facebookPost->setApiHash($post['apiHash']);
+					
+					$this->facebookRepository->add($facebookPost);
+					
+					$insertCnt++;
+					
+				}	
+				
+				$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
+				$this->objectManager->get('TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface')->persistAll();
+				
+				$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
+					$insertCnt." neue Posts geladen",
+					 '', // the header is optional
+					 \TYPO3\CMS\Core\Messaging\FlashMessage::OK, // the severity is optional as well and defaults to \TYPO3\CMS\Core\Messaging\FlashMessage::OK
+					 TRUE // optional, whether the message should be stored in the session or only in the \TYPO3\CMS\Core\Messaging\FlashMessageQueue object (default is FALSE)
+				);
+				\TYPO3\CMS\Core\Messaging\FlashMessageQueue::addMessage($message);
+			}
+		}
+		
+		$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
+			\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang.xlf:overview.facebook.listing.reinit.success', $this->extensionName ),
+			 '', // the header is optional
+			 \TYPO3\CMS\Core\Messaging\FlashMessage::OK, // the severity is optional as well and defaults to \TYPO3\CMS\Core\Messaging\FlashMessage::OK
+			 TRUE // optional, whether the message should be stored in the session or only in the \TYPO3\CMS\Core\Messaging\FlashMessageQueue object (default is FALSE)
+		);
+		\TYPO3\CMS\Core\Messaging\FlashMessageQueue::addMessage($message);
+		$this->redirect('index');
+	}
+	
+	/**
+	 * action truncate
+	 *
+	 * @param string $pageId
+	 * @param integer $storagePid
+	 * @return void
+	 */
+	public function truncateAction($pageId,$storagePid) {
+		if($pageId!=""){
+			$this->facebookRepository->removeByPageId($pageId,$storagePid);
+		}
+		$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
+			\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang.xlf:overview.facebook.listing.truncate.success', $this->extensionName ),
+			 '', // the header is optional
+			 \TYPO3\CMS\Core\Messaging\FlashMessage::OK, // the severity is optional as well and defaults to \TYPO3\CMS\Core\Messaging\FlashMessage::OK
+			 TRUE // optional, whether the message should be stored in the session or only in the \TYPO3\CMS\Core\Messaging\FlashMessageQueue object (default is FALSE)
+		);
+		\TYPO3\CMS\Core\Messaging\FlashMessageQueue::addMessage($message);
+		$this->redirect('index');
+	}
+	
 	/**
 	 * action list
 	 *
@@ -214,7 +383,7 @@ class FacebookController extends \TYPO3\MooxSocial\Controller\PostController {
 			$facebook = new \TYPO3\MooxSocial\Facebook\Facebook($config);
 			
 			if($request=="init"){
-				$request="posts?since=946681200&until=".time()."&limit=10000";
+				$request="posts?since=946681200&until=".time(); //."&limit=10000"; limit > 250 is not allowed
 			} elseif($request==""){
 				$request="posts?limit=25";
 			}

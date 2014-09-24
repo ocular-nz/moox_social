@@ -1,4 +1,4 @@
-<f:be.container addCssFile="{f:uri.resource(path:'Css/admin.css')}">
+<f:be.container addCssFile="{f:uri.resource(path:'Css/administration.css')}">
 	<div class="typo3-fullDoc tx-moox-social-admin">
 		<div id="typo3-docheader">
 			<div id="typo3-docheader-row1">
@@ -13,12 +13,12 @@
 				<div class="docheader-row2-left">
 					<f:be.buttons.csh />
 					<f:be.menus.actionMenu>
-						<f:be.menus.actionMenuItem label="{f:translate(key:'administration.facebook.listing')}" controller="Administration" action="overviewFacebook" />
-						<f:be.menus.actionMenuItem label="{f:translate(key:'administration.twitter.listing')}" controller="Administration" action="overviewTwitter" />
-						<f:be.menus.actionMenuItem label="{f:translate(key:'administration.youtube.listing')}" controller="Administration" action="overviewYoutube" />
-						<f:be.menus.actionMenuItem label="{f:translate(key:'administration.flickr.listing')}" controller="Administration" action="overviewFlickr" />
-						<f:be.menus.actionMenuItem label="{f:translate(key:'administration.slideshare.listing')}" controller="Administration" action="overviewSlideshare" />
-						<f:be.menus.actionMenuItem label="{f:translate(key:'administration.folder.listing')}" controller="Administration" action="overviewFolders" />
+						<f:be.menus.actionMenuItem label="{f:translate(key:'administration.facebook.listing')}" controller="Facebook" action="index" />
+						<f:be.menus.actionMenuItem label="{f:translate(key:'administration.twitter.listing')}" controller="Twitter" action="index" />
+						<f:be.menus.actionMenuItem label="{f:translate(key:'administration.youtube.listing')}" controller="Youtube" action="index" />
+						<f:be.menus.actionMenuItem label="{f:translate(key:'administration.flickr.listing')}" controller="Flickr" action="index" />
+						<f:be.menus.actionMenuItem label="{f:translate(key:'administration.slideshare.listing')}" controller="Slideshare" action="index" />
+						<f:be.menus.actionMenuItem label="{f:translate(key:'administration.folder.listing')}" controller="Administration" action="index" />
 					</f:be.menus.actionMenu>
 				</div>
 				<div class="docheader-row2-right">

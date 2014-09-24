@@ -33,7 +33,15 @@ namespace TYPO3\MooxSocial\Controller;
  *
  */
 class SlideshareController extends \TYPO3\MooxSocial\Controller\PostController {
-
+	
+	/**
+	 * objectManager
+	 *
+	 * @var \TYPO3\CMS\Extbase\Object\ObjectManager
+	 * @inject
+	 */
+	protected $objectManager;
+	
 	/**
 	 * slideshareRepository
 	 *
@@ -41,7 +49,168 @@ class SlideshareController extends \TYPO3\MooxSocial\Controller\PostController {
 	 * @inject
 	 */
 	protected $slideshareRepository;
-
+	
+	/**
+	 * action index
+	 *
+	 * @return void
+	 */
+	public function indexAction() {
+		
+		$query = array(
+			'SELECT' => '*',
+			'FROM' => 'tx_scheduler_task',
+			'WHERE' => '1=1'
+		);
+		$res = $GLOBALS['TYPO3_DB']->exec_SELECT_queryArray($query);
+		$tasks = array();
+		foreach($res AS $task){
+			
+			$slidesharetask = unserialize($task['serialized_task_object']);
+			if($slidesharetask instanceof \TYPO3\MooxSocial\Tasks\SlideshareGetTask){
+				$addTask = array();				
+				$addTask['pid'] 			= $slidesharetask->getPid();
+				$addTask['apiKey'] 			= $slidesharetask->getApiKey();
+				$addTask['apiSecretKey'] 	= $slidesharetask->getApiSecretKey();
+				$addTask['userId'] 			= $slidesharetask->getUserId();
+				$addTask['taskUid'] 		= $slidesharetask->getTaskUid();
+				$tasks[] = $addTask;
+			}
+		}
+		
+		$this->view->assign('tasks', $tasks);		
+		
+	}
+	
+	/**
+	 * action reinit
+	 *
+	 * @param string $apiKey
+	 * @param string $apiSecretKey
+	 * @param string $userId
+	 * @param integer $storagePid
+	 * @return void
+	 */
+	public function reinitAction($apiKey,$apiSecretKey,$userId,$storagePid) {	
+		if($apiKey!="" && $apiSecretKey!="" && $userId!=""){
+			
+			$this->slideshareRepository->removeByPageId($userId,$storagePid);
+			
+			$rawFeed 	= self::slideshare($apiKey,$apiSecretKey,$userId,'init');			
+			
+			$posts 		= array();			
+			$postIds 	= array();
+			
+			foreach($rawFeed as $item) {
+				
+				if(!in_array($item['ID'],$postIds)){
+					
+					$postIds[] 		= $item['ID'];					
+					$postId 		= $item['ID'];	
+					
+					$item['id'] 	= $postId;
+					$item['userId']	= $userId;
+					$item['pid'] 	= $storagePid;
+					
+					$post 			= self::slidesharePost($item);					
+					
+					if(is_array($post)){
+						$posts[] 	= $post;
+					}
+				}
+				
+			}			
+			
+			if(count($posts)){
+				
+				$insertCnt = 0;
+				
+				foreach($posts AS $post){				
+										
+					$slidesharePost = new \TYPO3\MooxSocial\Domain\Model\Slideshare;
+					
+					$slidesharePost->setPid($post['pid']);
+					$slidesharePost->setCreated($post['created']);					
+					$slidesharePost->setUpdated($post['updated']);
+					$slidesharePost->setModel("slideshare");
+					$slidesharePost->setType($post['type']);
+					$slidesharePost->setStatusType($post['statusType']);
+					$slidesharePost->setPage($post['page']);
+					$slidesharePost->setAction($post['action']);
+					$slidesharePost->setTitle($post['title']);
+					$slidesharePost->setSummary($post['summary']);
+					$slidesharePost->setText($post['text']);
+					$slidesharePost->setAuthor($post['author']);
+					$slidesharePost->setAuthorId($post['authorId']);
+					$slidesharePost->setDescription($post['description']);
+					$slidesharePost->setCaption($post['caption']);
+					$slidesharePost->setUrl($post['url']);
+					$slidesharePost->setLinkName($post['linkName']);
+					$slidesharePost->setLinkUrl($post['linkUrl']);
+					$slidesharePost->setImageUrl($post['imageUrl']);
+					$slidesharePost->setImageEmbedcode($post['imageEmbedcode']);
+					$slidesharePost->setVideoUrl($post['videoUrl']);
+					$slidesharePost->setVideoEmbedcode($post['videoEmbedcode']);
+					$slidesharePost->setSharedUrl($post['sharedUrl']);
+					$slidesharePost->setSharedTitle($post['sharedTitle']);
+					$slidesharePost->setSharedDescription($post['sharedDescription']);
+					$slidesharePost->setSharedCaption($post['sharedCaption']);				
+					$slidesharePost->setLikes($post['likes']);
+					$slidesharePost->setShares($post['shares']);
+					$slidesharePost->setComments($post['comments']);
+					$slidesharePost->setApiUid($post['apiUid']);					
+					$slidesharePost->setApiHash($post['apiHash']);
+					
+					$this->slideshareRepository->add($slidesharePost);
+					
+					$insertCnt++;
+					
+				}	
+				
+				$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
+				$this->objectManager->get('TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface')->persistAll();
+				
+				$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
+					$insertCnt." neue Praesentationen geladen",
+					 '', // the header is optional
+					 \TYPO3\CMS\Core\Messaging\FlashMessage::OK, // the severity is optional as well and defaults to \TYPO3\CMS\Core\Messaging\FlashMessage::OK
+					 TRUE // optional, whether the message should be stored in the session or only in the \TYPO3\CMS\Core\Messaging\FlashMessageQueue object (default is FALSE)
+				);
+				\TYPO3\CMS\Core\Messaging\FlashMessageQueue::addMessage($message);
+			}
+		}
+		
+		$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
+			\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang.xlf:overview.slideshare.listing.reinit.success', $this->extensionName ),
+			 '', // the header is optional
+			 \TYPO3\CMS\Core\Messaging\FlashMessage::OK, // the severity is optional as well and defaults to \TYPO3\CMS\Core\Messaging\FlashMessage::OK
+			 TRUE // optional, whether the message should be stored in the session or only in the \TYPO3\CMS\Core\Messaging\FlashMessageQueue object (default is FALSE)
+		);
+		\TYPO3\CMS\Core\Messaging\FlashMessageQueue::addMessage($message);
+		$this->redirect('index');
+	}
+	
+	/**
+	 * action truncate
+	 *
+	 * @param string $userId
+	 * @param integer $storagePid
+	 * @return void
+	 */
+	public function truncateAction($userId,$storagePid) {
+		if($userId!=""){
+			$this->slideshareRepository->removeByPageId($userId,$storagePid);
+		}
+		$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
+			\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang.xlf:overview.slideshare.listing.truncate.success', $this->extensionName ),
+			 '', // the header is optional
+			 \TYPO3\CMS\Core\Messaging\FlashMessage::OK, // the severity is optional as well and defaults to \TYPO3\CMS\Core\Messaging\FlashMessage::OK
+			 TRUE // optional, whether the message should be stored in the session or only in the \TYPO3\CMS\Core\Messaging\FlashMessageQueue object (default is FALSE)
+		);
+		\TYPO3\CMS\Core\Messaging\FlashMessageQueue::addMessage($message);
+		$this->redirect('index');
+	}
+	
 	/**
 	 * action list
 	 *

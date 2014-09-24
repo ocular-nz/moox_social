@@ -49,7 +49,14 @@ class FacebookGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	 *
 	 * @var integer
 	 */
-	public $intervalBuffer = 300;
+	public static $intervalBuffer = 86400;
+	
+	/**
+	 * limit of facebook api request
+	 *
+	 * @var integer
+	 */
+	public static $limit = 250;
 	
 	/**
 	 * PID der Seite/Ordner in dem die Posts dieses Tasks gespeichert werden sollen
@@ -108,10 +115,10 @@ class FacebookGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 			$interval 	= $execution->getInterval();
 			$time 		= time();
 			$to			= $time;
-			$from		= ($time-$interval-$this->intervalBuffer);			
+			$from		= ($time-$interval-self::$intervalBuffer);									
 			
 			try {			
-				$rawFeed = \TYPO3\MooxSocial\Controller\FacebookController::facebook($this->appId,$this->secret,$this->pageId,'posts?since='.$from.'&until='.$to.'&limit=250');
+				$rawFeed = \TYPO3\MooxSocial\Controller\FacebookController::facebook($this->appId,$this->secret,$this->pageId,'posts?since='.$from.'&until='.$to.'&limit='.self::$limit);				
 				$executionSucceeded = TRUE;
 			} catch (\TYPO3\MooxSocial\Facebook\FacebookApiException $e) {				
 				$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
@@ -148,8 +155,7 @@ class FacebookGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 			$postIds = array();
 			
 			foreach($rawFeed['data'] as $item) {
-				
-				//if(1 || !in_array($item['type'],array("status"))){
+								
 				if(!in_array($item['id'],$postIds) && $item['status_type']!=""){
 					
 					$postIds[] 		= $item['id'];					
@@ -165,10 +171,9 @@ class FacebookGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 					if(is_array($post)){
 						$posts[] 		= $post;
 					}
-				}
-				
-			}			
-			
+				}				
+			}	
+
 			if(count($posts)){
 				
 				$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
@@ -239,6 +244,10 @@ class FacebookGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 				}	
 				
 				$objectManager->get('TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface')->persistAll();
+				
+				if($insertCnt>0 || $updateCnt>0){
+					\TYPO3\MooxSocial\Controller\AdministrationController::clearCache("mooxsocial_pi1");
+				}
 				
 				$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
 					$insertCnt." neue Posts geladen | ".$updateCnt." bestehende Posts aktualisiert",

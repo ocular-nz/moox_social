@@ -63,48 +63,53 @@ if (TYPO3_MODE === 'BE') {
     /***************
      * Register Main Module
      */
-	if (!isset($TBE_MODULES['moox'])) {
+	$mainModuleName = "moox";
+	if (!isset($TBE_MODULES[$mainModuleName])) {
         $temp_TBE_MODULES = array();
         foreach ($TBE_MODULES as $key => $val) {
             if ($key == 'web') {
                 $temp_TBE_MODULES[$key] = $val;
-                $temp_TBE_MODULES['moox'] = '';
+                $temp_TBE_MODULES[$mainModuleName] = '';
             } else {
                 $temp_TBE_MODULES[$key] = $val;
             }
         }
         $TBE_MODULES = $temp_TBE_MODULES;
 		if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('moox_core')) {
-			$mainModuleKey = "moox_core";
+			$mainModuleKey 		= "FluidTYPO3.moox_core";
+			$mainModuleIcon 	= 'EXT:moox_core/ext_icon32.png';
+			$mainModuleLabels 	= 'LLL:EXT:moox_core/Resources/Private/Language/MainModule.xlf';			
 		} else {
-			$mainModuleKey = "moox_social";
+			$mainModuleKey 		= "TYPO3.".$_EXTKEY;
+			$mainModuleIcon 	= 'EXT:'.$_EXTKEY.'/Resources/Public/Moox/MainModuleExtIcon.png';
+			$mainModuleLabels 	= 'LLL:EXT:'.$_EXTKEY.'/Resources/Public/Moox/MainModule.xlf';
 		}
 		\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
 			$mainModuleKey,
-			'moox',
+			$mainModuleName,
 			'',
 			'',
 			array(),
 			array(
 				'access' => 'user,group',
-				'icon'   => 'EXT:'.$_EXTKEY.'/ext_icon32.png',
-				'labels' => 'LLL:EXT:'.$_EXTKEY.'/Resources/Private/Language/MainModule.xlf',
+				'icon'   => $mainModuleIcon,
+				'labels' => $mainModuleLabels,
 			)
 		);
-    }    
-}
+    } 
 
-if (TYPO3_MODE === 'BE') {
-	/**
-	 * Registers a Backend Module
-	 */
 	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-		'TYPO3.' . $_EXTKEY,
-		'moox',	 // Make module a submodule of 'tools'
-		'management',	// Submodule key
-		'',						// Position
+		'TYPO3.'.$_EXTKEY,
+		$mainModuleName,	// Make module a submodule of 'moox'
+		'socialmanagement',		// Submodule key
+		'after:MooxNewsTxMooxnewsM2',					// Position
 		array(
-			'Administration' => 'overviewFacebook,reinitFacebook,truncateFacebook,overviewTwitter,reinitTwitter,truncateTwitter,overviewYoutube,reinitYoutube,truncateYoutube,overviewFlickr,reinitFlickr,truncateFlickr,overviewSlideshare,reinitSlideshare,truncateSlideshare,overviewFolders,truncateFolder',
+			'Administration' => 'index,truncateFolder',
+			'Facebook' => 'index,reinit,truncate',
+			'Twitter' => 'index,reinit,truncate',
+			'Youtube' => 'index,reinit,truncate',
+			'Flickr' => 'index,reinit,truncate',
+			'Slideshare' => 'index,reinit,truncate'
 		),
 		array(
 			'access' => 'user,group',
@@ -275,6 +280,6 @@ if (TYPO3_MODE == 'BE') {
 /***************
  * Icon in page tree
  */
-$TCA['pages']['columns']['module']['config']['items'][] = array('MOOX-Social', 'social', 'EXT:moox_social/ext_icon.gif');
-t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-social', '../typo3conf/ext/moox_social/ext_icon.gif');
+$TCA['pages']['columns']['module']['config']['items'][] = array('MOOX-Social', 'mxsocial', 'EXT:moox_social/ext_icon.gif');
+t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-mxsocial', '../typo3conf/ext/moox_social/ext_icon.gif');
 ?>

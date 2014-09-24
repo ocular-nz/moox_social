@@ -11,30 +11,29 @@
  ***************************************************************/
 
 $EM_CONF[$_EXTKEY] = array(
-	'title' => 'MOOX Social Media',
-	'description' => 'Frontend plugins for Facebook, Twitter, Youtube, Slideshare and Flickr with cache-mode.',
+	'title' => 'MOOX social',
+	'description' => 'Import from and export to different social networks',
 	'category' => 'plugin',
-	'author' => 'MOOX Team',
-	'author_email' => 'moox@dcn.de',
+	'author' => 'Dominic Martin',
+	'author_email' => 'dm@dcn.de',
 	'author_company' => 'DCN GmbH',
 	'shy' => '',
 	'priority' => '',
 	'module' => '',
-	'state' => 'Alpha',
+	'state' => 'beta',
 	'internal' => '',
 	'uploadfolder' => '1',
 	'createDirs' => '',
 	'modify_tables' => '',
 	'clearCacheOnLoad' => 0,
 	'lockType' => '',
-	'version' => '0.8.9',
+	'version' => '1.0.1-dev',
 	'constraints' => array(
 		'depends' => array(
 			'extbase' => '6.2.0-6.2.99',
 			'fluid' => '6.2.0-6.2.99',
-			'typo3' => '6.2.3-6.2.99',
+			'typo3' => '6.2.0-6.2.99',
 			'vhs' => '',
-			'moox_core' => '0.9.5-1.0.99',
 		),
 		'conflicts' => array(
 		),

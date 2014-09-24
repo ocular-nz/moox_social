@@ -33,7 +33,15 @@ namespace TYPO3\MooxSocial\Controller;
  *
  */
 class YoutubeController extends \TYPO3\MooxSocial\Controller\PostController {
-
+	
+	/**
+	 * objectManager
+	 *
+	 * @var \TYPO3\CMS\Extbase\Object\ObjectManager
+	 * @inject
+	 */
+	protected $objectManager;
+	
 	/**
 	 * youtubeRepository
 	 *
@@ -41,7 +49,164 @@ class YoutubeController extends \TYPO3\MooxSocial\Controller\PostController {
 	 * @inject
 	 */
 	protected $youtubeRepository;
-
+	
+	/**
+	 * action index
+	 *
+	 * @return void
+	 */
+	public function indexAction() {
+		
+		$query = array(
+			'SELECT' => '*',
+			'FROM' => 'tx_scheduler_task',
+			'WHERE' => '1=1'
+		);
+		$res = $GLOBALS['TYPO3_DB']->exec_SELECT_queryArray($query);
+		$tasks = array();
+		foreach($res AS $task){
+			
+			$youtubetask = unserialize($task['serialized_task_object']);
+			if($youtubetask instanceof \TYPO3\MooxSocial\Tasks\YoutubeGetTask){
+				$addTask = array();				
+				$addTask['pid'] 			= $youtubetask->getPid();
+				$addTask['youtubeChannel'] 	= $youtubetask->getYoutubeChannel();
+				$addTask['taskUid'] 		= $youtubetask->getTaskUid();
+				$tasks[] = $addTask;
+			}
+		}
+		
+		$this->view->assign('tasks', $tasks);		
+		
+	}
+	
+	/**
+	 * action reinit
+	 *
+	 * @param string $youtubeChannel
+	 * @param integer $storagePid
+	 * @return void
+	 */
+	public function reinitAction($youtubeChannel,$storagePid) {	
+		if($youtubeChannel!=""){
+			
+			$this->youtubeRepository->removeByPageId($youtubeChannel,$storagePid);
+			
+			$rawFeed 	= self::youtube($youtubeChannel,'init');			
+			
+			$posts 		= array();			
+			$postIds 	= array();
+			
+			foreach($rawFeed as $item) {
+				
+				if(!in_array($item['id'],$postIds)){
+					
+					$postIds[] 		= $item['id'];					
+					$postId 		= $item['id'];	
+					
+					$item['id'] 			= $postId;
+					$item['youtubeChannel'] 	= $youtubeChannel;
+					$item['pid'] 			= $storagePid;
+					
+					$post 			= self::youtubePost($item);					
+					
+					if(is_array($post)){
+						$posts[] 	= $post;
+					}
+				}
+				
+			}			
+			
+			if(count($posts)){
+				
+				$insertCnt = 0;
+				
+				foreach($posts AS $post){				
+										
+					$youtubePost = new \TYPO3\MooxSocial\Domain\Model\Youtube;
+					
+					$youtubePost->setPid($post['pid']);
+					$youtubePost->setCreated($post['created']);					
+					$youtubePost->setUpdated($post['updated']);
+					$youtubePost->setModel("youtube");
+					$youtubePost->setType($post['type']);
+					$youtubePost->setStatusType($post['statusType']);
+					$youtubePost->setPage($post['page']);
+					$youtubePost->setAction($post['action']);
+					$youtubePost->setTitle($post['title']);
+					$youtubePost->setSummary($post['summary']);
+					$youtubePost->setText($post['text']);
+					$youtubePost->setAuthor($post['author']);
+					$youtubePost->setAuthorId($post['authorId']);
+					$youtubePost->setDescription($post['description']);
+					$youtubePost->setCaption($post['caption']);
+					$youtubePost->setUrl($post['url']);
+					$youtubePost->setLinkName($post['linkName']);
+					$youtubePost->setLinkUrl($post['linkUrl']);
+					$youtubePost->setImageUrl($post['imageUrl']);
+					$youtubePost->setImageEmbedcode($post['imageEmbedcode']);
+					$youtubePost->setVideoUrl($post['videoUrl']);
+					$youtubePost->setVideoEmbedcode($post['videoEmbedcode']);
+					$youtubePost->setSharedUrl($post['sharedUrl']);
+					$youtubePost->setSharedTitle($post['sharedTitle']);
+					$youtubePost->setSharedDescription($post['sharedDescription']);
+					$youtubePost->setSharedCaption($post['sharedCaption']);				
+					$youtubePost->setLikes($post['likes']);
+					$youtubePost->setShares($post['shares']);
+					$youtubePost->setComments($post['comments']);
+					$youtubePost->setApiUid($post['apiUid']);					
+					$youtubePost->setApiHash($post['apiHash']);
+					
+					$this->youtubeRepository->add($youtubePost);
+					
+					$insertCnt++;
+					
+				}	
+				
+				$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
+				$this->objectManager->get('TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface')->persistAll();
+				
+				$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
+					$insertCnt." neue Videos geladen",
+					 '', // the header is optional
+					 \TYPO3\CMS\Core\Messaging\FlashMessage::OK, // the severity is optional as well and defaults to \TYPO3\CMS\Core\Messaging\FlashMessage::OK
+					 TRUE // optional, whether the message should be stored in the session or only in the \TYPO3\CMS\Core\Messaging\FlashMessageQueue object (default is FALSE)
+				);
+				\TYPO3\CMS\Core\Messaging\FlashMessageQueue::addMessage($message);
+			}
+		}
+		
+		$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
+			\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang.xlf:overview.youtube.listing.reinit.success', $this->extensionName ),
+			 '', // the header is optional
+			 \TYPO3\CMS\Core\Messaging\FlashMessage::OK, // the severity is optional as well and defaults to \TYPO3\CMS\Core\Messaging\FlashMessage::OK
+			 TRUE // optional, whether the message should be stored in the session or only in the \TYPO3\CMS\Core\Messaging\FlashMessageQueue object (default is FALSE)
+		);
+		\TYPO3\CMS\Core\Messaging\FlashMessageQueue::addMessage($message);
+		$this->redirect('index');
+	}
+	
+	/**
+	 * action truncate
+	 *
+	 * @param string $youtubeChannel
+	 * @param integer $storagePid
+	 * @return void
+	 */
+	public function truncateAction($youtubeChannel,$storagePid) {
+		if($youtubeChannel!=""){
+			$this->youtubeRepository->removeByPageId($youtubeChannel,$storagePid);
+		}
+		$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
+			\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang.xlf:overview.youtube.listing.truncate.success', $this->extensionName ),
+			 '', // the header is optional
+			 \TYPO3\CMS\Core\Messaging\FlashMessage::OK, // the severity is optional as well and defaults to \TYPO3\CMS\Core\Messaging\FlashMessage::OK
+			 TRUE // optional, whether the message should be stored in the session or only in the \TYPO3\CMS\Core\Messaging\FlashMessageQueue object (default is FALSE)
+		);
+		\TYPO3\CMS\Core\Messaging\FlashMessageQueue::addMessage($message);
+		$this->redirect('index');
+	}
+	
 	/**
 	 * action list
 	 *

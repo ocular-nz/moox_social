@@ -1,0 +1,47 @@
+<f:layout name="Default" />
+
+<f:section name="content">
+<h1><f:image class="moox-icon" src="{f:uri.resource(path: 'Moox/mooxlogoicon.png')}" /> <f:translate key="overview.youtube.listing" /></h1>
+
+<f:flashMessages />
+
+<div class="tx-moox-social-admin-listing">
+	<table cellspacing="0">
+		<f:if condition="{tasks -> f:count()}>0">
+			<f:then>
+				<tr class="tx-moox-social-admin-listing-header">
+					<th><f:translate key="overview.youtube.listing.task_uid" /></th>
+					<th><f:translate key="overview.youtube.listing.youtube_channel" /></th>
+					<th><f:translate key="overview.youtube.listing.pid" /></th>		
+					<th> </th>		
+				</tr>			
+				<f:for each="{tasks}" as="task" iteration="iteration">
+					<tr class="{f:if(then: 'even', else: 'odd', condition: '{iteration.isEven}')}">
+						<td class="{f:if(then: 'even', else: 'odd', condition: '{iteration.isEven}')}">{task.taskUid}</td>
+						<td class="{f:if(then: 'even', else: 'odd', condition: '{iteration.isEven}')}">{task.youtubeChannel}</td>
+						<td class="{f:if(then: 'even', else: 'odd', condition: '{iteration.isEven}')}">{task.pid}</td>			
+						<td class="{f:if(then: 'even', else: 'odd', condition: '{iteration.isEven}')}" align="right">
+							<div class="tx-moox-social-admin-icon">
+								<f:link.action action="reinit" arguments="{youtubeChannel : task.youtubeChannel, storagePid : task.pid}" onclick="return window.confirm('{f:translate(key:'overview.youtube.listing.reinit.confirm')}')">
+									<f:image src="{f:uri.resource(path:'Icons/Administration/icon-reinit.png')}" alt="{f:translate(key:'overview.youtube.listing.reinit')}" title="{f:translate(key:'overview.youtube.listing.reinit')}" />
+								</f:link.action>
+							</div>
+							<div class="tx-moox-social-admin-icon">
+								<f:link.action action="truncate" arguments="{youtubeChannel : task.youtubeChannel, storagePid : task.pid}" onclick="return window.confirm('{f:translate(key:'overview.youtube.listing.truncate.confirm')}')">
+									<f:image src="{f:uri.resource(path:'Icons/Administration/icon-truncate.png')}" alt="{f:translate(key:'overview.youtube.listing.truncate')}" title="{f:translate(key:'overview.youtube.listing.truncate')}" />
+								</f:link.action>
+							</div>
+						</td>
+					</tr>
+				</f:for>
+			</f:then>
+			<f:else>
+				<tr>
+					<td><f:translate key="overview.youtube.listing.notasks" /></td>				
+				</tr>
+			</f:else>
+		</f:if>
+	</table>
+</div>
+
+</f:section>
