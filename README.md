@@ -1,4 +1,4 @@
-![moox_core](https://raw.github.com/dcngmbh/moox_social/master/ext_icon64.png)  MOOX Social Media Integration
+![moox_core](https://raw.github.com/dcngmbh/moox_social/master/ext_icon64.png)  MOOX Social Media
 =========
 
 ### TYPO3-Extension moox_social
