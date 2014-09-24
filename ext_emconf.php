@@ -11,11 +11,11 @@
  ***************************************************************/
 
 $EM_CONF[$_EXTKEY] = array(
-	'title' => 'MOOX social',
-	'description' => 'Import from and export to different social networks',
+	'title' => 'MOOX Social Media',
+	'description' => 'Facebook, Twitter, Youtube, Slideshare and Flickr Plugins, scheduled sync with all APIs and cached output.',
 	'category' => 'plugin',
-	'author' => 'Dominic Martin',
-	'author_email' => 'dm@dcn.de',
+	'author' => 'MOOX Team',
+	'author_email' => 'moox@dcn.de',
 	'author_company' => 'DCN GmbH',
 	'shy' => '',
 	'priority' => '',
@@ -27,7 +27,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'modify_tables' => '',
 	'clearCacheOnLoad' => 0,
 	'lockType' => '',
-	'version' => '1.0.1-dev',
+	'version' => '0.9.0',
 	'constraints' => array(
 		'depends' => array(
 			'extbase' => '6.2.0-6.2.99',
