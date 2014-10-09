@@ -76,6 +76,14 @@
 				<source>invalid email address</source>
 				<target>Ungültige Email-Adresse</target>
 			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_facebookgettask.clear_cache_pages_label">
+				<source>clear cache pages (uids, comma separated)</source>
+				<target>Cache dieser Seiten beim Update löschen (UIDs, komma-getrennt)</target>
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_facebookgettask.clear_cache_pages_error">
+				<source>invalid clear cache pages</source>
+				<target>Ungültige Angaben von Seiten-IDs die gelöscht werden sollen (Bsp.: "1,3,5")</target>
+			</trans-unit>
 			<trans-unit id="tx_mooxsocial_tasks_facebookgettask.api_label">
 				<source>Facebook-APP data</source>
 				<target>Daten zur Verbindung mit Ihrer Facebook-Anwendung</target>

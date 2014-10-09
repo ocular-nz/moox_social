@@ -175,18 +175,25 @@ class AdministrationController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionC
 	 * clear cache
 	 *
 	 * @param string $listType
+	 * @param array $clearCachePages
 	 * @return void
 	 */
-	public function clearCache($listType = "mooxsocial_") {				
+	public function clearCache($listType = "mooxsocial_", $clearCachePages = array()) {				
 		
 		$pages = self::getSocialPluginPids($listType);
 		
-		$pids = array();
+		if(is_array($clearCachePages) && count($clearCachePages)){
+			$pids = $clearCachePages;
+		} else {
+			$pids = array();
+		}
 		
 		foreach ($pages as $page) {
-			$pids[] = $page['pid'];
-			
-		}		
+			if(!in_array($page['pid'],$pids)){
+				$pids[] = $page['pid'];
+			}		
+		}
+		
 		if(count($pids)){
 			$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
 			$cacheService = $objectManager->get('TYPO3\\CMS\\Extbase\\Service\\CacheService');

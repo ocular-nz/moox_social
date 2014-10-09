@@ -116,6 +116,19 @@ class FacebookGetTaskAdditionalFieldProvider implements \TYPO3\CMS\Scheduler\Add
 			}
 		}
 		
+		if (empty($taskInfo['clearCachePages'])) {
+			if ($parentObject->CMD == 'add') {
+				// In case of new task and if field is empty, set default pid
+				$taskInfo['clearCachePages'] = '';
+			} elseif ($parentObject->CMD == 'edit') {
+				// In case of edit, set to internal value if no data was submitted already
+				$taskInfo['clearCachePages'] = $task->clearCachePages;
+			} else {
+				// Otherwise set an empty value, as it will not be used anyway
+				$taskInfo['clearCachePages'] = '';
+			}
+		}
+		
 		$additionalFields = array();
 		
 		// Write the code for the field
@@ -126,6 +139,16 @@ class FacebookGetTaskAdditionalFieldProvider implements \TYPO3\CMS\Scheduler\Add
 		$additionalFields[$fieldID] = array(
 			'code' => $fieldCode,
 			'label' => '<strong style="width: 80px;display: inline-block">[TYPO3]</strong> '.\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_facebookgettask.pid_label', 'moox_social' ),
+			'cshKey' => '_MOD_tools_txschedulerM1',
+			'cshLabel' => $fieldID
+		);
+		
+		// Write the code for the field
+		$fieldID = 'task_clearCachePages';
+		$fieldCode = '<input type="text" size="30" name="tx_scheduler[clearCachePages]" id="' . $fieldID . '" value="' . $taskInfo['clearCachePages'] . '" size="10" />';		
+		$additionalFields[$fieldID] = array(
+			'code' => $fieldCode,
+			'label' => '<strong style="width: 80px;display: inline-block">[TYPO3]</strong> '.\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_facebookgettask.clear_cache_pages_label', 'moox_social' ),
 			'cshKey' => '_MOD_tools_txschedulerM1',
 			'cshLabel' => $fieldID
 		);
@@ -182,41 +205,45 @@ class FacebookGetTaskAdditionalFieldProvider implements \TYPO3\CMS\Scheduler\Add
 	 * @return boolean TRUE if validation was ok (or selected class is not relevant), FALSE otherwise
 	 */
 	public function validateAdditionalFields(array &$submittedData, \TYPO3\CMS\Scheduler\Controller\SchedulerModuleController $parentObject) {
+		
+		$result = TRUE;		
+		
 		$submittedData['pid'] = intval($submittedData['pid']);				
 		if ($submittedData['pid']<0) {
 			$parentObject->addMessage($GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_facebookgettask.pid_error'), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 			$result = FALSE;
-		} else {
-			$result = TRUE;
-		}
+		} 
+		
+		if ($submittedData['clearCachePages']!="") {
+			$clearCachePages = explode(",",$submittedData['clearCachePages']);
+			foreach($clearCachePages AS $clearCachePage){
+				if(!is_numeric($clearCachePage) || $clearCachePage==""){
+					$parentObject->addMessage($GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_facebookgettask.clear_cache_pages_error'), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+					$result = FALSE;
+				}
+			}
+			
+		} 
 		
 		if ($submittedData['appId']=="") {
 			$parentObject->addMessage($GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_facebookgettask.app_id_error'), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 			$result = FALSE;
-		} else {
-			$result = TRUE;
-		}
+		} 
 		
 		if ($submittedData['secret']=="") {
 			$parentObject->addMessage($GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_facebookgettask.secret_error'), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 			$result = FALSE;
-		} else {
-			$result = TRUE;
-		}
+		} 
 		
 		if ($submittedData['pageId']=="") {
 			$parentObject->addMessage($GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_facebookgettask.page_id_error'), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 			$result = FALSE;
-		} else {
-			$result = TRUE;
-		}		
+		} 		
 		
 		if ($submittedData['email']!="" && !\TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($submittedData['email'])) {
 			$parentObject->addMessage($GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_facebookgettask.email_error'), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 			$result = FALSE;
-		} else {
-			$result = TRUE;
-		}
+		} 				
 		
 		if($result){
 			$config = array(
@@ -237,7 +264,7 @@ class FacebookGetTaskAdditionalFieldProvider implements \TYPO3\CMS\Scheduler\Add
 				$result = FALSE;				
 			}						
 		}
-		
+
 		return $result;
 	}
 
@@ -250,11 +277,12 @@ class FacebookGetTaskAdditionalFieldProvider implements \TYPO3\CMS\Scheduler\Add
 	 * @return void
 	 */
 	public function saveAdditionalFields(array $submittedData, \TYPO3\CMS\Scheduler\Task\AbstractTask $task) {
-		$task->pid = $submittedData['pid'];
-		$task->appId = $submittedData['appId'];
-		$task->secret = $submittedData['secret'];
-		$task->pageId = $submittedData['pageId'];
-		$task->email = $submittedData['email'];
+		$task->pid 				= $submittedData['pid'];
+		$task->appId 			= $submittedData['appId'];
+		$task->secret 			= $submittedData['secret'];
+		$task->pageId 			= $submittedData['pageId'];
+		$task->email 			= $submittedData['email'];
+		$task->clearCachePages 	= $submittedData['clearCachePages'];
 	}
 	
 	/**

@@ -55,6 +55,12 @@
 			<trans-unit id="tx_mooxsocial_tasks_facebookgettask.email_error">
 				<source>invalid email address</source>				
 			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_facebookgettask.clear_cache_pages_label">
+				<source>clear cache pages (uids, comma separated)</source>			
+			</trans-unit>
+			<trans-unit id="tx_mooxsocial_tasks_facebookgettask.clear_cache_pages_error">
+				<source>invalid clear cache pages</source>				
+			</trans-unit>
 			<trans-unit id="tx_mooxsocial_tasks_facebookgettask.api_label">
 				<source>Facebook-APP data</source>			
 			</trans-unit>			

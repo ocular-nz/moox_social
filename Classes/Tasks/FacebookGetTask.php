@@ -77,14 +77,14 @@ class FacebookGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	 *
 	 * @var string
 	 */
-	public $secert;
+	public $secret;
 	
 	/**
-	 * ID Ihrer Facebook Seite
+	 * clear cache pages
 	 *
 	 * @var string
 	 */
-	public $pageId;
+	public $clearCachePages;
 	
 	/**
 	 * Works through the indexing queue and indexes the queued items into Solr.
@@ -107,6 +107,10 @@ class FacebookGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 		
 		if(!$this->pid){
 			$this->pid = 0;
+		}
+		
+		if($this->clearCachePages!=""){
+			$this->clearCachePages = explode(",",$this->clearCachePages);
 		}
 		
 		if($this->appId!="" && $this->secret!="" && $this->pageId!=""){
@@ -246,7 +250,7 @@ class FacebookGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 				$objectManager->get('TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface')->persistAll();
 				
 				if($insertCnt>0 || $updateCnt>0){
-					\TYPO3\MooxSocial\Controller\AdministrationController::clearCache("mooxsocial_pi1");
+					\TYPO3\MooxSocial\Controller\AdministrationController::clearCache("mooxsocial_pi1",$this->clearCachePages);
 				}
 				
 				$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
@@ -360,6 +364,25 @@ class FacebookGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	 */
 	public function setPageId($pageId) {
 		$this->pageId = $pageId;
+	}
+	
+	/**
+	 * Returns the clear cache pages
+	 *
+	 * @return string
+	 */
+	public function getClearCachePages() {
+		return $this->string;
+	}
+
+	/**
+	 * Set the the clear cache pages
+	 *
+	 * @param string $clearCachePages clear cache pages
+	 * @return void
+	 */
+	public function setClearCachePages($clearCachePages) {
+		$this->clearCachePages = $clearCachePages;
 	}
 }
 ?>
