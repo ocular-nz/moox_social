@@ -92,13 +92,14 @@ class AdministrationController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionC
 		$folders = array();
 		
 		$addFolder = array();				
-		$addFolder['uid'] 			= 0;
+		$addFolder['uid'] 		= 0;
 		$addFolder['title'] 		= \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang.xlf:overview.folder.listing.default_storage', $this->extensionName );
-		$addFolder['countFacebook'] = $this->facebookRepository->findAllByStoragePid(0)->count();
+		$addFolder['countFacebook'] 	= $this->facebookRepository->findAllByStoragePid(0)->count();
 		$addFolder['countTwitter'] 	= $this->twitterRepository->findAllByStoragePid(0)->count();
 		$addFolder['countYoutube'] 	= $this->youtubeRepository->findAllByStoragePid(0)->count();
 		$addFolder['countFlickr'] 	= $this->flickrRepository->findAllByStoragePid(0)->count();
-		$addFolder['count']   		= $addFolder['countFacebook']+$addFolder['countTwitter']+$addFolder['countYoutube']+$addFolder['countFlickr'];	
+		$addFolder['countSlideshare'] 	= $this->slideshareRepository->findAllByStoragePid(0)->count();
+		$addFolder['count']   		= $addFolder['countFacebook']+$addFolder['countTwitter']+$addFolder['countYoutube']+$addFolder['countFlickr']+$addFolder['countSlideshare'];	
 		
 		$folders[] = $addFolder;
 		
@@ -107,13 +108,14 @@ class AdministrationController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionC
 		foreach($result AS $folder){
 						
 			$addFolder = array();				
-			$addFolder['uid'] 			= $folder['uid'];
+			$addFolder['uid'] 		= $folder['uid'];
 			$addFolder['title'] 		= $folder['title'];
-			$addFolder['countFacebook'] = $this->facebookRepository->findAllByStoragePid($folder['uid'])->count();
+			$addFolder['countFacebook'] 	= $this->facebookRepository->findAllByStoragePid($folder['uid'])->count();
 			$addFolder['countTwitter'] 	= $this->twitterRepository->findAllByStoragePid($folder['uid'])->count();
 			$addFolder['countYoutube'] 	= $this->youtubeRepository->findAllByStoragePid($folder['uid'])->count();
 			$addFolder['countFlickr'] 	= $this->flickrRepository->findAllByStoragePid($folder['uid'])->count();
-			$addFolder['count']   		= $addFolder['countFacebook']+$addFolder['countTwitter']+$addFolder['countYoutube']+$addFolder['countFlickr'];	
+			$addFolder['countSlideshare'] 	= $this->slideshareRepository->findAllByStoragePid($folder['uid'])->count();
+			$addFolder['count']   		= $addFolder['countFacebook']+$addFolder['countTwitter']+$addFolder['countYoutube']+$addFolder['countFlickr']+$addFolder['countSlideshare'];	
 			$folders[] = $addFolder;			
 		}
 		
