@@ -36,8 +36,6 @@ class TwitterRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	
 	protected $defaultOrderings = array ('updated' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING);
 	
-	protected $defaultStoragePid = 44;
-	
 	/**
 	 * Finds all posts (overwrite)
 	 *	
@@ -95,23 +93,19 @@ class TwitterRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 */
 	public function requestAllBySettings($settings) {
 		
-		$result = array();		
-						
+		$result 	= array();							
 		$postIds 	= array();
 		
 		if(!$settings['offset']){
 			$settings['offset'] = 0;
 		}
 		
-		//$response 	= \TYPO3\MooxSocial\Controller\TwitterController::twitter();
 		$rawFeed 	= \TYPO3\MooxSocial\Controller\TwitterController::twitter($settings['api_oauth_access_token'],$settings['api_oauth_access_token_secret'],$settings['api_consumer_key'],$settings['api_consumer_key_secret'],$settings['api_screen_name']);
 
-		
 		$posts 		= array();
 			
 		foreach($rawFeed as $item) {
 					
-			//if(!in_array($item['id'],$postIds) && $item['status_type']!=""){
 			if(!in_array($item['id'],$postIds)){
 						
 				$postIds[] 		= $item['id'];					
@@ -232,9 +226,11 @@ class TwitterRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * @return Tx_Extbase_Persistence_QueryResultInterface The posts
 	 */
 	public function findOneByApiUid($apiUid,$storagePid) {
+		
 		$query = $this->createQuery();
 		$query->getQuerySettings()->setStoragePageIds(array($storagePid));
 		$query->getQuerySettings()->setIncludeDeleted(TRUE);
+		
 		return $query
 			->matching(
 				$query->equals('apiUid', $apiUid)

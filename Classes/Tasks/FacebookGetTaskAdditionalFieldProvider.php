@@ -54,13 +54,13 @@ class FacebookGetTaskAdditionalFieldProvider implements \TYPO3\CMS\Scheduler\Add
 		if (empty($taskInfo['pid'])) {
 			if ($parentObject->CMD == 'add') {
 				// In case of new task and if field is empty, set default pid
-				$taskInfo['pid'] = '';
+				$taskInfo['pid'] = 0;
 			} elseif ($parentObject->CMD == 'edit') {
 				// In case of edit, set to internal value if no data was submitted already
 				$taskInfo['pid'] = $task->pid;
 			} else {
 				// Otherwise set an empty value, as it will not be used anyway
-				$taskInfo['pid'] = '';
+				$taskInfo['pid'] = 0;
 			}
 		}
 		
@@ -133,9 +133,7 @@ class FacebookGetTaskAdditionalFieldProvider implements \TYPO3\CMS\Scheduler\Add
 		
 		// Write the code for the field
 		$fieldID = 'task_pid';
-		//$fieldCode = '<input type="text" name="tx_scheduler[pid]" id="' . $fieldID . '" value="' . $taskInfo['pid'] . '" size="10" />';	
 		$fieldCode = $this->getSocialFoldersSelector('tx_scheduler[pid]',$taskInfo['pid']);
-		//$fieldCode .= '<div style="display: block">'.\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_facebookgettask.api_label', 'moox_social' ).'</div>';
 		$additionalFields[$fieldID] = array(
 			'code' => $fieldCode,
 			'label' => '<strong style="width: 80px;display: inline-block">[TYPO3]</strong> '.\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_facebookgettask.pid_label', 'moox_social' ),
@@ -206,7 +204,7 @@ class FacebookGetTaskAdditionalFieldProvider implements \TYPO3\CMS\Scheduler\Add
 	 */
 	public function validateAdditionalFields(array &$submittedData, \TYPO3\CMS\Scheduler\Controller\SchedulerModuleController $parentObject) {
 		
-		$result = TRUE;		
+		$result = TRUE;
 		
 		$submittedData['pid'] = intval($submittedData['pid']);				
 		if ($submittedData['pid']<0) {
@@ -228,7 +226,7 @@ class FacebookGetTaskAdditionalFieldProvider implements \TYPO3\CMS\Scheduler\Add
 		if ($submittedData['appId']=="") {
 			$parentObject->addMessage($GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_facebookgettask.app_id_error'), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 			$result = FALSE;
-		} 
+		}
 		
 		if ($submittedData['secret']=="") {
 			$parentObject->addMessage($GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_facebookgettask.secret_error'), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
@@ -238,24 +236,23 @@ class FacebookGetTaskAdditionalFieldProvider implements \TYPO3\CMS\Scheduler\Add
 		if ($submittedData['pageId']=="") {
 			$parentObject->addMessage($GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_facebookgettask.page_id_error'), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 			$result = FALSE;
-		} 		
+		} 	
 		
 		if ($submittedData['email']!="" && !\TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($submittedData['email'])) {
 			$parentObject->addMessage($GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_facebookgettask.email_error'), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 			$result = FALSE;
-		} 				
+		} 
 		
 		if($result){
 			$config = array(
-				'appId' => $submittedData['appId'],
-				'secret' => $submittedData['secret'],
-				'pageid' => $submittedData['pageId'],
-				'allowSignedRequest' => false
+				'appId' 				=> $submittedData['appId'],
+				'secret' 				=> $submittedData['secret'],
+				'pageid' 				=> $submittedData['pageId'],
+				'allowSignedRequest' 	=> false
 			);
 				
-			$facebook = new \TYPO3\MooxSocial\Facebook\Facebook($config);
-			
-			$url = '/' . $submittedData['pageId'] . '/feed';
+			$facebook 	= new \TYPO3\MooxSocial\Facebook\Facebook($config);			
+			$url 		= '/' . $submittedData['pageId'] . '/feed';
 			
 			try {			
 				$rawFeed = $facebook->api($url);

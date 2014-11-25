@@ -144,7 +144,7 @@ $TCA['tx_mooxsocial_domain_model_facebook'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),		
-		'searchFields' => 'title,summary,text,description,caption,shared_title,',
+		'searchFields' => 'title,api_uid,summary,text,description,caption,shared_title,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Facebook.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_mooxsocial_domain_model_facebook.gif'
 	),
@@ -173,7 +173,7 @@ $TCA['tx_mooxsocial_domain_model_twitter'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),		
-		'searchFields' => 'title,summary,text,description,caption,shared_title,',
+		'searchFields' => 'title,api_uid,summary,text,description,caption,shared_title,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Twitter.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_mooxsocial_domain_model_twitter.gif'
 	),
@@ -202,7 +202,7 @@ $TCA['tx_mooxsocial_domain_model_youtube'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),		
-		'searchFields' => 'title,summary,text,description,caption,shared_title,',
+		'searchFields' => 'title,api_uid,summary,text,description,caption,shared_title,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Youtube.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_mooxsocial_domain_model_youtube.gif'
 	),
@@ -260,7 +260,7 @@ $TCA['tx_mooxsocial_domain_model_slideshare'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),		
-		'searchFields' => 'title,summary,text,description,caption,shared_title,',
+		'searchFields' => 'title,api_uid,summary,text,description,caption,shared_title,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Slideshare.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_mooxsocial_domain_model_slideshare.gif'
 	),

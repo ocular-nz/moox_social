@@ -85,6 +85,13 @@ class FacebookGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	 * @var string
 	 */
 	public $clearCachePages;
+
+	/**
+	 * ID Ihrer Facebook Seite
+	 *
+	 * @var string
+	 */
+	public $pageId;
 	
 	/**
 	 * Works through the indexing queue and indexes the queued items into Solr.
@@ -152,11 +159,8 @@ class FacebookGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 				}
 			}	
 			
-			
-			
-			$posts = array();
-			
-			$postIds = array();
+			$posts 		= array();			
+			$postIds 	= array();
 			
 			foreach($rawFeed['data'] as $item) {
 								
@@ -281,12 +285,13 @@ class FacebookGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	 */
 	public function getAdditionalInformation() {
 		$info = $GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_facebookgettask.pid_label') . ': ' . $this->pid;
-		$info .= " | ".$GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_facebookgettask.app_id_label') . ': ' . $this->appId;
-		$info .= " | ".$GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_facebookgettask.secret_label') . ': ' . $this->secret;
 		$info .= " | ".$GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_facebookgettask.page_id_label') . ': ' . $this->pageId;
 		if($this->email){
 			$info .= " | ".$GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_facebookgettask.email_label') . ': ' . $this->email;
 		}
+		$detailInfo = " | ".$GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_facebookgettask.app_id_label') . ': ' . $this->appId;
+		$detailInfo .= " | ".$GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_facebookgettask.secret_label') . ': ' . $this->secret;		
+		
 		return $info;
 	}
 	

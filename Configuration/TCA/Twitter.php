@@ -54,6 +54,11 @@ $TCA['tx_mooxsocial_domain_model_twitter'] = array(
 				'max' => 255,
 			)
 		),
+		'pid' => array(
+			'config' => array(
+				'type' => 'passthrough',
+			),
+		),
 		'hidden' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',

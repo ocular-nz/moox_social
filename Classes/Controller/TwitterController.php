@@ -62,11 +62,14 @@ class TwitterController extends \TYPO3\MooxSocial\Controller\PostController {
 			'FROM' => 'tx_scheduler_task',
 			'WHERE' => '1=1'
 		);
-		$res = $GLOBALS['TYPO3_DB']->exec_SELECT_queryArray($query);
-		$tasks = array();
+		
+		$res 	= $GLOBALS['TYPO3_DB']->exec_SELECT_queryArray($query);
+		$tasks 	= array();
+		
 		foreach($res AS $task){
 			
 			$twittertask = unserialize($task['serialized_task_object']);
+			
 			if($twittertask instanceof \TYPO3\MooxSocial\Tasks\TwitterGetTask){
 				$addTask = array();				
 				$addTask['pid'] 					= $twittertask->getPid();
@@ -100,26 +103,26 @@ class TwitterController extends \TYPO3\MooxSocial\Controller\PostController {
 			
 			$this->twitterRepository->removeByPageId($screenName,$storagePid);
 			
-			$rawFeed 	= self::twitter($oauthAccessToken,$oauthAccessTokenSecret,$consumerKey,$consumerKeySecret,$screenName,'init');			
+			$rawFeed = self::twitter($oauthAccessToken,$oauthAccessTokenSecret,$consumerKey,$consumerKeySecret,$screenName,'init');			
 			
-			$posts 		= array();			
-			$postIds 	= array();
+			$posts 	 = array();			
+			$postIds = array();
 			
 			foreach($rawFeed as $item) {
 				
 				if(!in_array($item['id'],$postIds)){
 					
-					$postIds[] 		= $item['id'];					
-					$postId 		= $item['id'];	
+					$postIds[] 				= $item['id'];					
+					$postId 				= $item['id'];	
 					
-					$item['id'] 			= $postId;
-					$item['user']['screen_name'] 	= $screenName;
-					$item['id_str'] 			= $storagePid;
-					
-					$post 			= self::twitterPost($item);					
+					$item['postId'] 		= $postId;
+					$item['screen_name'] 	= $screenName;
+					$item['pid'] 			= $storagePid;
+										
+					$post = self::twitterPost($item);					
 					
 					if(is_array($post)){
-						$posts[] 	= $post;
+						$posts[] = $post;
 					}
 				}
 				
@@ -332,13 +335,12 @@ class TwitterController extends \TYPO3\MooxSocial\Controller\PostController {
 				$this->settings['api_consumer_key_secret'] = $extConf['fallbackTwitterConsumerKeySecret'];
 			}
 			
-			if($this->settings['api_oauth_access_token']!="" && $this->settings['api_oauth_access_token_secret']!="" && $this->settings['api_consumer_key']!="" && $this->settings['api_consumer_key_secret']!=""){
-				
+			if($this->settings['api_oauth_access_token']!="" && $this->settings['api_oauth_access_token_secret']!="" && $this->settings['api_consumer_key']!="" && $this->settings['api_consumer_key_secret']!=""){				
 				$posts = $this->twitterRepository->requestAllBySettings($this->settings);				
 			}								
 						
-		} else {
-		
+		} else {		
+			
 			$posts 	= $this->twitterRepository->findAllBySettings($this->settings);
 		}
 		
@@ -355,7 +357,7 @@ class TwitterController extends \TYPO3\MooxSocial\Controller\PostController {
 	public function showAction(\TYPO3\MooxSocial\Domain\Model\Twitter $twitter = NULL) {				
 		
 		if(!$twitter && $this->settings['source']!="api"){
-			$twitter	= $this->twitterRepository->findRandomOne($this->settings['screen_name']);
+			$twitter = $this->twitterRepository->findRandomOne($this->settings['screen_name']);
 			$this->view->assign('israndom', TRUE);			
 		}
 		
@@ -373,7 +375,8 @@ class TwitterController extends \TYPO3\MooxSocial\Controller\PostController {
 	 * @param string $request
 	 * @return array feedData
 	 */
-	public function twitter($oauthAccessToken,$oauthAccessTokenSecret,$consumerKey,$consumerKeySecret,$screenName, $request = "") {
+	public function twitter($oauthAccessToken,$oauthAccessTokenSecret,$consumerKey,$consumerKeySecret,$screenName,$request = "") {
+		
 		$rawFeed = array();
 		
 		// Get the extensions's configuration
@@ -394,27 +397,27 @@ class TwitterController extends \TYPO3\MooxSocial\Controller\PostController {
 		if($oauthAccessToken!="" && $oauthAccessTokenSecret!="" && $consumerKey!="" && $consumerKeySecret!="" && $screenName!=""){
 			
 			$config = array(
-				'consumer_key' => $consumerKey,
-				'consumer_secret' => $consumerKeySecret,
-				'oauth_access_token' => $oauthAccessToken,
+				'consumer_key' 				=> $consumerKey,
+				'consumer_secret' 			=> $consumerKeySecret,
+				'oauth_access_token' 		=> $oauthAccessToken,
 				'oauth_access_token_secret' => $oauthAccessTokenSecret,
-				'screenName' => $screenName,
-				'allowSignedRequest' => false
+				'screenName' 				=> $screenName,
+				'allowSignedRequest' 		=> false
 			);
 				
 			$twitter = new \TYPO3\MooxSocial\Twitter\TwitterAPIExchange($config);
 			
 			if($request=="init"){
-				$request="&count=200";
+				$request = "&count=200";
 			} elseif($request==""){
-				$request="&count=25";
+				$request = "&count=50";
 			}
 			
-			$url = "https://api.twitter.com/1.1/statuses/user_timeline.json";
-			$requestMethod = "GET";
-			$getfield = '?screen_name=' . $screenName . $request;
+			$url 			= "https://api.twitter.com/1.1/statuses/user_timeline.json";
+			$requestMethod 	= "GET";
+			$getfield 		= '?screen_name=' . $screenName . $request;
 			
-			$rawFeed = json_decode($twitter->setGetfield($getfield)->buildOauth($url, $requestMethod)->performRequest(),$assoc = TRUE);
+			$rawFeed 		= json_decode($twitter->setGetfield($getfield)->buildOauth($url, $requestMethod)->performRequest(),$assoc = TRUE);
 		}
 		return $rawFeed;
 	}
@@ -432,68 +435,69 @@ class TwitterController extends \TYPO3\MooxSocial\Controller\PostController {
 			$post = array();
 			
 			if($item['retweeted_status']){
-				$post['created'] 	= strtotime($item['retweeted_status']['created_at']);
-				$post['type'] 		= "shared_status";
-				$post['text'] 		= $item['retweeted_status']['text'];
-				//$post['sharedUrl'] 	= $item['retweeted_status']['entities']['urls']['expanded_url'];
-				//$post['sharedTitle'] 	= $item['retweeted_status']['entities']['urls']['display_url'];
-				//$post['sharedCaption'] 	= $item['retweeted_status']['entities']['hashtags'];
-				$post['author'] 	= $item['retweeted_status']['user']['name'];
-				$post['authorId'] 	= $item['retweeted_status']['user']['id_str'];
-				$post['linkName'] 	= $item['retweeted_status']['user']['screen_name'];
-				$post['url'] 		= $item['retweeted_status']['user']['url'];
-				$post['imageUrl'] 	= $item['retweeted_status']['entities']['media']['0']['media_url'];
-				$post['likes'] 		= $item['retweeted_status']['favorite_count'];
-				$post['shares'] 	= $item['retweeted_status']['retweet_count'];
-				$post['imageEmbedcode'] = $item['retweeted_status']['user']['profile_image_url'];
-				//$post['comments'] 	= $item['retweeted_status']['entities']['user_mentions'];
+				$post['created'] 			= strtotime($item['retweeted_status']['created_at']);
+				$post['type'] 				= "shared_status";
+				$post['text'] 				= $item['retweeted_status']['text'];
+				//$post['sharedUrl'] 		= $item['retweeted_status']['entities']['urls']['expanded_url'];
+				//$post['sharedTitle'] 		= $item['retweeted_status']['entities']['urls']['display_url'];
+				//$post['sharedCaption']	= $item['retweeted_status']['entities']['hashtags'];
+				$post['author'] 			= $item['retweeted_status']['user']['name'];
+				$post['authorId'] 			= $item['retweeted_status']['user']['id_str'];
+				$post['linkName'] 			= $item['retweeted_status']['user']['screen_name'];
+				$post['url'] 				= $item['retweeted_status']['user']['url'];
+				$post['imageUrl'] 			= $item['retweeted_status']['entities']['media']['0']['media_url'];
+				$post['likes'] 				= $item['retweeted_status']['favorite_count'];
+				$post['shares'] 			= $item['retweeted_status']['retweet_count'];
+				$post['imageEmbedcode'] 	= $item['retweeted_status']['user']['profile_image_url'];
+				//$post['comments'] 		= $item['retweeted_status']['entities']['user_mentions'];
 			} else {
-				$post['created'] 	= strtotime($item['created_at']);
-				$post['type'] 		= "status";
-				$post['text'] 		= $item['text'];
-				//$post['sharedUrl'] 	= $item['entities']['urls']['expanded_url'];
-				//$post['sharedTitle'] 	= $item['entities']['urls']['display_url'];
+				$post['created'] 			= strtotime($item['created_at']);
+				$post['type'] 				= "status";
+				$post['text'] 				= $item['text'];
+				//$post['sharedUrl'] 		= $item['entities']['urls']['expanded_url'];
+				//$post['sharedTitle'] 		= $item['entities']['urls']['display_url'];
 				//$post['sharedCaption'] 	= $item['entities']['hashtags'];
-				$post['author'] 	= $item['user']['name'];
-				$post['authorId'] 	= $item['user']['id_str'];
-				$post['linkName'] 	= $item['user']['screen_name'];
-				$post['url'] 		= $item['user']['url'];
-				$post['imageUrl'] 	= $item['entities']['media']['0']['media_url'];
-				$post['likes'] 		= $item['favorite_count'];
-				$post['shares'] 	= $item['retweet_count'];
-				$post['imageEmbedcode'] = $item['user']['profile_image_url'];
-				//$post['comments'] 	= $item['entities']['user_mentions'];
+				$post['author'] 			= $item['user']['name'];
+				$post['authorId'] 			= $item['user']['id_str'];
+				$post['linkName'] 			= $item['user']['screen_name'];
+				$post['url'] 				= $item['user']['url'];
+				$post['imageUrl'] 			= $item['entities']['media']['0']['media_url'];
+				$post['likes'] 				= $item['favorite_count'];
+				$post['shares'] 			= $item['retweet_count'];
+				$post['imageEmbedcode'] 	= $item['user']['profile_image_url'];
+				//$post['comments'] 		= $item['entities']['user_mentions'];
 			}	
 					
-			$post['pid'] 				= $item['id_str'];
-			//$post['created'] 			= strtotime($item['created_at']);
-			$post['updated'] 			= strtotime($item['created_at']);
-			//$post['type'] 			= "status";
+			//$post['xxxxx'] 				= $item['id_str'];  // id_str 
+			$post['pid'] 					= $item['pid'];  // pid 
+			//$post['created'] 				= strtotime($item['created_at']);
+			$post['updated'] 				= strtotime($item['created_at']);
+			//$post['type'] 				= "status";
 			$post['statusType'] 			= $item['source'];	// no match
-			$post['page'] 				= $item['user']['screen_name'];
-			$post['action'] 			= "";	// no match				
-			$post['summary'] 			= "";	// no match
-			$post['title'] 				= "";	// no match
+			$post['page'] 					= $item['screen_name'];
+			$post['action'] 				= "";	// no match				
+			$post['summary'] 				= "";	// no match
+			$post['title'] 					= "";	// no match
 			$post['description'] 			= "";	// no match
-			$post['caption'] 			= "";	// no match
-			//$post['text'] 			= $item['text'];
+			$post['caption'] 				= "";	// no match
+			//$post['text'] 				= $item['text'];
 			//$post['sharedUrl'] 			= $item['entities']['urls']['expanded_url'];
 			//$post['sharedTitle'] 			= $item['entities']['urls']['display_url'];
 			//$post['sharedCaption'] 		= $item['entities']['hashtags'];
-			//$post['author'] 			= $item['user']['name'];
+			//$post['author'] 				= $item['user']['name'];
 			//$post['authorId'] 			= $item['user']['id_str'];
-			//$post['url'] 				= $item['user']['url'];
+			//$post['url'] 					= $item['user']['url'];
 			//$post['linkName'] 			= "";	// no match
-			$post['linkUrl'] 			= "";	// no match
+			$post['linkUrl'] 				= "";	// no match
 			//$post['imageUrl'] 			= $item['entities']['media']['media_url'];
 			//$post['imageEmbedcode'] 		= $item['user']['profile_image_url'];
-			$post['videoUrl'] 			= "";	// no match
+			$post['videoUrl'] 				= "";	// no match
 			$post['videoEmbedcode'] 		= "";	// no match				
-			//$post['likes'] 			= count($item['favorite_count']);
-			//$post['shares'] 			= count($item['retweet_count']);
+			//$post['likes'] 				= count($item['favorite_count']);
+			//$post['shares'] 				= count($item['retweet_count']);
 			//$post['comments'] 			= $item['entities']['user_mentions'];
-			$post['apiUid'] 			= $item['id'];			
-			$post['apiHash'] 			= md5(print_r($post,TRUE));
+			$post['apiUid'] 				= $item['postId'];			
+			$post['apiHash'] 				= md5(print_r($post,TRUE));
 						
 			return $post;
 			

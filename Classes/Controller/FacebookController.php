@@ -67,11 +67,14 @@ class FacebookController extends \TYPO3\MooxSocial\Controller\PostController {
 			'FROM' => 'tx_scheduler_task',
 			'WHERE' => '1=1'
 		);
-		$res = $GLOBALS['TYPO3_DB']->exec_SELECT_queryArray($query);
-		$tasks = array();
+		
+		$res 	= $GLOBALS['TYPO3_DB']->exec_SELECT_queryArray($query);
+		$tasks 	= array();
+		
 		foreach($res AS $task){
 			
 			$facebooktask = unserialize($task['serialized_task_object']);
+			
 			if($facebooktask instanceof \TYPO3\MooxSocial\Tasks\FacebookGetTask){
 				$addTask = array();				
 				$addTask['pid'] 	= $facebooktask->getPid();
@@ -175,6 +178,10 @@ class FacebookController extends \TYPO3\MooxSocial\Controller\PostController {
 				$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
 				$this->objectManager->get('TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface')->persistAll();
 				
+				if($insertCnt>0){
+					\TYPO3\MooxSocial\Controller\AdministrationController::clearCache("mooxsocial_pi1",array());
+				}
+				
 				$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
 					$insertCnt." neue Posts geladen",
 					 '', // the header is optional
@@ -250,8 +257,7 @@ class FacebookController extends \TYPO3\MooxSocial\Controller\PostController {
 				$this->settings['api_secret'] = $extConf['fallbackFacebookSecret'];
 			}
 			
-			if($this->settings['api_app_id']!="" && $this->settings['api_secret']!="" && $this->settings['api_page_id']!=""){
-				
+			if($this->settings['api_app_id']!="" && $this->settings['api_secret']!="" && $this->settings['api_page_id']!=""){				
 				$posts = $this->facebookRepository->requestAllBySettings($this->settings);				
 			}
 			
@@ -319,8 +325,7 @@ class FacebookController extends \TYPO3\MooxSocial\Controller\PostController {
 			}		
 			if($this->settings['api_secret']==""){
 				$this->settings['api_secret'] = $extConf['fallbackFacebookSecret'];
-			}
-			
+			}			
 			if($this->settings['api_app_id']!="" && $this->settings['api_secret']!="" && $this->settings['api_page_id']!=""){				
 				$posts = $this->facebookRepository->requestAllBySettings($this->settings);								
 			}
@@ -374,24 +379,48 @@ class FacebookController extends \TYPO3\MooxSocial\Controller\PostController {
 		if($appId!="" && $secret!="" && $pageId!=""){
 						
 			$config = array(
-				'appId' => $appId,
-				'secret' => $secret,
-				'pageid' => $pageId,
-				'allowSignedRequest' => false
+				'appId'				 	=> $appId,
+				'secret'				=> $secret,
+				'pageid' 				=> $pageId,
+				'allowSignedRequest' 	=> false
 			);
 			
 			$facebook = new \TYPO3\MooxSocial\Facebook\Facebook($config);
-			
-			if($request=="init"){
-				$request="posts?since=946681200&until=".time(); //."&limit=10000"; limit > 250 is not allowed
-			} elseif($request==""){
-				$request="posts?limit=25";
+			if($request=="fullinit"){
+				$repeats = 999;
+				$request = "init";
+			} else {
+				$repeats = 10;
 			}
-			
-			$url = '/' . $pageId . '/'.$request;
-			
-			$rawFeed = $facebook->api($url);
+			if($request=="init"){
+				$rawFeedData 	= array();
+				$rawFeedIds 	= array();
+				$until 			= time();				
+				for($i=1;$i<=$repeats;$i++){
+					$since = $until-(604800*16);
+					$request="posts?limit=250&since=".$since."&until=".$until; //."&limit=10000"; limit > 250 is not allowed
+					$url = '/' . $pageId . '/'.$request;
+					$rawFeedTmp = $facebook->api($url);
+					if(count($rawFeedTmp['data'])>0){
+						foreach($rawFeedTmp['data'] AS $data){
+							if(!in_array($data['id'],$rawFeedIds)){
+								$rawFeedData[] 	= $data;
+								$rawFeedIds[] 	= $data['id'];
+							}
+						}
+					} else {
+						break;
+					}
+					$until = $since;
+				}
+				$rawFeed = array("data" => $rawFeedData);
+			} else {
+				$request="posts?limit=25";
+				$url = '/' . $pageId . '/'.$request;
+				$rawFeed = $facebook->api($url);
+			}			
 		}
+		
 		return $rawFeed;
 	}
 
@@ -423,31 +452,45 @@ class FacebookController extends \TYPO3\MooxSocial\Controller\PostController {
 				$post['sharedTitle'] 		= ""; 						// no match
 				$post['sharedDescription'] 	= "";
 				$post['sharedCaption'] 		= "";
-			}								
-					
-			$post['pid'] 				= $item['pid'];
-			$post['created'] 			= strtotime($item['created_time']);
-			$post['updated'] 			= strtotime($item['created_time']);
-			$post['type'] 				= $item['type'];
-			$post['statusType'] 		= $item['status_type'];
-			$post['page'] 				= $item['pageId'];
-			$post['action'] 			= $item['story'];				
-			$post['summary'] 			= $item['summary']; 			// no match
-			$post['text'] 				= $item['message'];
-			$post['author'] 			= $item['from']['name'];
-			$post['authorId'] 			= $item['from']['id'];
-			$post['url'] 				= "https://www.facebook.com/".$item['pageId']."/posts/".$item['postId'];
-			$post['linkName'] 			= $item['name'];
-			$post['linkUrl'] 			= $item['link'];
-			$post['imageUrl'] 			= $item['picture'];
-			$post['imageEmbedcode'] 	= $item['imageEmbedcode']; 		// no match
-			$post['videoUrl'] 			= $item['source'];
-			$post['videoEmbedcode'] 	= $item['videoEmbedcode']; 		// no match				
-			$post['likes'] 				= count($item['likes']['data']);
-			$post['shares'] 			= count($item['shares']['data']);
-			$post['comments'] 			= count($item['comments']['data']);
-			$post['apiUid'] 			= $item['id'];				
-			$post['apiHash'] 			= md5(print_r($post,TRUE));
+			}
+			if($item['type']=="photo" && $item['object_id']>0){
+				$item['picture'] = "https://graph.facebook.com/".$item['object_id']."/picture?type=normal";
+			} elseif(strpos($item['picture'], "safe_image.php")!==false){	
+				$safeImageUrl = urldecode($item['picture']);
+				$safeImageUrl = explode("&url=",$safeImageUrl);
+				$safeImageUrl = $safeImageUrl[1];
+				$safeImageUrl = explode("&",$safeImageUrl);
+				$safeImageUrl = $safeImageUrl[0];
+				$check = get_headers($safeImageUrl);
+				if(strpos($check[0], "200")!==false && strpos(strtolower($check[0]), "ok")!==false){
+					$item['picture'] = utf8_encode($safeImageUrl);
+				} else {
+					$item['picture'] = "";
+				}				
+			}
+			$post['pid'] 					= $item['pid'];
+			$post['created'] 				= strtotime($item['created_time']);
+			$post['updated'] 				= strtotime($item['created_time']);
+			$post['type'] 					= $item['type'];
+			$post['statusType'] 			= $item['status_type'];
+			$post['page'] 					= $item['pageId'];
+			$post['action'] 				= $item['story'];				
+			$post['summary'] 				= $item['summary']; 			// no match
+			$post['text'] 					= $item['message'];
+			$post['author'] 				= $item['from']['name'];
+			$post['authorId'] 				= $item['from']['id'];
+			$post['url'] 					= "https://www.facebook.com/".$item['pageId']."/posts/".$item['postId'];
+			$post['linkName'] 				= $item['name'];
+			$post['linkUrl'] 				= $item['link'];
+			$post['imageUrl'] 				= $item['picture'];
+			$post['imageEmbedcode'] 		= $item['imageEmbedcode']; 		// no match
+			$post['videoUrl'] 				= $item['source'];
+			$post['videoEmbedcode'] 		= $item['videoEmbedcode']; 		// no match				
+			$post['likes'] 					= count($item['likes']['data']);
+			$post['shares'] 				= count($item['shares']['data']);
+			$post['comments'] 				= count($item['comments']['data']);
+			$post['apiUid'] 				= $item['id'];				
+			$post['apiHash'] 				= md5(print_r($post,TRUE));
 						
 			return $post;
 			

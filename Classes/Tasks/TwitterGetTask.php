@@ -49,8 +49,8 @@ class TwitterGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	 *
 	 * @var integer
 	 */
-	public $intervalBuffer = 300;
-	
+	public $intervalBuffer = 86400;
+        
 	/**
 	 * PID der Seite/Ordner in dem die Posts dieses Tasks gespeichert werden sollen
 	 *
@@ -125,11 +125,7 @@ class TwitterGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 			$from		= ($time-$interval-$this->intervalBuffer);			
 			
 			try {			
-				$rawFeed = \TYPO3\MooxSocial\Controller\TwitterController::twitter($this->oauthAccessToken,$this->oauthAccessTokenSecret,$this->consumerKey,$this->consumerKeySecret,$this->screenName,'&count=200');				
-				/*print "<pre>"; 
-                                print_r($rawFeed);
-                                print "</pre>"; 
-				exit();*/
+				$rawFeed = \TYPO3\MooxSocial\Controller\TwitterController::twitter($this->oauthAccessToken,$this->oauthAccessTokenSecret,$this->consumerKey,$this->consumerKeySecret,$this->screenName,'');				
 				$executionSucceeded = TRUE;
 			} catch (\Exception $e) {				
 				$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
@@ -159,29 +155,24 @@ class TwitterGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 				}
 			}	
 			
-			
-			
-			$posts = array();
-			
-			$postIds = array();
+			$posts 		= array();
+			$postIds 	= array();
 			
 			foreach($rawFeed as $item) {
 				
-				//if(1 || !in_array($item['type'],array("status"))){
-				//if(!in_array($item['id'],$postIds) && $item['status_type']!=""){
 				if(!in_array($item['id'],$postIds)){
 					
-					$postIds[] 		= $item['id'];					
-					$postId 		= $item['id'];
+					$postIds[] 				= $item['id'];					
+					$postId 				= $item['id'];
 					
 					$item['postId'] 		= $postId;
-					$item['pageId'] 		= $this->pageId;
+					$item['screen_name'] 	= $item['user']['screen_name'];
 					$item['pid'] 			= $this->pid;
 					
-					$post 			= \TYPO3\MooxSocial\Controller\TwitterController::twitterPost($item);					
+					$post 					= \TYPO3\MooxSocial\Controller\TwitterController::twitterPost($item);					
 					
 					if(is_array($post)){
-						$posts[] 		= $post;
+						$posts[] 			= $post;
 					}
 				}
 				
@@ -196,7 +187,7 @@ class TwitterGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 				$updateCnt = 0;
 				
 				foreach($posts AS $post){				
-										
+					
 					$twitterPost		= $twitterRepository->findOneByApiUid($post['apiUid'],$this->pid);
 					
 					if(!($twitterPost instanceof \TYPO3\MooxSocial\Domain\Model\Twitter)){
@@ -287,13 +278,14 @@ class TwitterGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	public function getAdditionalInformation() {
 		$info = $GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_twittergettask.pid_label') . ': ' . $this->pid;
 		$info .= " | ".$GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_twittergettask.screen_name_label') . ': ' . $this->screenName;
-		$info .= " | ".$GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_twittergettask.oauth_access_token_label') . ': ' . $this->oauthAccessToken;
-		$info .= " | ".$GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_twittergettask.oauth_access_token_secret_label') . ': ' . $this->oauthAccessTokenSecret;
-		$info .= " | ".$GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_twittergettask.consumer_key_label') . ': ' . $this->consumerKey;
-		$info .= " | ".$GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_twittergettask.consumer_key_secret_label') . ': ' . $this->consumerKeySecret;
 		if($this->email){
 			$info .= " | ".$GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_twittergettask.email_label') . ': ' . $this->email;
-		}
+		}		
+		$detailInfo  = " | ".$GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_twittergettask.oauth_access_token_label') . ': ' . $this->oauthAccessToken;
+		$detailInfo .= " | ".$GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_twittergettask.oauth_access_token_secret_label') . ': ' . $this->oauthAccessTokenSecret;
+		$detailInfo .= " | ".$GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_twittergettask.consumer_key_label') . ': ' . $this->consumerKey;
+		$detailInfo .= " | ".$GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_twittergettask.consumer_key_secret_label') . ': ' . $this->consumerKeySecret;
+		
 		return $info;
 	}
 	
@@ -319,7 +311,7 @@ class TwitterGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	/**
 	 * Returns the oauth access token
 	 *
-	 * @return integer
+	 * @return string
 	 */
 	public function getOauthAccessToken() {
 		return $this->oauthAccessToken;
@@ -328,7 +320,7 @@ class TwitterGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	/**
 	 * Set the oauth access token
 	 *
-	 * @param integer $oauthAccessToken oauth access token
+	 * @param string $oauthAccessToken oauth access token
 	 * @return void
 	 */
 	public function setOauthAccessToken($oauthAccessToken) {
@@ -338,7 +330,7 @@ class TwitterGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	/**
 	 * Returns the oauth access token secret
 	 *
-	 * @return integer
+	 * @return string
 	 */
 	public function getOauthAccessTokenSecret() {
 		return $this->oauthAccessTokenSecret;
@@ -347,7 +339,7 @@ class TwitterGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	/**
 	 * Set the oauth access token secret
 	 *
-	 * @param integer $oauthAccessTokenSecret oauth access token secret
+	 * @param string $oauthAccessTokenSecret oauth access token secret
 	 * @return void
 	 */
 	public function setOauthAccessTokenSecret($oauthAccessTokenSecret) {
@@ -357,7 +349,7 @@ class TwitterGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	/**
 	 * Returns the consumer key
 	 *
-	 * @return integer
+	 * @return string
 	 */
 	public function getConsumerKey() {
 		return $this->consumerKey;
@@ -366,7 +358,7 @@ class TwitterGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	/**
 	 * Set the consumer key
 	 *
-	 * @param integer $consumerKey consumer key
+	 * @param string $consumerKey consumer key
 	 * @return void
 	 */
 	public function setConsumerKey($consumerKey) {
@@ -376,7 +368,7 @@ class TwitterGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	/**
 	 * Returns the consumer key secret
 	 *
-	 * @return integer
+	 * @return string
 	 */
 	public function getConsumerKeySecret() {
 		return $this->consumerKeySecret;
@@ -385,7 +377,7 @@ class TwitterGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	/**
 	 * Set the consumer key secret
 	 *
-	 * @param integer $consumerKeySecret consumer key secret
+	 * @param string $consumerKeySecret consumer key secret
 	 * @return void
 	 */
 	public function setConsumerKeySecret($consumerKeySecret) {
@@ -395,7 +387,7 @@ class TwitterGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	/**
 	 * Returns the screen name
 	 *
-	 * @return integer
+	 * @return string
 	 */
 	public function getScreenName() {
 		return $this->screenName;
@@ -404,7 +396,7 @@ class TwitterGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	/**
 	 * Set the screen name
 	 *
-	 * @param integer $screenName screen name
+	 * @param string $screenName screen name
 	 * @return void
 	 */
 	public function setScreenName($screenName) {
@@ -414,7 +406,7 @@ class TwitterGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	/**
 	 * Returns the page id
 	 *
-	 * @return integer
+	 * @return string
 	 */
 	public function getPageId() {
 		return $this->pageId;
@@ -423,7 +415,7 @@ class TwitterGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	/**
 	 * Set the page id
 	 *
-	 * @param integer $pageId page id
+	 * @param string $pageId page id
 	 * @return void
 	 */
 	public function setPageId($pageId) {
