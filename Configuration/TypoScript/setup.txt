@@ -31,12 +31,7 @@ plugin.tx_mooxsocial.settings {
 module.tx_mooxsocial {
 	persistence {
 		storagePid = {$module.tx_mooxsocial.persistence.storagePid}
-	}
-	view {
-		templateRootPath = {$module.tx_mooxsocial.view.templateRootPath}
-		partialRootPath = {$module.tx_mooxsocial.view.partialRootPath}
-		layoutRootPath = {$module.tx_mooxsocial.view.layoutRootPath}
-	}
+	}	
 }
 
 plugin.tx_fed {

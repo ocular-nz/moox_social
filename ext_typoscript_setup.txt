@@ -1,0 +1,7 @@
+module.tx_mooxsocial {	
+	view {
+		templateRootPath = EXT:moox_social/Resources/Private/Backend/Templates/
+		partialRootPath = EXT:moox_social/Resources/Private/Backend/Partials/
+		layoutRootPath = EXT:moox_social/Resources/Private/Backend/Layouts/
+	}
+}
