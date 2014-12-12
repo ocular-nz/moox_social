@@ -1,8 +1,8 @@
-{namespace v=Tx_Vhs_ViewHelpers}
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
 
 <f:section name="init">
-	<v:var.set name="ajaxurl" value="{v:site.url()}{f:uri.page(pageUid: currentpid)}" />
-	<v:asset.script name="moox-social-flickr-js" group="moox-social" path="typo3conf/ext/moox_social/Resources/Public/Js/flickr.js" fluid="1" arguments="{ajaxurl: ajaxurl, source: settings.source, page: settings.api_user_id}" allowMoveToFooter="TRUE" standalone="TRUE" />
+	<v:variable.set name="ajaxurl" value="{v:site.url()}{f:uri.page(pageUid: currentpid)}" />
+	<v:asset.script name="moox-social-flickr-js" group="moox-social" path="typo3conf/ext/moox_social/Resources/Public/Js/flickr.js" fluid="TRUE" variables="{ajaxurl: ajaxurl, source: settings.source, page: settings.api_user_id}" allowMoveToFooter="TRUE" standalone="TRUE" />
 	<div id="tx-moox-social-flickr-ajaxquery"></div>
 	<input type="hidden" id="tx-moox-social-flickr-count" value="{count}" />
 	<input type="hidden" id="tx-moox-social-flickr-pagescount" value="{pagesCount}" />

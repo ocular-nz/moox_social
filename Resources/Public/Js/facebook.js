@@ -64,7 +64,7 @@ function loadFacebookPosts(method,direction){
 				}
 				</f:if>
 			}
-			$( "#tx-moox-social-offset" ).val(newoffset);
+			$( "#tx-moox-social-facebook-offset" ).val(newoffset);
 			$('.image-lightbox').magnificPopup({
 				type: 'image',
 				closeOnContentClick: true,     
@@ -111,7 +111,7 @@ function loadFacebookPosts(method,direction){
 			}
 		}
 	});
-	//$( "#tx-moox-social-facebook-ajaxquery" ).html('<strong>LIST:</strong> <a href="{ajaxurl}&' + query + '" target="_blank">' + query.replace("tx_mooxsocial_pi1[controller]=Facebook&tx_mooxsocial_pi1[action]=listAjax", "") + '</a><br />' + $( "#tx-moox-social-facebook-ajaxquery" ).html());
+	//( "#tx-moox-social-facebook-ajaxquery" ).html('<strong>LIST:</strong> <a href="' + ajaxurl + '&' + query + '" target="_blank">' + query.replace("tx_mooxsocial_pi1[controller]=Facebook&tx_mooxsocial_pi1[action]=listAjax", "") + '</a><br />' + $( "#tx-moox-social-facebook-ajaxquery" ).html());
 	//$( "#tx-moox-social-facebook-ajaxquery" ).show(0);
 }
 

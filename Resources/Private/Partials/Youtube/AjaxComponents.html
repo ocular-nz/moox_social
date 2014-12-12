@@ -1,8 +1,8 @@
-{namespace v=Tx_Vhs_ViewHelpers}
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
 
 <f:section name="init">
-	<v:var.set name="ajaxurl" value="{v:site.url()}{f:uri.page(pageUid: currentpid)}" />
-	<v:asset.script name="moox-social-youtube-js" group="moox-social" path="typo3conf/ext/moox_social/Resources/Public/Js/youtube.js" fluid="1" arguments="{ajaxurl: ajaxurl, source: settings.source, page: settings.api_youtube_channel}" allowMoveToFooter="TRUE" standalone="TRUE" />
+	<v:variable.set name="ajaxurl" value="{v:site.url()}{f:uri.page(pageUid: currentpid)}" />
+	<v:asset.script name="moox-social-youtube-js" group="moox-social" path="typo3conf/ext/moox_social/Resources/Public/Js/youtube.js" fluid="TRUE" variables="{ajaxurl: ajaxurl, source: settings.source, page: settings.api_youtube_channel}" allowMoveToFooter="TRUE" standalone="TRUE" />
 	<div id="tx-moox-social-youtube-ajaxquery"></div>
 	<input type="hidden" id="tx-moox-social-youtube-count" value="{count}" />
 	<input type="hidden" id="tx-moox-social-youtube-pagescount" value="{pagesCount}" />
