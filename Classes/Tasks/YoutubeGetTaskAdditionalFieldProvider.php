@@ -165,30 +165,27 @@ class YoutubeGetTaskAdditionalFieldProvider implements \TYPO3\CMS\Scheduler\Addi
 			);
 			
 			$youtubeChannel = $submittedData['youtubeChannel'];
-			$feedUrl = 'http://gdata.youtube.com/feeds/api/users/'.$youtubeChannel.'/uploads?max-results=50&alt=rss&lr=de&orderby=published&format=1,5,6';
-			$feedXml = simplexml_load_file(rawurlencode($feedUrl));
+			$feedUrl = 'https://www.youtube.com/feeds/videos.xml?user='.$youtubeChannel;
+			$feedXml = simplexml_load_file($feedUrl);
 			
 			$youtubeFeed = array();
-			
-			foreach($feedXml->channel[0]->item as $item) {
+
+			foreach($feedXml->entry as $item) {
 				$atom = $item->children('http://www.w3.org/2005/Atom');
 				$media = $item->children('http://search.yahoo.com/mrss/');
-				$yt = $item->children('http://gdata.youtube.com/schemas/2007');
-				$gd = $item->children('http://schemas.google.com/g/2005');
-				$videoId = explode('/',(string) $item->guid);
-				
+				$yt = $item->children('http://www.youtube.com/xml/schemas/2015');
+
 				$youtubeFeed[] = array(
-					'id' => $videoId[6],
-					'pubDate' => date('d.m.Y H:i', strtotime((string) $item->pubDate)),
-					'updateDate' => date('d.m.Y H:i', strtotime((string) $item->children('atom',true)->updated)),
+					'id' => (string) $yt->videoId,
+					'pubDate' => date('d.m.Y H:i', strtotime((string) $item->published)),
+					'updateDate' => date('d.m.Y H:i', strtotime((string) $item->updated)),
 					'title' => (string) $item->title,
-					'category' => (string) $media->group->category,
-					'author' => (string) $item->author,
+					'author' => (string) $item->author->name,
 					'description' => (string) $media->group->description,
-					'link' => (string) $item->link,
+					'link' => (string) $item->link->attributes()->href,
 					'imageUrl' => (string) $media->group->thumbnail->attributes()->url,
-					'favoriteCount' => (string) $yt->statistics->attributes()->favoriteCount,
-					'viewCount' => (string) $yt->statistics->attributes()->viewCount
+					'favoriteCount' => (string) $media->group->community->starRating->attributes()->count,
+					'viewCount' => (string) $media->group->community->statistics->attributes()->views
 				);
 			}
 			
