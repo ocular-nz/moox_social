@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\MooxSocial\Controller;
+namespace DCNGmbH\MooxSocial\Controller;
 
 /***************************************************************
  *  Copyright notice
@@ -25,6 +25,10 @@ namespace TYPO3\MooxSocial\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Messaging\FlashMessage;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+
  /**
  * Include Facebook API Tools
  */
@@ -37,7 +41,7 @@ require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('moox_s
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class FacebookController extends \TYPO3\MooxSocial\Controller\PostController {
+class FacebookController extends \DCNGmbH\MooxSocial\Controller\PostController {
 
 	/**
 	 * objectManager
@@ -50,7 +54,7 @@ class FacebookController extends \TYPO3\MooxSocial\Controller\PostController {
 	/**
 	 * facebookRepository
 	 *
-	 * @var \TYPO3\MooxSocial\Domain\Repository\FacebookRepository
+	 * @var \DCNGmbH\MooxSocial\Domain\Repository\FacebookRepository
 	 * @inject
 	 */
 	protected $facebookRepository;
@@ -75,7 +79,7 @@ class FacebookController extends \TYPO3\MooxSocial\Controller\PostController {
 			
 			$facebooktask = unserialize($task['serialized_task_object']);
 			
-			if($facebooktask instanceof \TYPO3\MooxSocial\Tasks\FacebookGetTask){
+			if($facebooktask instanceof \DCNGmbH\MooxSocial\Tasks\FacebookGetTask){
 				$addTask = array();				
 				$addTask['pid'] 	= $facebooktask->getPid();
 				$addTask['appId'] 	= $facebooktask->getAppId();
@@ -85,7 +89,7 @@ class FacebookController extends \TYPO3\MooxSocial\Controller\PostController {
 				$tasks[] = $addTask;
 			}
 		}
-		
+
 		$this->view->assign('tasks', $tasks);				
 	}
 	
@@ -128,14 +132,14 @@ class FacebookController extends \TYPO3\MooxSocial\Controller\PostController {
 				}
 				
 			}			
-			
+
 			if(count($posts)){
-				
+
 				$insertCnt = 0;
 				
 				foreach($posts AS $post){				
 										
-					$facebookPost = new \TYPO3\MooxSocial\Domain\Model\Facebook;
+					$facebookPost = new \DCNGmbH\MooxSocial\Domain\Model\Facebook;
 					
 					$facebookPost->setPid($post['pid']);
 					$facebookPost->setCreated($post['created']);					
@@ -179,26 +183,22 @@ class FacebookController extends \TYPO3\MooxSocial\Controller\PostController {
 				$this->objectManager->get('TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface')->persistAll();
 				
 				if($insertCnt>0){
-					\TYPO3\MooxSocial\Controller\AdministrationController::clearCache("mooxsocial_pi1",array());
+					\DCNGmbH\MooxSocial\Controller\AdministrationController::clearCache("mooxsocial_pi1",array());
 				}
-				
-				$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
+
+				$this->addFlashMessage(
 					$insertCnt." neue Posts geladen",
-					 '', // the header is optional
-					 \TYPO3\CMS\Core\Messaging\FlashMessage::OK, // the severity is optional as well and defaults to \TYPO3\CMS\Core\Messaging\FlashMessage::OK
-					 TRUE // optional, whether the message should be stored in the session or only in the \TYPO3\CMS\Core\Messaging\FlashMessageQueue object (default is FALSE)
+					'',
+					FlashMessage::OK
 				);
-				\TYPO3\CMS\Core\Messaging\FlashMessageQueue::addMessage($message);
 			}
 		}
-		
-		$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
-			\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang.xlf:overview.facebook.listing.reinit.success', $this->extensionName ),
-			 '', // the header is optional
-			 \TYPO3\CMS\Core\Messaging\FlashMessage::OK, // the severity is optional as well and defaults to \TYPO3\CMS\Core\Messaging\FlashMessage::OK
-			 TRUE // optional, whether the message should be stored in the session or only in the \TYPO3\CMS\Core\Messaging\FlashMessageQueue object (default is FALSE)
+
+		$this->addFlashMessage(
+			LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang.xlf:overview.facebook.listing.reinit.success', $this->extensionName ),
+			'',
+			FlashMessage::OK
 		);
-		\TYPO3\CMS\Core\Messaging\FlashMessageQueue::addMessage($message);
 		$this->redirect('index');
 	}
 	
@@ -213,13 +213,11 @@ class FacebookController extends \TYPO3\MooxSocial\Controller\PostController {
 		if($pageId!=""){
 			$this->facebookRepository->removeByPageId($pageId,$storagePid);
 		}
-		$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
-			\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang.xlf:overview.facebook.listing.truncate.success', $this->extensionName ),
-			 '', // the header is optional
-			 \TYPO3\CMS\Core\Messaging\FlashMessage::OK, // the severity is optional as well and defaults to \TYPO3\CMS\Core\Messaging\FlashMessage::OK
-			 TRUE // optional, whether the message should be stored in the session or only in the \TYPO3\CMS\Core\Messaging\FlashMessageQueue object (default is FALSE)
+		$this->addFlashMessage(
+			LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang.xlf:overview.facebook.listing.truncate.success', $this->extensionName ),
+			'',
+			FlashMessage::OK
 		);
-		\TYPO3\CMS\Core\Messaging\FlashMessageQueue::addMessage($message);
 		$this->redirect('index');
 	}
 	
@@ -287,7 +285,7 @@ class FacebookController extends \TYPO3\MooxSocial\Controller\PostController {
 	 * @return void
 	 */
 	public function listAjaxAction() {
-				
+		
 		if(!$this->settings['sort_by']){
 			$this->settings['sort_by'] = "updated";
 		}
@@ -331,8 +329,7 @@ class FacebookController extends \TYPO3\MooxSocial\Controller\PostController {
 			}
 			
 		} else {
-		
-			$posts 	= $this->facebookRepository->findAllBySettings($this->settings);
+			$posts 	= $this->facebookRepository->findAllBySettings($this->settings);				
 		}
 		
 		$this->view->assign('currentpid', $GLOBALS['TSFE']->id);
@@ -342,10 +339,10 @@ class FacebookController extends \TYPO3\MooxSocial\Controller\PostController {
 	/**
 	 * action show
 	 *
-	 * @param \TYPO3\MooxSocial\Domain\Model\Facebook $facebook
+	 * @param \DCNGmbH\MooxSocial\Domain\Model\Facebook $facebook
 	 * @return void
 	 */
-	public function showAction(\TYPO3\MooxSocial\Domain\Model\Facebook $facebook = NULL) {				
+	public function showAction(\DCNGmbH\MooxSocial\Domain\Model\Facebook $facebook = NULL) {
 		
 		if(!$facebook && $this->settings['source']!="api"){
 			$facebook	= $this->facebookRepository->findRandomOne($this->settings['page_id']);
@@ -385,7 +382,7 @@ class FacebookController extends \TYPO3\MooxSocial\Controller\PostController {
 				'allowSignedRequest' 	=> false
 			);
 			
-			$facebook = new \TYPO3\MooxSocial\Facebook\Facebook($config);
+			$facebook = new \DCNGmbH\MooxSocial\Facebook\Facebook($config);
 			if($request=="fullinit"){
 				$repeats = 999;
 				$request = "init";

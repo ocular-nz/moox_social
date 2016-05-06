@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\MooxSocial\Controller;
+namespace DCNGmbH\MooxSocial\Controller;
 
 /***************************************************************
  *  Copyright notice
@@ -25,6 +25,10 @@ namespace TYPO3\MooxSocial\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Messaging\FlashMessage;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+
 /**
  *
  *
@@ -32,7 +36,7 @@ namespace TYPO3\MooxSocial\Controller;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class SlideshareController extends \TYPO3\MooxSocial\Controller\PostController {
+class SlideshareController extends \DCNGmbH\MooxSocial\Controller\PostController {
 	
 	/**
 	 * objectManager
@@ -45,7 +49,7 @@ class SlideshareController extends \TYPO3\MooxSocial\Controller\PostController {
 	/**
 	 * slideshareRepository
 	 *
-	 * @var \TYPO3\MooxSocial\Domain\Repository\SlideshareRepository
+	 * @var \DCNGmbH\MooxSocial\Domain\Repository\SlideshareRepository
 	 * @inject
 	 */
 	protected $slideshareRepository;
@@ -67,7 +71,7 @@ class SlideshareController extends \TYPO3\MooxSocial\Controller\PostController {
 		foreach($res AS $task){
 			
 			$slidesharetask = unserialize($task['serialized_task_object']);
-			if($slidesharetask instanceof \TYPO3\MooxSocial\Tasks\SlideshareGetTask){
+			if($slidesharetask instanceof \DCNGmbH\MooxSocial\Tasks\SlideshareGetTask){
 				$addTask = array();				
 				$addTask['pid'] 			= $slidesharetask->getPid();
 				$addTask['apiKey'] 			= $slidesharetask->getApiKey();
@@ -127,7 +131,7 @@ class SlideshareController extends \TYPO3\MooxSocial\Controller\PostController {
 				
 				foreach($posts AS $post){				
 										
-					$slidesharePost = new \TYPO3\MooxSocial\Domain\Model\Slideshare;
+					$slidesharePost = new \DCNGmbH\MooxSocial\Domain\Model\Slideshare;
 					
 					$slidesharePost->setPid($post['pid']);
 					$slidesharePost->setCreated($post['created']);					
@@ -167,26 +171,22 @@ class SlideshareController extends \TYPO3\MooxSocial\Controller\PostController {
 					
 				}	
 				
-				$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
+				$this->objectManager = GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
 				$this->objectManager->get('TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface')->persistAll();
-				
-				$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
+
+				$this->addFlashMessage(
 					$insertCnt." neue Praesentationen geladen",
-					 '', // the header is optional
-					 \TYPO3\CMS\Core\Messaging\FlashMessage::OK, // the severity is optional as well and defaults to \TYPO3\CMS\Core\Messaging\FlashMessage::OK
-					 TRUE // optional, whether the message should be stored in the session or only in the \TYPO3\CMS\Core\Messaging\FlashMessageQueue object (default is FALSE)
+					'',
+					FlashMessage::OK
 				);
-				\TYPO3\CMS\Core\Messaging\FlashMessageQueue::addMessage($message);
 			}
 		}
-		
-		$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
-			\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang.xlf:overview.slideshare.listing.reinit.success', $this->extensionName ),
-			 '', // the header is optional
-			 \TYPO3\CMS\Core\Messaging\FlashMessage::OK, // the severity is optional as well and defaults to \TYPO3\CMS\Core\Messaging\FlashMessage::OK
-			 TRUE // optional, whether the message should be stored in the session or only in the \TYPO3\CMS\Core\Messaging\FlashMessageQueue object (default is FALSE)
+
+		$this->addFlashMessage(
+			LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang.xlf:overview.slideshare.listing.reinit.success', $this->extensionName ),
+			'',
+			FlashMessage::OK
 		);
-		\TYPO3\CMS\Core\Messaging\FlashMessageQueue::addMessage($message);
 		$this->redirect('index');
 	}
 	
@@ -201,13 +201,11 @@ class SlideshareController extends \TYPO3\MooxSocial\Controller\PostController {
 		if($userId!=""){
 			$this->slideshareRepository->removeByPageId($userId,$storagePid);
 		}
-		$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
-			\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang.xlf:overview.slideshare.listing.truncate.success', $this->extensionName ),
-			 '', // the header is optional
-			 \TYPO3\CMS\Core\Messaging\FlashMessage::OK, // the severity is optional as well and defaults to \TYPO3\CMS\Core\Messaging\FlashMessage::OK
-			 TRUE // optional, whether the message should be stored in the session or only in the \TYPO3\CMS\Core\Messaging\FlashMessageQueue object (default is FALSE)
+		$this->addFlashMessage(
+			LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang.xlf:overview.slideshare.listing.truncate.success', $this->extensionName ),
+			'',
+			FlashMessage::OK
 		);
-		\TYPO3\CMS\Core\Messaging\FlashMessageQueue::addMessage($message);
 		$this->redirect('index');
 	}
 	
@@ -333,10 +331,10 @@ class SlideshareController extends \TYPO3\MooxSocial\Controller\PostController {
 	/**
 	 * action show
 	 *
-	 * @param \TYPO3\MooxSocial\Domain\Model\Slideshare $slideshare
+	 * @param \DCNGmbH\MooxSocial\Domain\Model\Slideshare $slideshare
 	 * @return void
 	 */
-	public function showAction(\TYPO3\MooxSocial\Domain\Model\Slideshare $slideshare = NULL) {				
+	public function showAction(\DCNGmbH\MooxSocial\Domain\Model\Slideshare $slideshare = NULL) {
 		
 		if(!$slideshare && $this->settings['source']!="api"){
 			$slideshare	= $this->slideshareRepository->findRandomOne($this->settings['user_id']);

@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\MooxSocial\Domain\Model;
+namespace DCNGmbH\MooxSocial\Domain\Model;
 
 /***************************************************************
  *  Copyright notice
@@ -32,7 +32,7 @@ namespace TYPO3\MooxSocial\Domain\Model;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Facebook extends \TYPO3\MooxSocial\Domain\Model\Post {
+class Facebook extends \DCNGmbH\MooxSocial\Domain\Model\Post {
 	
 	/**
 	 * Url Dummy for requesting profile image from graph url
@@ -63,7 +63,7 @@ class Facebook extends \TYPO3\MooxSocial\Domain\Model\Post {
 	protected $authorImageUrl;
 	
 	/**
-	 * Autor-Bild (groß)
+	 * Autor-Bild (groï¿½)
 	 *
 	 * @var \string
 	 */

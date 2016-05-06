@@ -2,7 +2,7 @@
 
 <f:section name="init">
 	<v:variable.set name="ajaxurl" value="{v:site.url()}{f:uri.page(pageUid: currentpid)}" />
-	<v:asset.script name="moox-social-twitter-js" group="moox-social" path="typo3conf/ext/moox_social/Resources/Public/Js/twitter.js" fluid="TRUE" variables="{ajaxurl: ajaxurl, source: settings.source, page: settings.api_screen_name}" allowMoveToFooter="TRUE" standalone="TRUE" />
+	<v:asset.script name="moox-social-twitter-js" group="moox-social" path="typo3conf/ext/moox_social/Resources/Public/Js/twitter.js" fluid="TRUE" variables="{ajaxurl: ajaxurl, source: settings.source, page: settings.api_screen_name}" movable="TRUE" standalone="TRUE" />
 	<div id="tx-moox-social-twitter-ajaxquery"></div>
 	<input type="hidden" id="tx-moox-social-twitter-count" value="{count}" />
 	<input type="hidden" id="tx-moox-social-twitter-pagescount" value="{pagesCount}" />

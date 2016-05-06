@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\MooxSocial\Domain\Repository;
+namespace DCNGmbH\MooxSocial\Domain\Repository;
 
 /***************************************************************
  *  Copyright notice
@@ -42,7 +42,7 @@ class FacebookRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * Finds all posts (overwrite)
 	 *	
 	 * @param string $pages The Facebook page ids to get posts from
-	 * @return Tx_Extbase_Persistence_QueryResultInterface The posts
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface The posts
 	 */
 	public function findAll($pages = '') {
 		$query = $this->createQuery();
@@ -62,7 +62,7 @@ class FacebookRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * Finds all posts by given request settings
 	 *
 	 * @param array $settings settings The settings
-	 * @return Tx_Extbase_Persistence_QueryResultInterface The posts
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface The posts
 	 */
 	public function findAllBySettings($settings) {
 		
@@ -107,7 +107,7 @@ class FacebookRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * Finds all posts by given request settings directly from Facebook api
 	 *
 	 * @param array $settings settings The settings
-	 * @return Tx_Extbase_Persistence_QueryResultInterface The posts
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface The posts
 	 */
 	public function requestAllBySettings($settings) {
 		
@@ -119,7 +119,7 @@ class FacebookRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 			$settings['offset'] = 0;
 		}
 		
-		$rawFeed 	= \TYPO3\MooxSocial\Controller\FacebookController::facebook($settings['api_app_id'],$settings['api_secret'],$settings['api_page_id'],"posts?offset=".($settings['offset'])."&limit=".($settings['limit']+$settings['offset']));
+		$rawFeed 	= \DCNGmbH\MooxSocial\Controller\FacebookController::facebook($settings['api_app_id'],$settings['api_secret'],$settings['api_page_id'],"posts?offset=".($settings['offset'])."&limit=".($settings['limit']+$settings['offset']));
 		
 		$posts 		= array();
 			
@@ -135,7 +135,7 @@ class FacebookRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 				$item['pageId'] = $pageId;
 				$item['pid'] 	= $storagePid;
 					
-				$post 			= \TYPO3\MooxSocial\Controller\FacebookController::facebookPost($item);					
+				$post 			= \DCNGmbH\MooxSocial\Controller\FacebookController::facebookPost($item);
 						
 				if(is_array($post)){
 					$posts[] 	= $post;
@@ -147,7 +147,7 @@ class FacebookRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 			
 			foreach($posts AS $post){				
 					
-				$facebookPost = new \TYPO3\MooxSocial\Domain\Model\Facebook;
+				$facebookPost = new \DCNGmbH\MooxSocial\Domain\Model\Facebook;
 							
 				$facebookPost->setPid($post['pid']);
 				$facebookPost->setCreated($post['created']);					
@@ -193,7 +193,7 @@ class FacebookRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 *
 	 * @param string $pageId The page id
 	 * @param integer $storagePid The storage pid
-	 * @return Tx_Extbase_Persistence_QueryResultInterface The posts
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface The posts
 	 */
 	public function findAllByPageId($pageId,$storagePid) {		
 		$query = $this->createQuery();		
@@ -210,7 +210,7 @@ class FacebookRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * Finds all posts by given storage pid
 	 *	
 	 * @param integer $storagePid The storage pid
-	 * @return Tx_Extbase_Persistence_QueryResultInterface The posts
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface The posts
 	 */
 	public function findAllByStoragePid($storagePid) {		
 		$query = $this->createQuery();		
@@ -224,7 +224,7 @@ class FacebookRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * Finds all posts
 	 *
 	 * @param string $pages The Facebook page ids to get posts from
-	 * @return Tx_Extbase_Persistence_QueryResultInterface The posts
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface The posts
 	 */
 	public function findAllLimited($pages = '') {
 		$query = $this->createQuery();		
@@ -243,7 +243,7 @@ class FacebookRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 *
 	 * @param string $apiUid api uid The api uid the post must refer to
 	 * @param integer $storagePid The storage pid
-	 * @return Tx_Extbase_Persistence_QueryResultInterface The posts
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface The posts
 	 */
 	public function findOneByApiUid($apiUid,$storagePid) {
 		$query = $this->createQuery();
@@ -262,7 +262,7 @@ class FacebookRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * Finds one random facebook post
 	 *	 
 	 * @param string $pages The Facebook page ids to get posts from
-	 * @return Tx_Extbase_Persistence_QueryResultInterface The posts
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface The posts
 	 */
 	public function findRandomOne($pages = '') {
 		$rows 		= $this->createQuery()->execute()->count();		

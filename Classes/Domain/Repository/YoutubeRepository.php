@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\MooxSocial\Domain\Repository;
+namespace DCNGmbH\MooxSocial\Domain\Repository;
 
 /***************************************************************
  *  Copyright notice
@@ -42,7 +42,7 @@ class YoutubeRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * Finds all posts (overwrite)
 	 *	
 	 * @param string $pages The Youtube page ids to get posts from
-	 * @return Tx_Extbase_Persistence_QueryResultInterface The posts
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface The posts
 	 */
 	public function findAll($pages = '') {
 		$query = $this->createQuery();
@@ -62,7 +62,7 @@ class YoutubeRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * Finds all posts by given request settings
 	 *
 	 * @param array $settings settings The settings
-	 * @return Tx_Extbase_Persistence_QueryResultInterface The posts
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface The posts
 	 */
 	public function findAllBySettings($settings) {
 		
@@ -91,7 +91,7 @@ class YoutubeRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * Finds all posts by given request settings directly from Youtube api
 	 *
 	 * @param array $settings settings The settings
-	 * @return Tx_Extbase_Persistence_QueryResultInterface The posts
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface The posts
 	 */
 	public function requestAllBySettings($settings) {
 		
@@ -103,7 +103,7 @@ class YoutubeRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 			$settings['offset'] = 0;
 		}
 		
-		$rawFeed 	= \TYPO3\MooxSocial\Controller\YoutubeController::youtube($settings['api_youtube_channel']);
+		$rawFeed 	= \DCNGmbH\MooxSocial\Controller\YoutubeController::youtube($settings['api_youtube_channel']);
 
 		$posts 		= array();
 			
@@ -118,7 +118,7 @@ class YoutubeRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 				$item['youtubeChannel'] 	= $youtubeChannel;
 				$item['pid'] 		= $storagePid;
 					
-				$post 			= \TYPO3\MooxSocial\Controller\YoutubeController::youtubePost($item);					
+				$post 			= \DCNGmbH\MooxSocial\Controller\YoutubeController::youtubePost($item);
 						
 				if(is_array($post)){
 					$posts[] 	= $post;
@@ -130,7 +130,7 @@ class YoutubeRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 			
 			foreach($posts AS $post){				
 					
-				$youtubePost = new \TYPO3\MooxSocial\Domain\Model\Youtube;
+				$youtubePost = new \DCNGmbH\MooxSocial\Domain\Model\Youtube;
 							
 				$youtubePost->setPid($post['pid']);
 				$youtubePost->setCreated($post['created']);					
@@ -176,7 +176,7 @@ class YoutubeRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 *
 	 * @param string $youtubeChannel The youtube channel
 	 * @param integer $storagePid The storage pid
-	 * @return Tx_Extbase_Persistence_QueryResultInterface The posts
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface The posts
 	 */
 	public function findAllByPageId($youtubeChannel,$storagePid) {		
 		$query = $this->createQuery();		
@@ -193,7 +193,7 @@ class YoutubeRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * Finds all posts by given storage pid
 	 *	
 	 * @param integer $storagePid The storage pid
-	 * @return Tx_Extbase_Persistence_QueryResultInterface The posts
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface The posts
 	 */
 	public function findAllByStoragePid($storagePid) {		
 		$query = $this->createQuery();		
@@ -207,7 +207,7 @@ class YoutubeRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * Finds all posts
 	 *
 	 * @param string $pages The Youtube page ids to get posts from
-	 * @return Tx_Extbase_Persistence_QueryResultInterface The posts
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface The posts
 	 */
 	public function findAllLimited($pages = '') {
 		$query = $this->createQuery();		
@@ -226,7 +226,7 @@ class YoutubeRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 *
 	 * @param string $apiUid api uid The api uid the post must refer to
 	 * @param integer $storagePid The storage pid
-	 * @return Tx_Extbase_Persistence_QueryResultInterface The posts
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface The posts
 	 */
 	public function findOneByApiUid($apiUid,$storagePid) {
 		$query = $this->createQuery();
@@ -245,7 +245,7 @@ class YoutubeRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * Finds one random Youtube video
 	 *	 
 	 * @param string $pages The Youtube page ids to get posts from
-	 * @return Tx_Extbase_Persistence_QueryResultInterface The posts
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface The posts
 	 */
 	public function findRandomOne($pages = '') {
 		$rows 		= $this->createQuery()->execute()->count();		

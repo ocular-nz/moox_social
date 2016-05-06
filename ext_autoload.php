@@ -31,7 +31,7 @@
  *
  */
  
-$extensionClassesPath = t3lib_extMgm::extPath('moox_social') . 'Classes/';
+$extensionClassesPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('moox_social') . 'Classes/';
 
 return array(
 	'tx_mooxsocial_facebookgettask' => $extensionClassesPath . 'Tasks/FacebookGetTask.php',

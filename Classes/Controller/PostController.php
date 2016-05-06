@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\MooxSocial\Controller;
+namespace DCNGmbH\MooxSocial\Controller;
 
 /***************************************************************
  *  Copyright notice
@@ -25,6 +25,10 @@ namespace TYPO3\MooxSocial\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Messaging\FlashMessage;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+
 /**
  *
  *
@@ -47,10 +51,10 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	/**
 	 * action show
 	 *
-	 * @param \TYPO3\MooxSocial\Domain\Model\Post $post
+	 * @param \DCNGmbH\MooxSocial\Domain\Model\Post $post
 	 * @return void
 	 */
-	public function showAction(\TYPO3\MooxSocial\Domain\Model\Post $post) {				
+	public function showAction(\DCNGmbH\MooxSocial\Domain\Model\Post $post) {
 		
 		$this->view->assign('post', $post);
 	}	

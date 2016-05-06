@@ -1,5 +1,7 @@
 <?php
-require_once t3lib_extMgm::extPath('moox_social','Classes/SDK/twitter/TwitterAPIExchange.php');
+namespace DCNGmbH\MooxSocial\ViewHelpers\Twitter;
+
+require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('moox_social','Classes/SDK/twitter/TwitterAPIExchange.php');
 
 /**
  * Twitter ViewHelper
@@ -8,7 +10,7 @@ require_once t3lib_extMgm::extPath('moox_social','Classes/SDK/twitter/TwitterAPI
  *
  * @package moox_social
  */
-class Tx_MooxSocial_ViewHelpers_Twitter_UserViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class UserViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Initialize arguments
@@ -28,7 +30,7 @@ class Tx_MooxSocial_ViewHelpers_Twitter_UserViewHelper extends Tx_Fluid_Core_Vie
 	    $screenName = $this->arguments['screen-name'];
 	    $count = $this->arguments['count'];
                 
-            $settings = $this->viewHelperVariableContainer->get('Tx_MooxSocial_ViewHelpers_TwitterViewHelper', 'twitter');
+            $settings = $this->viewHelperVariableContainer->get('DCNGmbH\\MooxSocial\\ViewHelpers\\TwitterViewHelper', 'twitter');
             
             $twitter = new TwitterAPIExchange($settings);
             

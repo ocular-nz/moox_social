@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\MooxSocial\Flickr;
+namespace DCNGmbH\MooxSocial\Flickr;
 
 /* phpFlickr Class 3.1
  * Written by Dan Coulter (dan@dancoulter.com)

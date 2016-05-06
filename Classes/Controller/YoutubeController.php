@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\MooxSocial\Controller;
+namespace DCNGmbH\MooxSocial\Controller;
 
 /***************************************************************
  *  Copyright notice
@@ -25,6 +25,10 @@ namespace TYPO3\MooxSocial\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Messaging\FlashMessage;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+
 /**
  *
  *
@@ -32,7 +36,7 @@ namespace TYPO3\MooxSocial\Controller;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class YoutubeController extends \TYPO3\MooxSocial\Controller\PostController {
+class YoutubeController extends \DCNGmbH\MooxSocial\Controller\PostController {
 	
 	/**
 	 * objectManager
@@ -45,7 +49,7 @@ class YoutubeController extends \TYPO3\MooxSocial\Controller\PostController {
 	/**
 	 * youtubeRepository
 	 *
-	 * @var \TYPO3\MooxSocial\Domain\Repository\YoutubeRepository
+	 * @var \DCNGmbH\MooxSocial\Domain\Repository\YoutubeRepository
 	 * @inject
 	 */
 	protected $youtubeRepository;
@@ -67,7 +71,7 @@ class YoutubeController extends \TYPO3\MooxSocial\Controller\PostController {
 		foreach($res AS $task){
 			
 			$youtubetask = unserialize($task['serialized_task_object']);
-			if($youtubetask instanceof \TYPO3\MooxSocial\Tasks\YoutubeGetTask){
+			if($youtubetask instanceof \DCNGmbH\MooxSocial\Tasks\YoutubeGetTask){
 				$addTask = array();				
 				$addTask['pid'] 			= $youtubetask->getPid();
 				$addTask['youtubeChannel'] 	= $youtubetask->getYoutubeChannel();
@@ -123,7 +127,7 @@ class YoutubeController extends \TYPO3\MooxSocial\Controller\PostController {
 				
 				foreach($posts AS $post){				
 										
-					$youtubePost = new \TYPO3\MooxSocial\Domain\Model\Youtube;
+					$youtubePost = new \DCNGmbH\MooxSocial\Domain\Model\Youtube;
 					
 					$youtubePost->setPid($post['pid']);
 					$youtubePost->setCreated($post['created']);					
@@ -163,26 +167,22 @@ class YoutubeController extends \TYPO3\MooxSocial\Controller\PostController {
 					
 				}	
 				
-				$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
+				$this->objectManager = GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
 				$this->objectManager->get('TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface')->persistAll();
-				
-				$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
+
+				$this->addFlashMessage(
 					$insertCnt." neue Videos geladen",
-					 '', // the header is optional
-					 \TYPO3\CMS\Core\Messaging\FlashMessage::OK, // the severity is optional as well and defaults to \TYPO3\CMS\Core\Messaging\FlashMessage::OK
-					 TRUE // optional, whether the message should be stored in the session or only in the \TYPO3\CMS\Core\Messaging\FlashMessageQueue object (default is FALSE)
+					'',
+					FlashMessage::OK
 				);
-				\TYPO3\CMS\Core\Messaging\FlashMessageQueue::addMessage($message);
 			}
 		}
-		
-		$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
-			\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang.xlf:overview.youtube.listing.reinit.success', $this->extensionName ),
-			 '', // the header is optional
-			 \TYPO3\CMS\Core\Messaging\FlashMessage::OK, // the severity is optional as well and defaults to \TYPO3\CMS\Core\Messaging\FlashMessage::OK
-			 TRUE // optional, whether the message should be stored in the session or only in the \TYPO3\CMS\Core\Messaging\FlashMessageQueue object (default is FALSE)
+
+		$this->addFlashMessage(
+			LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang.xlf:overview.youtube.listing.reinit.success', $this->extensionName ),
+			'',
+			FlashMessage::OK
 		);
-		\TYPO3\CMS\Core\Messaging\FlashMessageQueue::addMessage($message);
 		$this->redirect('index');
 	}
 	
@@ -197,13 +197,11 @@ class YoutubeController extends \TYPO3\MooxSocial\Controller\PostController {
 		if($youtubeChannel!=""){
 			$this->youtubeRepository->removeByPageId($youtubeChannel,$storagePid);
 		}
-		$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
-			\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang.xlf:overview.youtube.listing.truncate.success', $this->extensionName ),
-			 '', // the header is optional
-			 \TYPO3\CMS\Core\Messaging\FlashMessage::OK, // the severity is optional as well and defaults to \TYPO3\CMS\Core\Messaging\FlashMessage::OK
-			 TRUE // optional, whether the message should be stored in the session or only in the \TYPO3\CMS\Core\Messaging\FlashMessageQueue object (default is FALSE)
+		$this->addFlashMessage(
+			LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang.xlf:overview.youtube.listing.truncate.success', $this->extensionName ),
+			'',
+			FlashMessage::OK
 		);
-		\TYPO3\CMS\Core\Messaging\FlashMessageQueue::addMessage($message);
 		$this->redirect('index');
 	}
 	
@@ -323,10 +321,10 @@ class YoutubeController extends \TYPO3\MooxSocial\Controller\PostController {
 	/**
 	 * action show
 	 *
-	 * @param \TYPO3\MooxSocial\Domain\Model\Youtube $youtube
+	 * @param \DCNGmbH\MooxSocial\Domain\Model\Youtube $youtube
 	 * @return void
 	 */
-	public function showAction(\TYPO3\MooxSocial\Domain\Model\Youtube $youtube = NULL) {				
+	public function showAction(\DCNGmbH\MooxSocial\Domain\Model\Youtube $youtube = NULL) {
 		
 		if(!$youtube && $this->settings['source']!="api"){
 			$youtube	= $this->youtubeRepository->findRandomOne($this->settings['youtube_channel']);

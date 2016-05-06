@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\MooxSocial\Tasks;
+namespace DCNGmbH\MooxSocial\Tasks;
 
 /***************************************************************
  *  Copyright notice
@@ -290,7 +290,7 @@ class SlideshareGetTaskAdditionalFieldProvider implements \TYPO3\CMS\Scheduler\A
 	 */
 	public function getSocialFoldersSelector($selectorName,$pid = 0) {
 		
-		$folders = \TYPO3\MooxSocial\Controller\AdministrationController::getSocialFolders();
+		$folders = \DCNGmbH\MooxSocial\Controller\AdministrationController::getSocialFolders();
 		
 		$selector = '<select name="' . $selectorName . '">';
 		

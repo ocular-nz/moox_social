@@ -1,5 +1,7 @@
 <?php
-require_once t3lib_extMgm::extPath('moox_social','Classes/SDK/slideshare/SSUtil/SSUtil.php');
+namespace DCNGmbH\MooxSocial\ViewHelpers;
+
+require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('moox_social','Classes/SDK/slideshare/SSUtil/SSUtil.php');
 
 /**
  * Slideshare ViewHelper
@@ -8,7 +10,7 @@ require_once t3lib_extMgm::extPath('moox_social','Classes/SDK/slideshare/SSUtil/
  *
  * @package moox_social
  */
-class Tx_MooxSocial_ViewHelpers_SlideshareViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class SlideshareViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Initialize arguments

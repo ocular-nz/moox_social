@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\MooxSocial\Facebook;
+namespace DCNGmbH\MooxSocial\Facebook;
 /**
  * Copyright 2011 Facebook, Inc.
  *

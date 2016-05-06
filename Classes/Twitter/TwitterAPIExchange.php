@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\MooxSocial\Twitter;
+namespace DCNGmbH\MooxSocial\Twitter;
 /**
  * Twitter-API-PHP : Simple PHP wrapper for the v1.1 API
  * 

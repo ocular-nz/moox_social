@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\MooxSocial\Domain\Repository;
+namespace DCNGmbH\MooxSocial\Domain\Repository;
 
 /***************************************************************
  *  Copyright notice
@@ -42,7 +42,7 @@ class SlideshareRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * Finds all posts (overwrite)
 	 *	
 	 * @param string $pages The Slideshare page ids to get posts from
-	 * @return Tx_Extbase_Persistence_QueryResultInterface The posts
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface The posts
 	 */
 	public function findAll($pages = '') {
 		$query = $this->createQuery();
@@ -62,7 +62,7 @@ class SlideshareRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * Finds all posts by given request settings
 	 *
 	 * @param array $settings settings The settings
-	 * @return Tx_Extbase_Persistence_QueryResultInterface The posts
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface The posts
 	 */
 	public function findAllBySettings($settings) {
 		
@@ -91,7 +91,7 @@ class SlideshareRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * Finds all posts by given request settings directly from Slideshare api
 	 *
 	 * @param array $settings settings The settings
-	 * @return Tx_Extbase_Persistence_QueryResultInterface The posts
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface The posts
 	 */
 	public function requestAllBySettings($settings) {
 		
@@ -103,7 +103,7 @@ class SlideshareRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 			$settings['offset'] = 0;
 		}
 		
-		$rawFeed 	= \TYPO3\MooxSocial\Controller\SlideshareController::slideshare($settings['api_user_id']);
+		$rawFeed 	= \DCNGmbH\MooxSocial\Controller\SlideshareController::slideshare($settings['api_user_id']);
 
 		$posts 		= array();
 			
@@ -118,7 +118,7 @@ class SlideshareRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 				$item['userId'] 	= $userId;
 				$item['pid'] 		= $storagePid;
 					
-				$post 			= \TYPO3\MooxSocial\Controller\SlideshareController::slidesharePost($item);					
+				$post 			= \DCNGmbH\MooxSocial\Controller\SlideshareController::slidesharePost($item);
 						
 				if(is_array($post)){
 					$posts[] 	= $post;
@@ -130,7 +130,7 @@ class SlideshareRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 			
 			foreach($posts AS $post){				
 					
-				$slidesharePost = new \TYPO3\MooxSocial\Domain\Model\Slideshare;
+				$slidesharePost = new \DCNGmbH\MooxSocial\Domain\Model\Slideshare;
 							
 				$slidesharePost->setPid($post['pid']);
 				$slidesharePost->setCreated($post['created']);					
@@ -176,7 +176,7 @@ class SlideshareRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 *
 	 * @param string $userId The user id
 	 * @param integer $storagePid The storage pid
-	 * @return Tx_Extbase_Persistence_QueryResultInterface The posts
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface The posts
 	 */
 	public function findAllByPageId($userId,$storagePid) {		
 		$query = $this->createQuery();		
@@ -193,21 +193,20 @@ class SlideshareRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * Finds all posts by given storage pid
 	 *	
 	 * @param integer $storagePid The storage pid
-	 * @return Tx_Extbase_Persistence_QueryResultInterface The posts
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface The posts
 	 */
 	public function findAllByStoragePid($storagePid) {		
 		$query = $this->createQuery();		
 		$query->getQuerySettings()->setStoragePageIds(array($storagePid));
 		$query->getQuerySettings()->setIncludeDeleted(TRUE);
-		return $query			
-			->execute();	
+		return $query->execute();
 	}
 	
 	/**
 	 * Finds all posts
 	 *
 	 * @param string $pages The slideshare page ids to get posts from
-	 * @return Tx_Extbase_Persistence_QueryResultInterface The posts
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface The posts
 	 */
 	public function findAllLimited($pages = '') {
 		$query = $this->createQuery();		
@@ -226,7 +225,7 @@ class SlideshareRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 *
 	 * @param string $apiUid api uid The api uid the post must refer to
 	 * @param integer $storagePid The storage pid
-	 * @return Tx_Extbase_Persistence_QueryResultInterface The posts
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface The posts
 	 */
 	public function findOneByApiUid($apiUid,$storagePid) {
 		$query = $this->createQuery();
@@ -245,7 +244,7 @@ class SlideshareRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * Finds one random slideshare slideshow
 	 *	 
 	 * @param string $pages The Slideshare page ids to get posts from
-	 * @return Tx_Extbase_Persistence_QueryResultInterface The posts
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface The posts
 	 */
 	public function findRandomOne($pages = '') {
 		$rows 		= $this->createQuery()->execute()->count();		

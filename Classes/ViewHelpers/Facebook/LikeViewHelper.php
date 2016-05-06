@@ -1,4 +1,6 @@
 <?php
+namespace DCNGmbH\MooxSocial\ViewHelpers;
+
 /**
  * ViewHelper to add a like button
  * Details: http://developers.facebook.com/docs/reference/plugins/like
@@ -19,7 +21,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_MooxSocial_ViewHelpers_Facebook_LikeViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
+class LikeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * @var	string
@@ -52,7 +54,7 @@ class Tx_MooxSocial_ViewHelpers_Facebook_LikeViewHelper extends Tx_Fluid_Core_Vi
 			t3lib_div::getIndpEnv('TYPO3_REQUEST_URL');
 
 			// absolute urls are needed
-		$this->tag->addAttribute('href', Tx_News_Utility_Url::prependDomain($url));
+		$this->tag->addAttribute('href', \DCNGmbH\MooxNews\Utility\Url::prependDomain($url));
 		$this->tag->forceClosingTag(TRUE);
 
 			// -1 means no JS
@@ -66,7 +68,7 @@ class Tx_MooxSocial_ViewHelpers_Facebook_LikeViewHelper extends Tx_Fluid_Core_Vi
 
 					// Social interaction Google Analytics
 				if ($this->pluginSettingsService->getByPath('analytics.social.facebookLike') == 1) {
-					$code .= t3lib_div::wrapJS("
+					$code .= \TYPO3\CMS\Core\Utility\GeneralUtility::wrapJS("
 						FB.Event.subscribe('edge.create', function(targetUrl) {
 						 	_gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
 						});

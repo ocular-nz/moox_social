@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\MooxSocial\Controller;
+namespace DCNGmbH\MooxSocial\Controller;
 
 /***************************************************************
  *  Copyright notice
@@ -25,6 +25,10 @@ namespace TYPO3\MooxSocial\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Messaging\FlashMessage;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+
 /**
  *
  *
@@ -32,7 +36,7 @@ namespace TYPO3\MooxSocial\Controller;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class FlickrController extends \TYPO3\MooxSocial\Controller\PostController {
+class FlickrController extends \DCNGmbH\MooxSocial\Controller\PostController {
 	
 	/**
 	 * objectManager
@@ -45,7 +49,7 @@ class FlickrController extends \TYPO3\MooxSocial\Controller\PostController {
 	/**
 	 * flickrRepository
 	 *
-	 * @var \TYPO3\MooxSocial\Domain\Repository\FlickrRepository
+	 * @var \DCNGmbH\MooxSocial\Domain\Repository\FlickrRepository
 	 * @inject
 	 */
 	protected $flickrRepository;
@@ -67,7 +71,7 @@ class FlickrController extends \TYPO3\MooxSocial\Controller\PostController {
 		foreach($res AS $task){
 			
 			$flickrtask = unserialize($task['serialized_task_object']);
-			if($flickrtask instanceof \TYPO3\MooxSocial\Tasks\FlickrGetTask){
+			if($flickrtask instanceof \DCNGmbH\MooxSocial\Tasks\FlickrGetTask){
 				$addTask = array();				
 				$addTask['pid'] 			= $flickrtask->getPid();
 				$addTask['apiKey'] 			= $flickrtask->getApiKey();
@@ -127,7 +131,7 @@ class FlickrController extends \TYPO3\MooxSocial\Controller\PostController {
 				
 				foreach($posts AS $post){				
 										
-					$flickrPost = new \TYPO3\MooxSocial\Domain\Model\Flickr;
+					$flickrPost = new \DCNGmbH\MooxSocial\Domain\Model\Flickr;
 					
 					$flickrPost->setPid($post['pid']);
 					$flickrPost->setCreated($post['created']);					
@@ -167,26 +171,22 @@ class FlickrController extends \TYPO3\MooxSocial\Controller\PostController {
 					
 				}	
 				
-				$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
+				$this->objectManager = GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
 				$this->objectManager->get('TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface')->persistAll();
-				
-				$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
+
+				$this->addFlashMessage(
 					$insertCnt." neue Bilder geladen",
-					 '', // the header is optional
-					 \TYPO3\CMS\Core\Messaging\FlashMessage::OK, // the severity is optional as well and defaults to \TYPO3\CMS\Core\Messaging\FlashMessage::OK
-					 TRUE // optional, whether the message should be stored in the session or only in the \TYPO3\CMS\Core\Messaging\FlashMessageQueue object (default is FALSE)
+					'',
+					FlashMessage::OK
 				);
-				\TYPO3\CMS\Core\Messaging\FlashMessageQueue::addMessage($message);
 			}
 		}
-		
-		$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
-			\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang.xlf:overview.flickr.listing.reinit.success', $this->extensionName ),
-			 '', // the header is optional
-			 \TYPO3\CMS\Core\Messaging\FlashMessage::OK, // the severity is optional as well and defaults to \TYPO3\CMS\Core\Messaging\FlashMessage::OK
-			 TRUE // optional, whether the message should be stored in the session or only in the \TYPO3\CMS\Core\Messaging\FlashMessageQueue object (default is FALSE)
+
+		$this->addFlashMessage(
+			LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang.xlf:overview.flickr.listing.reinit.success', $this->extensionName ),
+			'',
+			FlashMessage::OK
 		);
-		\TYPO3\CMS\Core\Messaging\FlashMessageQueue::addMessage($message);
 		$this->redirect('index');
 	}
 	
@@ -201,13 +201,11 @@ class FlickrController extends \TYPO3\MooxSocial\Controller\PostController {
 		if($userId!=""){
 			$this->flickrRepository->removeByPageId($userId,$storagePid);
 		}
-		$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
-			\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang.xlf:overview.flickr.listing.truncate.success', $this->extensionName ),
-			 '', // the header is optional
-			 \TYPO3\CMS\Core\Messaging\FlashMessage::OK, // the severity is optional as well and defaults to \TYPO3\CMS\Core\Messaging\FlashMessage::OK
-			 TRUE // optional, whether the message should be stored in the session or only in the \TYPO3\CMS\Core\Messaging\FlashMessageQueue object (default is FALSE)
+		$this->addFlashMessage(
+			LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang.xlf:overview.flickr.listing.truncate.success', $this->extensionName ),
+			'',
+			FlashMessage::OK
 		);
-		\TYPO3\CMS\Core\Messaging\FlashMessageQueue::addMessage($message);
 		$this->redirect('index');
 	}
 	
@@ -333,10 +331,10 @@ class FlickrController extends \TYPO3\MooxSocial\Controller\PostController {
 	/**
 	 * action show
 	 *
-	 * @param \TYPO3\MooxSocial\Domain\Model\Flickr $flickr
+	 * @param \DCNGmbH\MooxSocial\Domain\Model\Flickr $flickr
 	 * @return void
 	 */
-	public function showAction(\TYPO3\MooxSocial\Domain\Model\Flickr $flickr = NULL) {				
+	public function showAction(\DCNGmbH\MooxSocial\Domain\Model\Flickr $flickr = NULL) {
 		
 		if(!$flickr && $this->settings['source']!="api"){
 			$flickr	= $this->flickrRepository->findRandomOne($this->settings['user_id']);

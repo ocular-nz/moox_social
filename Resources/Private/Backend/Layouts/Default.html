@@ -1,4 +1,8 @@
-<f:be.container addCssFile="{f:uri.resource(path:'Css/administration.css')}">
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+
+<v:variable.set name="cssFile" value="{f:uri.resource(path:'Css/administration.css')}" />
+
+<f:be.container includeCssFiles="{admincss: cssFile}">
 	<div class="typo3-fullDoc tx-moox-social-admin">
 		<div id="typo3-docheader">
 			<div id="typo3-docheader-row1">

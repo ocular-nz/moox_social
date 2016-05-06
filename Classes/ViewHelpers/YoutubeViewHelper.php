@@ -1,7 +1,9 @@
 <?php
+namespace DCNGmbH\MooxSocial\ViewHelpers;
+
 //set_include_path ('/www/infoarchitekt.de/hosting/2376/dcn.de/kunden/cloud/typo3conf/ext/moox_social/Classes/SDK');
-//require_once t3lib_extMgm::extPath('moox_social','Classes/SDK/Google/Client.php');
-//require_once t3lib_extMgm::extPath('moox_social','Classes/SDK/Google/Service/YouTube.php');
+//require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('moox_social','Classes/SDK/Google/Client.php');
+//require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('moox_social','Classes/SDK/Google/Service/YouTube.php');
 
 /**
  * YouTube ViewHelper
@@ -10,7 +12,7 @@
  *
  * @package moox_social
  */
-class Tx_MooxSocial_ViewHelpers_YoutubeViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class YoutubeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Initialize arguments

@@ -1,7 +1,9 @@
 <?php
-require_once t3lib_extMgm::extPath('moox_social','Classes/SDK/facebook/facebook.php');
+namespace DCNGmbH\MooxSocial\ViewHelpers;
 
-class Tx_MooxSocial_ViewHelpers_Facebook_UserViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('moox_social','Classes/SDK/facebook/facebook.php');
+
+class UserViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 	
 	/**
 	 * Render the facebook user viewhelper

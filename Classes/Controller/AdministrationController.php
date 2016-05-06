@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\MooxSocial\Controller;
+namespace DCNGmbH\MooxSocial\Controller;
 
 /***************************************************************
  *  Copyright notice
@@ -25,6 +25,10 @@ namespace TYPO3\MooxSocial\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Core\Messaging\FlashMessage;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
  *
  *
@@ -45,7 +49,7 @@ class AdministrationController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionC
 	/**
 	 * facebookRepository
 	 *
-	 * @var \TYPO3\MooxSocial\Domain\Repository\FacebookRepository
+	 * @var \DCNGmbH\MooxSocial\Domain\Repository\FacebookRepository
 	 * @inject
 	 */
 	protected $facebookRepository;
@@ -53,7 +57,7 @@ class AdministrationController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionC
 	/**
 	 * twitterRepository
 	 *
-	 * @var \TYPO3\MooxSocial\Domain\Repository\TwitterRepository
+	 * @var \DCNGmbH\MooxSocial\Domain\Repository\TwitterRepository
 	 * @inject
 	 */
 	protected $twitterRepository;
@@ -61,7 +65,7 @@ class AdministrationController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionC
 	/**
 	 * youtubeRepository
 	 *
-	 * @var \TYPO3\MooxSocial\Domain\Repository\YoutubeRepository
+	 * @var \DCNGmbH\MooxSocial\Domain\Repository\YoutubeRepository
 	 * @inject
 	 */
 	protected $youtubeRepository;
@@ -69,7 +73,7 @@ class AdministrationController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionC
 	/**
 	 * flickrRepository
 	 *
-	 * @var \TYPO3\MooxSocial\Domain\Repository\FlickrRepository
+	 * @var \DCNGmbH\MooxSocial\Domain\Repository\FlickrRepository
 	 * @inject
 	 */
 	protected $flickrRepository;
@@ -77,7 +81,7 @@ class AdministrationController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionC
 	/**
 	 * slideshareRepository
 	 *
-	 * @var \TYPO3\MooxSocial\Domain\Repository\SlideshareRepository
+	 * @var \DCNGmbH\MooxSocial\Domain\Repository\SlideshareRepository
 	 * @inject
 	 */
 	protected $slideshareRepository;
@@ -93,7 +97,7 @@ class AdministrationController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionC
 		
 		$addFolder = array();				
 		$addFolder['uid'] 				= 0;
-		$addFolder['title'] 			= \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang.xlf:overview.folder.listing.default_storage', $this->extensionName );
+		$addFolder['title'] 			= LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang.xlf:overview.folder.listing.default_storage', $this->extensionName );
 		$addFolder['countFacebook'] 	= $this->facebookRepository->findAllByStoragePid(0)->count();
 		$addFolder['countTwitter'] 		= $this->twitterRepository->findAllByStoragePid(0)->count();
 		$addFolder['countYoutube'] 		= $this->youtubeRepository->findAllByStoragePid(0)->count();
@@ -129,17 +133,15 @@ class AdministrationController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionC
 	 * @return void
 	 */
 	public function truncateFolderAction($storagePid) {
-		$this->facebookRepository->removeByStoragePid($storagePid);		
-		$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
-			\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang.xlf:overview.folder.listing.truncate.success', $this->extensionName ),
-			 '', // the header is optional
-			 \TYPO3\CMS\Core\Messaging\FlashMessage::OK, // the severity is optional as well and defaults to \TYPO3\CMS\Core\Messaging\FlashMessage::OK
-			 TRUE // optional, whether the message should be stored in the session or only in the \TYPO3\CMS\Core\Messaging\FlashMessageQueue object (default is FALSE)
+		$this->facebookRepository->removeByStoragePid($storagePid);
+		$this->addFlashMessage(
+			LocalizationUtility::translate( 'LLL:EXT:moox_social/Resources/Private/Language/locallang.xlf:overview.folder.listing.truncate.success', $this->extensionName ),
+			'',
+			FlashMessage::OK
 		);
-		\TYPO3\CMS\Core\Messaging\FlashMessageQueue::addMessage($message);
 		$this->redirect('index');
 	}
-	
+
 	/**
 	 * Get array of folders with social module	
 	 *	
@@ -197,7 +199,7 @@ class AdministrationController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionC
 		}
 		
 		if(count($pids)){
-			$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
+			$objectManager = GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
 			$cacheService = $objectManager->get('TYPO3\\CMS\\Extbase\\Service\\CacheService');
 			$cacheService->clearPageCache($pids);
 		}		

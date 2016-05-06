@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\MooxSocial\Domain\Model;
+namespace DCNGmbH\MooxSocial\Domain\Model;
 
 /***************************************************************
  *  Copyright notice
@@ -43,7 +43,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $created;
 	
 	/**
-	 * Geändert am
+	 * Geï¿½ndert am
 	 *
 	 * @var DateTime
 	 */

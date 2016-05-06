@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\MooxSocial\Domain\Model;
+namespace DCNGmbH\MooxSocial\Domain\Model;
 
 /***************************************************************
  *  Copyright notice
@@ -32,7 +32,7 @@ namespace TYPO3\MooxSocial\Domain\Model;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Flickr extends \TYPO3\MooxSocial\Domain\Model\Post {
+class Flickr extends \DCNGmbH\MooxSocial\Domain\Model\Post {
 	
 }
 ?>

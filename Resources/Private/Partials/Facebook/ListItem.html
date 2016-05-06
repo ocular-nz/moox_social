@@ -1,33 +1,59 @@
-<div class="tx-moox-social-facebook">	
-	<f:if condition="{facebook.author}">
-		<div class="tx-moox-social-facebook-author">
-			<div class="tx-moox-social-facebook-author-name">{facebook.author} | <span class="tx-moox-social-facebook-datetime"><f:format.date format="d.m.Y H:i">{facebook.updated}</f:format.date></span></div>
-			<f:if condition="{facebook.authorId}">
-				<img src="{facebook.authorImageUrl}" class="img-responsive img-thumbnail tx-moox-social-facebook-author-image" title="{facebook.author}" alt="{facebook.author}" />
-			</f:if>			
-			<div class="clearfix"></div>
+<div class="tx-moox-social-item tx-moox-social-facebook">
+	<div class="well well-sm">
+		<div class="tx-moox-social-header">
+			<div class="media">
+				<div class="media-left">
+					<f:if condition="{facebook.authorId}">
+						<img src="{facebook.authorImageUrl}" class="media-object tx-moox-social-facebook-author-image" title="{facebook.author}" alt="{facebook.author}" />
+					</f:if>
+				</div>
+				<div class="media-body">
+					<f:if condition="{facebook.author}">
+						<h4 class="media-heading">
+							<span class="tx-moox-social-facebook-author-name">{facebook.author}</span>
+						</h4>
+					</f:if>
+					<p class="tx-moox-social-facebook-datetime small"><f:format.date format="d.m.Y H:i">{facebook.updated}</f:format.date></p>
+				</div>
+			</div>
 		</div>
-	</f:if>
-	<f:if condition="{facebook.story}">
-		<div class="tx-moox-social-facebook-story">{facebook.story}</div>
-	</f:if>
-	<f:if condition="{facebook.message}">
-		<div class="tx-moox-social-facebook-message">
-			<f:format.crop maxCharacters="250" append="..." respectHtml="TRUE"><f:format.raw>{facebook.message}</f:format.raw></f:format.crop>			
+		<div class="tx-moox-social-content top-space-base bottom-space-base">
+			<f:if condition="{facebook.story}">
+				<div class="tx-moox-social-facebook-story">{facebook.story}</div>
+			</f:if>
+			<f:if condition="{facebook.message}">
+				<div class="tx-moox-social-facebook-message">
+					<f:format.crop maxCharacters="250" append="..." respectHtml="TRUE"><f:format.raw>{facebook.message}</f:format.raw></f:format.crop>
+				</div>
+			</f:if>
+			<f:if condition="{facebook.description}">
+				<div class="tx-moox-social-facebook-description">{facebook.description}</div>
+			</f:if>
+			<f:if condition="{facebook.imageUrl}">
+				<div class="tx-moox-social-facebook-image">
+					<img src="{facebook.imageUrl}" class="img-responsive img-thumbnail" title="{facebook.imageUrl}" alt="{facebook.imageUrl}" />
+				</div>
+			</f:if>
 		</div>
-	</f:if>
-	<f:if condition="{facebook.description}">
-		<div class="tx-moox-social-facebook-description">{facebook.description}</div>
-	</f:if>
-	<f:if condition="{facebook.imageUrl}">
-		<div class="tx-moox-social-facebook-image">
-			<img src="{facebook.imageUrl}" class="img-responsive img-thumbnail" title="{facebook.imageUrl}" alt="{facebook.imageUrl}" />
+		<div class="tx-moox-social-footer">
+			<div class="row">
+				<div class="tx-moox-social-facebook-stats col-sm-6">
+					<ul class="list-inline">
+						<li>
+							<span class="fa fa-comments" aria-hidden="true" title="<f:translate key='tx_mooxsocial_facebook_action_list_item.comments' />"></span> {facebook.comments}
+						</li>
+						<li>
+							<span class="fa fa-thumbs-up" aria-hidden="true" title="<f:translate key='tx_mooxsocial_facebook_action_list_item.likes' />"></span> {facebook.likes}
+						</li>
+						<li>
+							<span class="fa fa-share" aria-hidden="true" title="<f:translate key='tx_mooxsocial_facebook_action_list_item.shares' />"></span> {facebook.shares}
+						</li>
+					</ul>
+				</div>
+				<div class="tx-moox-social-facebook-link col-sm-6">
+					<f:link.external uri="{facebook.url}" class="btn btn-default pull-right" target="_blank"><f:translate key="tx_mooxsocial_facebook_action_list.tofacebook" /></f:link.external>
+				</div>
+			</div>
 		</div>
-	</f:if>
-	<div class="tx-moox-social-facebook-link">
-		<f:link.external uri="{facebook.url}" target="_blank"><f:translate key="tx_mooxsocial_facebook_action_list.tofacebook" /></f:link.external>
-	</div>
-	<div class="tx-moox-social-facebook-stats">
-		[ <f:translate key="tx_mooxsocial_facebook_action_list_item.comments" />:{facebook.comments} | <f:translate key="tx_mooxsocial_facebook_action_list_item.likes" />:{facebook.likes} | <f:translate key="tx_mooxsocial_facebook_action_list_item.shares" />:{facebook.shares} ]
 	</div>
 </div>

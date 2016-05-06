@@ -249,7 +249,12 @@ $TCA['tx_mooxsocial_domain_model_flickr'] = array(
 						'type' => 'popup',
 						'title' => 'LLL:EXT:cms/locallang_ttc.xml:header_link_formlabel',
 						'icon' => 'link_popup.gif',
-						'script' => 'browse_links.php?mode=wizard',
+						'module' => array(
+							'name' => 'wizard_element_browser',
+							'urlParameters' => array(
+								'mode' => 'wizard'
+							)
+						),
 						'JSopenParams' => 'height=300,width=500,status=0,menubar=0,scrollbars=1',
 					),
 				),
@@ -279,7 +284,12 @@ $TCA['tx_mooxsocial_domain_model_flickr'] = array(
 						'type' => 'popup',
 						'title' => 'LLL:EXT:cms/locallang_ttc.xml:header_link_formlabel',
 						'icon' => 'link_popup.gif',
-						'script' => 'browse_links.php?mode=wizard',
+						'module' => array(
+							'name' => 'wizard_element_browser',
+							'urlParameters' => array(
+								'mode' => 'wizard'
+							)
+						),
 						'JSopenParams' => 'height=300,width=500,status=0,menubar=0,scrollbars=1',
 					),
 				),
@@ -300,7 +310,12 @@ $TCA['tx_mooxsocial_domain_model_flickr'] = array(
 						'type' => 'popup',
 						'title' => 'LLL:EXT:cms/locallang_ttc.xml:header_link_formlabel',
 						'icon' => 'link_popup.gif',
-						'script' => 'browse_links.php?mode=wizard',
+						'module' => array(
+							'name' => 'wizard_element_browser',
+							'urlParameters' => array(
+								'mode' => 'wizard'
+							)
+						),
 						'JSopenParams' => 'height=300,width=500,status=0,menubar=0,scrollbars=1',
 					),
 				),
@@ -328,7 +343,12 @@ $TCA['tx_mooxsocial_domain_model_flickr'] = array(
 						'type' => 'popup',
 						'title' => 'LLL:EXT:cms/locallang_ttc.xml:header_link_formlabel',
 						'icon' => 'link_popup.gif',
-						'script' => 'browse_links.php?mode=wizard',
+						'module' => array(
+							'name' => 'wizard_element_browser',
+							'urlParameters' => array(
+								'mode' => 'wizard'
+							)
+						),
 						'JSopenParams' => 'height=300,width=500,status=0,menubar=0,scrollbars=1',
 					),
 				),
@@ -356,7 +376,12 @@ $TCA['tx_mooxsocial_domain_model_flickr'] = array(
 						'type' => 'popup',
 						'title' => 'LLL:EXT:cms/locallang_ttc.xml:header_link_formlabel',
 						'icon' => 'link_popup.gif',
-						'script' => 'browse_links.php?mode=wizard',
+						'module' => array(
+							'name' => 'wizard_element_browser',
+							'urlParameters' => array(
+								'mode' => 'wizard'
+							)
+						),
 						'JSopenParams' => 'height=300,width=500,status=0,menubar=0,scrollbars=1',
 					),
 				),

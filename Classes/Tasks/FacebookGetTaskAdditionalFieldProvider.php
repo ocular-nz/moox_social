@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\MooxSocial\Tasks;
+namespace DCNGmbH\MooxSocial\Tasks;
 
 /***************************************************************
  *  Copyright notice
@@ -251,12 +251,12 @@ class FacebookGetTaskAdditionalFieldProvider implements \TYPO3\CMS\Scheduler\Add
 				'allowSignedRequest' 	=> false
 			);
 				
-			$facebook 	= new \TYPO3\MooxSocial\Facebook\Facebook($config);			
+			$facebook 	= new \DCNGmbH\MooxSocial\Facebook\Facebook($config);
 			$url 		= '/' . $submittedData['pageId'] . '/feed';
 			
 			try {			
 				$rawFeed = $facebook->api($url);
-			} catch (\TYPO3\MooxSocial\Facebook\FacebookApiException $e) {
+			} catch (\DCNGmbH\MooxSocial\Facebook\FacebookApiException $e) {
 				$parentObject->addMessage($GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_facebookgettask.api_error')." [". $e->getMessage()."]", \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);				
 				$result = FALSE;				
 			}						
@@ -290,7 +290,7 @@ class FacebookGetTaskAdditionalFieldProvider implements \TYPO3\CMS\Scheduler\Add
 	 */
 	public function getSocialFoldersSelector($selectorName,$pid = 0) {
 		
-		$folders = \TYPO3\MooxSocial\Controller\AdministrationController::getSocialFolders();
+		$folders = \DCNGmbH\MooxSocial\Controller\AdministrationController::getSocialFolders();
 		
 		$selector = '<select name="' . $selectorName . '">';
 		

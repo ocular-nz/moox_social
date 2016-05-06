@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\MooxSocial\Tasks;
+namespace DCNGmbH\MooxSocial\Tasks;
 
 /***************************************************************
  *  Copyright notice
@@ -287,7 +287,7 @@ class FlickrGetTaskAdditionalFieldProvider implements \TYPO3\CMS\Scheduler\Addit
 	 */
 	public function getSocialFoldersSelector($selectorName,$pid = 0) {
 		
-		$folders = \TYPO3\MooxSocial\Controller\AdministrationController::getSocialFolders();
+		$folders = \DCNGmbH\MooxSocial\Controller\AdministrationController::getSocialFolders();
 		
 		$selector = '<select name="' . $selectorName . '">';
 		

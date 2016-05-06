@@ -76,7 +76,7 @@ if (TYPO3_MODE === 'BE') {
         }
         $TBE_MODULES = $temp_TBE_MODULES;
 		if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('moox_core')) {
-			$mainModuleKey 		= "FluidTYPO3.moox_core";
+			$mainModuleKey 		= "DCNGmbH.moox_core";
 			$mainModuleIcon 	= 'EXT:moox_core/ext_icon32.png';
 			$mainModuleLabels 	= 'LLL:EXT:moox_core/Resources/Private/Language/MainModule.xlf';			
 		} else {
@@ -99,7 +99,7 @@ if (TYPO3_MODE === 'BE') {
     } 
 
 	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-		'TYPO3.'.$_EXTKEY,
+		'DCNGmbH.'.$_EXTKEY,
 		$mainModuleName,	// Make module a submodule of 'moox'
 		'socialmanagement',		// Submodule key
 		'after:MooxNewsTxMooxnewsM2',					// Position
@@ -270,16 +270,16 @@ $TCA['tx_mooxsocial_domain_model_slideshare'] = array(
 /***************
  * Wizard
  */
-$extensionName = t3lib_div::underscoredToUpperCamelCase($_EXTKEY);
+$extensionName = \TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($_EXTKEY);
 $pluginSignature = strtolower($extensionName);
 if (TYPO3_MODE == 'BE') {
 	$TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses'][$pluginSignature . '_wizicon'] =
-		t3lib_extMgm::extPath($_EXTKEY) . 'Resources/Private/Php/class.' . $pluginSignature . '_wizicon.php';
+		\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Resources/Private/Php/class.' . $pluginSignature . '_wizicon.php';
 }
 
 /***************
  * Icon in page tree
  */
 $TCA['pages']['columns']['module']['config']['items'][] = array('MOOX-Social', 'mxsocial', 'EXT:moox_social/ext_icon.gif');
-t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-mxsocial', '../typo3conf/ext/moox_social/ext_icon.gif');
+\TYPO3\CMS\Backend\Sprite\SpriteManager::addTcaTypeIcon('pages', 'contains-mxsocial', '../typo3conf/ext/moox_social/ext_icon.gif');
 ?>

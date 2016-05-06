@@ -1,7 +1,130 @@
 module.tx_mooxsocial {	
 	view {
-		templateRootPath = EXT:moox_social/Resources/Private/Backend/Templates/
-		partialRootPath = EXT:moox_social/Resources/Private/Backend/Partials/
-		layoutRootPath = EXT:moox_social/Resources/Private/Backend/Layouts/
+		templateRootPaths.0 = EXT:moox_social/Resources/Private/Backend/Templates/
+		partialRootPaths.0 = EXT:moox_social/Resources/Private/Backend/Partials/
+		layoutRootPaths.0 = EXT:moox_social/Resources/Private/Backend/Layouts/
+	}
+}
+
+#
+# Konkreter Pagetype
+#
+AJAX_Plugintypfacebook = PAGE
+AJAX_Plugintypfacebook {
+	typeNum = 89657202
+	config {
+		disableAllHeaderCode = 1
+		disableCharsetHeader = 1 
+		disablePrefixComment = 1
+		xhtml_cleaning = 0
+		admPanel = 0
+		debug = 0
+        no_cache = 1
+		additionalHeaders = Content-type:text/html
+	}
+	10 < tt_content.list.20.mooxsocial_pi1
+	10 {
+		switchableControllerActions {
+			Facebook {
+				1 = listAjax				
+			}
+		}
+		settings < plugin.tx_mooxsocial.settings            
+    }	
+}
+
+AJAX_Plugintyptwitter = PAGE
+AJAX_Plugintyptwitter {
+	typeNum = 89657303
+	config {
+		disableAllHeaderCode = 1
+		disableCharsetHeader = 1
+		disablePrefixComment = 1
+		xhtml_cleaning = 0
+		admPanel = 0
+		debug = 0
+		no_cache = 1
+		additionalHeaders = Content-type:text/html
+	}
+	10 < tt_content.list.20.mooxsocial_pi2
+	10 {
+		switchableControllerActions {
+			Facebook {
+				1 = listAjax
+			}
+		}
+		settings < plugin.tx_mooxsocial.settings
+	}
+}
+
+AJAX_Plugintypyoutube = PAGE
+AJAX_Plugintypyoutube {
+	typeNum = 89657404
+	config {
+		disableAllHeaderCode = 1
+		disableCharsetHeader = 1
+		disablePrefixComment = 1
+		xhtml_cleaning = 0
+		admPanel = 0
+		debug = 0
+		no_cache = 1
+		additionalHeaders = Content-type:text/html
+	}
+	10 < tt_content.list.20.mooxsocial_pi3
+	10 {
+		switchableControllerActions {
+			Facebook {
+				1 = listAjax
+			}
+		}
+		settings < plugin.tx_mooxsocial.settings
+	}
+}
+
+AJAX_Plugintypflickr = PAGE
+AJAX_Plugintypflickr {
+	typeNum = 89657505
+	config {
+		disableAllHeaderCode = 1
+		disableCharsetHeader = 1
+		disablePrefixComment = 1
+		xhtml_cleaning = 0
+		admPanel = 0
+		debug = 0
+		no_cache = 1
+		additionalHeaders = Content-type:text/html
+	}
+	10 < tt_content.list.20.mooxsocial_pi4
+	10 {
+		switchableControllerActions {
+			Facebook {
+				1 = listAjax
+			}
+		}
+		settings < plugin.tx_mooxsocial.settings
+	}
+}
+
+AJAX_Plugintypslideshare = PAGE
+AJAX_Plugintypslideshare {
+	typeNum = 89657606
+	config {
+		disableAllHeaderCode = 1
+		disableCharsetHeader = 1
+		disablePrefixComment = 1
+		xhtml_cleaning = 0
+		admPanel = 0
+		debug = 0
+		no_cache = 1
+		additionalHeaders = Content-type:text/html
+	}
+	10 < tt_content.list.20.mooxsocial_pi5
+	10 {
+		switchableControllerActions {
+			Facebook {
+				1 = listAjax
+			}
+		}
+		settings < plugin.tx_mooxsocial.settings
 	}
 }

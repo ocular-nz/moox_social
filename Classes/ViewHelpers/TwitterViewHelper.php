@@ -1,5 +1,7 @@
 <?php
-require_once t3lib_extMgm::extPath('moox_social','Classes/SDK/twitter/TwitterAPIExchange.php');
+namespace DCNGmbH\MooxSocial\ViewHelpers;
+
+require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('moox_social','Classes/SDK/twitter/TwitterAPIExchange.php');
 
 /**
  * Twitter ViewHelper
@@ -8,7 +10,7 @@ require_once t3lib_extMgm::extPath('moox_social','Classes/SDK/twitter/TwitterAPI
  *
  * @package moox_social
  */
-class Tx_MooxSocial_ViewHelpers_TwitterViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class TwitterViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Initialize arguments
@@ -34,7 +36,7 @@ class Tx_MooxSocial_ViewHelpers_TwitterViewHelper extends Tx_Fluid_Core_ViewHelp
                 'consumer_secret' => $this->arguments['consumer-secret']
             );
     
-            $this->viewHelperVariableContainer->addOrUpdate('Tx_MooxSocial_ViewHelpers_TwitterViewHelper', 'twitter', $settings);
+            $this->viewHelperVariableContainer->addOrUpdate('DCNGmbH\\MooxSocial\\ViewHelpers\\TwitterViewHelper', 'twitter', $settings);
 
 	    return $this->renderChildren();
 	}

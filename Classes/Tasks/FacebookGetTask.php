@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\MooxSocial\Tasks;
+namespace DCNGmbH\MooxSocial\Tasks;
 
 /***************************************************************
  *  Copyright notice
@@ -25,6 +25,11 @@ namespace TYPO3\MooxSocial\Tasks;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Messaging\FlashMessage;
+use TYPO3\CMS\Core\Messaging\FlashMessageService;
+
 /**
  * Include Facebook API Tools
  */
@@ -45,7 +50,7 @@ require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('moox_s
 class FacebookGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {		
 	
 	/**
-	 * Sicherheitszeitraum für Zeitüberschneidungen während der zyklischen Ausführung des Tasks
+	 * Sicherheitszeitraum fï¿½r Zeitï¿½berschneidungen wï¿½hrend der zyklischen Ausfï¿½hrung des Tasks
 	 *
 	 * @var integer
 	 */
@@ -92,6 +97,13 @@ class FacebookGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	 * @var string
 	 */
 	public $pageId;
+
+	/**
+	 * flash message service
+	 *
+	 * @var \TYPO3\CMS\Core\Messaging\FlashMessageService
+	 */
+	public $flashMessageService;
 	
 	/**
 	 * Works through the indexing queue and indexes the queued items into Solr.
@@ -99,7 +111,11 @@ class FacebookGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	 * @return	boolean	Returns TRUE on success, FALSE if no items were indexed or none were found.
 	 * @see	typo3/sysext/scheduler/tx_scheduler_Task#execute()
 	 */
-	public function execute() {						
+	public function execute() {
+
+		$objectManager = GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
+		$flashMessageService = $objectManager->get(FlashMessageService::class);
+		$flashMessageQueue = $flashMessageService->getMessageQueueByIdentifier();
 		
 		// Get the extensions's configuration
 		$extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['moox_social']);		
@@ -129,16 +145,16 @@ class FacebookGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 			$from		= ($time-$interval-self::$intervalBuffer);									
 			
 			try {			
-				$rawFeed = \TYPO3\MooxSocial\Controller\FacebookController::facebook($this->appId,$this->secret,$this->pageId,'posts?since='.$from.'&until='.$to.'&limit='.self::$limit);				
+				$rawFeed = \DCNGmbH\MooxSocial\Controller\FacebookController::facebook($this->appId,$this->secret,$this->pageId,'posts?since='.$from.'&until='.$to.'&limit='.self::$limit);
 				$executionSucceeded = TRUE;
-			} catch (\TYPO3\MooxSocial\Facebook\FacebookApiException $e) {				
-				$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
+			} catch (\DCNGmbH\MooxSocial\Facebook\FacebookApiException $e) {
+				$message = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
 					$GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_scheduler.xlf:tx_mooxsocial_tasks_facebookgettask.api_execution_error')." [". $e->getMessage()."]",
-					 '', // the header is optional
-					 \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR, // the severity is optional as well and defaults to \TYPO3\CMS\Core\Messaging\FlashMessage::OK
-					 TRUE // optional, whether the message should be stored in the session or only in the \TYPO3\CMS\Core\Messaging\FlashMessageQueue object (default is FALSE)
+					 '',
+					 FlashMessage::ERROR,
+					 TRUE
 				);
-				\TYPO3\CMS\Core\Messaging\FlashMessageQueue::addMessage($message);
+				$flashMessageQueue->addMessage($message);
 				if($this->email && $extConf['debugEmailSenderAddress']){				
 					$lockfile = $_SERVER['DOCUMENT_ROOT']."/typo3temp/.lock-email-task-".md5($this->appId.$this->secret.$this->pageId);
 					if(file_exists($lockfile)){
@@ -174,7 +190,7 @@ class FacebookGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 					$item['pageId'] = $this->pageId;
 					$item['pid'] 	= $this->pid;
 					
-					$post 			= \TYPO3\MooxSocial\Controller\FacebookController::facebookPost($item);					
+					$post 			= \DCNGmbH\MooxSocial\Controller\FacebookController::facebookPost($item);
 					
 					if(is_array($post)){
 						$posts[] 		= $post;
@@ -184,8 +200,8 @@ class FacebookGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 
 			if(count($posts)){
 				
-				$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
-				$facebookRepository = $objectManager->get('\TYPO3\MooxSocial\Domain\Repository\FacebookRepository');       
+				$objectManager = GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
+				$facebookRepository = $objectManager->get('DCNGmbH\\MooxSocial\\Domain\\Repository\\FacebookRepository');
 				
 				$insertCnt = 0;
 				$updateCnt = 0;
@@ -194,8 +210,8 @@ class FacebookGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 										
 					$facebookPost		= $facebookRepository->findOneByApiUid($post['apiUid'],$this->pid);
 					
-					if(!($facebookPost instanceof \TYPO3\MooxSocial\Domain\Model\Facebook)){
-						$facebookPost = new \TYPO3\MooxSocial\Domain\Model\Facebook;
+					if(!($facebookPost instanceof \DCNGmbH\MooxSocial\Domain\Model\Facebook)){
+						$facebookPost = new \DCNGmbH\MooxSocial\Domain\Model\Facebook;
 						$action	= "insert";
 					}
 					
@@ -254,24 +270,24 @@ class FacebookGetTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 				$objectManager->get('TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface')->persistAll();
 				
 				if($insertCnt>0 || $updateCnt>0){
-					\TYPO3\MooxSocial\Controller\AdministrationController::clearCache("mooxsocial_pi1",$this->clearCachePages);
+					\DCNGmbH\MooxSocial\Controller\AdministrationController::clearCache("mooxsocial_pi1",$this->clearCachePages);
 				}
 				
-				$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
+				$message = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
 					$insertCnt." neue Posts geladen | ".$updateCnt." bestehende Posts aktualisiert",
-					 '', // the header is optional
-					 \TYPO3\CMS\Core\Messaging\FlashMessage::OK, // the severity is optional as well and defaults to \TYPO3\CMS\Core\Messaging\FlashMessage::OK
-					 TRUE // optional, whether the message should be stored in the session or only in the \TYPO3\CMS\Core\Messaging\FlashMessageQueue object (default is FALSE)
+					 '',
+					 FlashMessage::OK,
+					 TRUE
 				);
-				\TYPO3\CMS\Core\Messaging\FlashMessageQueue::addMessage($message);
+				$flashMessageQueue->addMessage($message);
 			} else {
-				$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
+				$message = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
 					 "Keine neuen oder aktualisierten Posts gefunden",
-					 '', // the header is optional
-					 \TYPO3\CMS\Core\Messaging\FlashMessage::OK, // the severity is optional as well and defaults to \TYPO3\CMS\Core\Messaging\FlashMessage::OK
-					 TRUE // optional, whether the message should be stored in the session or only in the \TYPO3\CMS\Core\Messaging\FlashMessageQueue object (default is FALSE)
+					 '',
+					 FlashMessage::OK,
+					 TRUE
 				);
-				\TYPO3\CMS\Core\Messaging\FlashMessageQueue::addMessage($message);
+				$flashMessageQueue->addMessage($message);
 			}	
 		} 				
 

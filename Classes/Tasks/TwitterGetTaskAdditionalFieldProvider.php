@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\MooxSocial\Tasks;
+namespace DCNGmbH\MooxSocial\Tasks;
 
 /***************************************************************
  *  Copyright notice
@@ -271,7 +271,7 @@ class TwitterGetTaskAdditionalFieldProvider implements \TYPO3\CMS\Scheduler\Addi
 				'allowSignedRequest' 		=> false
 			);
 				
-			$twitter 		= new \TYPO3\MooxSocial\Twitter\TwitterAPIExchange($config);			
+			$twitter 		= new \DCNGmbH\MooxSocial\Twitter\TwitterAPIExchange($config);
 			$url 			= "https://api.twitter.com/1.1/statuses/user_timeline.json";
 			$requestMethod 	= "GET";
 			$getfield 		= '?screen_name=' . $submittedData['screenName'];
@@ -313,7 +313,7 @@ class TwitterGetTaskAdditionalFieldProvider implements \TYPO3\CMS\Scheduler\Addi
 	 */
 	public function getSocialFoldersSelector($selectorName,$pid = 0) {
 		
-		$folders = \TYPO3\MooxSocial\Controller\AdministrationController::getSocialFolders();
+		$folders = \DCNGmbH\MooxSocial\Controller\AdministrationController::getSocialFolders();
 		
 		$selector = '<select name="' . $selectorName . '">';
 		

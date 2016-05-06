@@ -40,31 +40,31 @@ class mooxsocial_wizicon {
 	 */
 	public function proc($wizardItems) {
 		$wizardItems['plugins_tx_' . self::KEY . 'pi1'] = array(
-			'icon'			=> t3lib_extMgm::extRelPath(self::KEY) . 'Resources/Public/Icons/ce_wiz.png',
+			'icon'			=> \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath(self::KEY) . 'Resources/Public/Icons/ce_wiz.png',
 			'title'			=> $GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi1_title'),
 			'description'	=> $GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi1_plus_wiz_description'),
 			'params'		=> '&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=mooxsocial_pi1'
 		);
 		$wizardItems['plugins_tx_' . self::KEY . 'pi2'] = array(
-			'icon'			=> t3lib_extMgm::extRelPath(self::KEY) . 'Resources/Public/Icons/ce_wiz.png',
+			'icon'			=> \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath(self::KEY) . 'Resources/Public/Icons/ce_wiz.png',
 			'title'			=> $GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi2_title'),
 			'description'	=> $GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi2_plus_wiz_description'),
 			'params'		=> '&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=mooxsocial_pi2'
 		);
 		$wizardItems['plugins_tx_' . self::KEY . 'pi3'] = array(
-			'icon'			=> t3lib_extMgm::extRelPath(self::KEY) . 'Resources/Public/Icons/ce_wiz.png',
+			'icon'			=> \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath(self::KEY) . 'Resources/Public/Icons/ce_wiz.png',
 			'title'			=> $GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi3_title'),
 			'description'	=> $GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi3_plus_wiz_description'),
 			'params'		=> '&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=mooxsocial_pi3'
 		);
 		$wizardItems['plugins_tx_' . self::KEY . 'pi4'] = array(
-			'icon'			=> t3lib_extMgm::extRelPath(self::KEY) . 'Resources/Public/Icons/ce_wiz.png',
+			'icon'			=> \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath(self::KEY) . 'Resources/Public/Icons/ce_wiz.png',
 			'title'			=> $GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi4_title'),
 			'description'	=> $GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi4_plus_wiz_description'),
 			'params'		=> '&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=mooxsocial_pi4'
 		);
 		$wizardItems['plugins_tx_' . self::KEY . 'pi5'] = array(
-			'icon'			=> t3lib_extMgm::extRelPath(self::KEY) . 'Resources/Public/Icons/ce_wiz.png',
+			'icon'			=> \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath(self::KEY) . 'Resources/Public/Icons/ce_wiz.png',
 			'title'			=> $GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi5_title'),
 			'description'	=> $GLOBALS['LANG']->sL('LLL:EXT:moox_social/Resources/Private/Language/locallang_be.xml:pi5_plus_wiz_description'),
 			'params'		=> '&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=mooxsocial_pi5'

@@ -9,13 +9,15 @@
 	</f:if>					
 	<f:if condition="{posts -> f:count()}>0">
 		<f:then>
-			<f:if condition="{settings.source}!='api'">
-				<f:if condition="{settings.use_ajax}">
-					<div class="tx-moox-social-count">
-						{count} Posts
-					</div>
+			<f:comment>
+				<f:if condition="{settings.source}!='api'">
+					<f:if condition="{settings.use_ajax}">
+						<div class="tx-moox-social-count">
+							{count} Posts
+						</div>
+					</f:if>
 				</f:if>
-			</f:if>
+			</f:comment>
 			<f:if condition="{settings.use_ajax}">				
 				<f:if condition="{count}>{settings.ajax_limit}">					
 					<f:then>
