@@ -113,7 +113,7 @@ if (TYPO3_MODE === 'BE') {
 		),
 		array(
 			'access' => 'user,group',
-			'icon'   => 'EXT:' . $_EXTKEY . '/ext_icon32.png',
+			'icon'   => 'EXT:' . $_EXTKEY . '/Resources/Public/Icons/module-mooxsocial.svg',
 			'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_init.xlf',
 		)
 	);
