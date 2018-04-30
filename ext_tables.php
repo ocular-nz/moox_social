@@ -281,5 +281,5 @@ if (TYPO3_MODE == 'BE') {
  * Icon in page tree
  */
 $TCA['pages']['columns']['module']['config']['items'][] = array('MOOX-Social', 'mxsocial', 'EXT:moox_social/ext_icon.gif');
-\TYPO3\CMS\Backend\Sprite\SpriteManager::addTcaTypeIcon('pages', 'contains-mxsocial', '../typo3conf/ext/moox_social/ext_icon.gif');
+
 ?>
